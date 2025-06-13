@@ -1,0 +1,103 @@
+{
+  "pdf": "Habegger-Leandro-08-11-24.pdf",
+  "pages_total": 2,
+  "runtime_s": 0.104,
+  "font_ranking": [
+    [
+      "Roboto-Regular",
+      9.0,
+      4,
+      1342
+    ],
+    [
+      "Unnamed-T3",
+      9.0,
+      0,
+      562
+    ],
+    [
+      "Roboto-Bold",
+      9.0,
+      20,
+      172
+    ],
+    [
+      "Roboto-Light",
+      9.0,
+      4,
+      78
+    ],
+    [
+      "Unnamed-T3",
+      24.0,
+      0,
+      16
+    ]
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "fonts": [
+        [
+          "Roboto-Regular",
+          9.0,
+          4,
+          1175
+        ],
+        [
+          "Unnamed-T3",
+          9.0,
+          0,
+          344
+        ],
+        [
+          "Roboto-Bold",
+          9.0,
+          20,
+          90
+        ],
+        [
+          "Roboto-Light",
+          9.0,
+          4,
+          48
+        ],
+        [
+          "Unnamed-T3",
+          24.0,
+          0,
+          16
+        ]
+      ]
+    },
+    {
+      "page": 2,
+      "fonts": [
+        [
+          "Unnamed-T3",
+          9.0,
+          0,
+          218
+        ],
+        [
+          "Roboto-Regular",
+          9.0,
+          4,
+          167
+        ],
+        [
+          "Roboto-Bold",
+          9.0,
+          20,
+          82
+        ],
+        [
+          "Roboto-Light",
+          9.0,
+          4,
+          30
+        ]
+      ]
+    }
+  ]
+}

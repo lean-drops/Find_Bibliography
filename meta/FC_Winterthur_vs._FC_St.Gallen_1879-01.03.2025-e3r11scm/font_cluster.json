@@ -1,0 +1,98 @@
+{
+  "pdf": "FC_Winterthur_vs._FC_St.Gallen_1879-01.03.2025-e3r11scm.pdf",
+  "pages_total": 1,
+  "runtime_s": 0.006,
+  "font_ranking": [
+    [
+      "Arial",
+      7.0,
+      0,
+      167
+    ],
+    [
+      "Arial,Bold",
+      8.0,
+      16,
+      56
+    ],
+    [
+      "Arial",
+      10.0,
+      0,
+      55
+    ],
+    [
+      "Arial,Bold",
+      12.0,
+      16,
+      52
+    ],
+    [
+      "Arial,Bold",
+      9.0,
+      16,
+      44
+    ],
+    [
+      "Arial,Bold",
+      10.5,
+      16,
+      34
+    ],
+    [
+      "Arial,Bold",
+      8.2,
+      16,
+      21
+    ]
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "fonts": [
+        [
+          "Arial",
+          7.0,
+          0,
+          167
+        ],
+        [
+          "Arial,Bold",
+          8.0,
+          16,
+          56
+        ],
+        [
+          "Arial",
+          10.0,
+          0,
+          55
+        ],
+        [
+          "Arial,Bold",
+          12.0,
+          16,
+          52
+        ],
+        [
+          "Arial,Bold",
+          9.0,
+          16,
+          44
+        ],
+        [
+          "Arial,Bold",
+          10.5,
+          16,
+          34
+        ],
+        [
+          "Arial,Bold",
+          8.2,
+          16,
+          21
+        ]
+      ]
+    }
+  ]
+}

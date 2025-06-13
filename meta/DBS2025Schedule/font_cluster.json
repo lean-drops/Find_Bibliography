@@ -1,0 +1,50 @@
+{
+  "pdf": "DBS2025Schedule.pdf",
+  "pages_total": 1,
+  "runtime_s": 0.02,
+  "font_ranking": [
+    [
+      "DejaVuSans",
+      6.2,
+      4,
+      3004
+    ],
+    [
+      "DejaVuSans-Bold",
+      7.0,
+      20,
+      45
+    ],
+    [
+      "DejaVuSans-Bold",
+      6.2,
+      20,
+      31
+    ]
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "fonts": [
+        [
+          "DejaVuSans",
+          6.2,
+          4,
+          3004
+        ],
+        [
+          "DejaVuSans-Bold",
+          7.0,
+          20,
+          45
+        ],
+        [
+          "DejaVuSans-Bold",
+          6.2,
+          20,
+          31
+        ]
+      ]
+    }
+  ]
+}
