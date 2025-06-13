@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{# -------------------------------------------------------------------------
+   grouping.html – Auswahl-Seite für Netzwerk-Analyse
+   erwartet: works = [{id,title,year,authors,c_in,c_out,own}, …]
+   own = 1  → eigenes Upload-PDF
+         0  → nur Ziel eines Zitats
+   ------------------------------------------------------------------------- #}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='grouping.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1 class="grouping-heading mb-4">
+  Werk-Gruppierung
+  <small class="fs-6 text-muted">Netzwerk-Analyse</small>
+</h1>
+
+<div class="grouping-toolbar mb-3 d-flex flex-wrap gap-2 align-items-center">
+  <input id="filter"
+         class="form-control flex-grow-1 grouping-filter"
+         type="search"
+         placeholder="Suche Titel oder Autor …">
+
+  <div class="form-check grouping-toggle-all">
+    <input class="form-check-input" type="checkbox" id="toggle-all">
+    <label class="form-check-label small" for="toggle-all">Alle</label>
+  </div>
+</div>
+
+<form id="grp-form">
+  <ul id="work-list" class="list-group grouping-list">
+    {% for w in works %}
+      {#  grauer Hintergrund bei reinen Referenz-Werken  #}
+      <li class="list-group-item grouping-item {% if not w.own %}grouping-ref{% endif %}"
+          data-title="{{ (w.title ~ ' ' ~ (w.authors or ''))|lower }}">
+
+        <label class="d-flex align-items-center w-100">
+          <input class="form-check-input me-2 chk grouping-checkbox"
+                 type="checkbox" name="work_id" value="{{ w.id }}">
+
+          <span class="flex-grow-1 grouping-title">
+            {{ w.title }}
+            <small class="text-muted">({{ w.year or 'n/a' }})</small>
+          </span>
+
+          <span class="badge bg-success ms-2 grouping-badge-in"
+                title="wird zitiert von">
+            ← {{ w.c_in }}
+          </span>
+          <span class="badge bg-primary ms-1 grouping-badge-out"
+                title="verweist auf">
+            → {{ w.c_out }}
+          </span>
+        </label>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <button id="btn-run"
+          class="btn btn-primary mt-4 grouping-runbtn"
+          disabled>
+    Analyse starten
+  </button>
+</form>
+
+<div id="msg" class="alert d-none mt-4 grouping-msg"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+/* ====== kleine DOM-Helfer ============================================== */
+const $  =  (sel, el=document) => el.querySelector(sel);
+const $$ =  (sel, el=document) => [...el.querySelectorAll(sel)];
+
+/* ====== Live-Suche / Filter ============================================ */
+$('#filter').addEventListener('input', e=>{
+  const q = e.target.value.toLowerCase();
+  $$('#work-list > li').forEach(li=>{
+    li.classList.toggle('d-none', !li.dataset.title.includes(q));
+  });
+});
+
+/* ====== Alle auswählen / abwählen ====================================== */
+$('#toggle-all').addEventListener('change', e=>{
+  const state = e.target.checked;
+  $$('.chk').forEach(box=>{
+    if(!box.closest('li').classList.contains('d-none'))
+      box.checked = state;
+  });
+  updateButton();
+});
+
+/* ====== Start-Button aktivieren ======================================== */
+function updateButton(){
+  $('#btn-run').disabled = $$('.chk:checked').length === 0;
+}
+$$('.chk').forEach(c=> c.addEventListener('change', updateButton));
+
+/* ====== Analyse-Request absenden ======================================= */
+$('#grp-form').addEventListener('submit', async ev=>{
+  ev.preventDefault();
+  const fd   = new FormData(ev.target);
+  const resp = await fetch("{{ url_for('grouping.analyze') }}",
+                           {method:'POST', body:fd});
+  const dat  = await resp.json();
+
+  if (dat.group_id){
+location.href = `/grouping/network/${dat.group_id}`;  } else {
+    const box = $('#msg');
+    box.className = 'alert alert-danger grouping-msg';
+    box.textContent = dat.error || 'Unbekannter Fehler';
+    box.classList.remove('d-none');
+  }
+});
+</script>
+{% endblock %}

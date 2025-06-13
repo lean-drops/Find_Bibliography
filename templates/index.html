@@ -1,0 +1,150 @@
+{# templates/index.html #}
+{% extends "base.html" %}
+
+{% block title %}PDF Batch-Analyse{% endblock %}
+
+{% block extra_css %}
+  {{ super() }}
+  <!-- Seitenspezifische Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+{% endblock %}
+
+{% block content %}
+<main class="container py-4">
+
+  <h1 class="fw-bold mb-4">PDF&nbsp;Batch-Analyse</h1>
+
+  <!-- ───────────── Upload-Form ───────────── -->
+  <form id="upload-form"
+        class="base-card index-uploadform mb-5"
+        method="post"
+        enctype="multipart/form-data"
+        aria-labelledby="fileInputLabel">
+
+    <label id="fileInputLabel"
+           for="fileInput"
+           class="form-label fw-semibold mb-3">
+      PDF-Dateien auswählen
+    </label>
+
+    <input id="fileInput"
+           name="safe"
+           type="file"
+           accept="application/pdf"
+           multiple
+           required
+           class="form-control mb-3"
+           aria-describedby="fileHelp">
+
+    <div id="fileHelp" class="form-text mb-3">
+      Du kannst mehrere PDFs gleichzeitig hochladen.
+    </div>
+
+    <!-- Start-Knopf -->
+    <button class="base-btn index-runbtn" type="submit">
+      <span id="spinner"
+            class="spinner-border spinner-border-sm me-2 d-none"
+            role="status"
+            aria-hidden="true"></span>
+      Start Analyse
+    </button>
+  </form>
+
+  <!-- Ergebnis-Grid -->
+  <section id="index-area" class="row gy-4" aria-live="polite"></section>
+
+</main>
+
+<!-- Preview-Modal -->
+<div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-transparent border-0 shadow-none">
+      <img id="modalImg" class="img-fluid rounded-3" alt="PDF-Seitenvorschau">
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(() => {
+  /* ───── Upload-Handling ─────────────────────────────── */
+  const $ = (s) => document.querySelector(s);
+
+  $('#upload-form').addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const spinner = $('#spinner');
+    spinner.classList.remove('d-none');
+
+    try {
+      const fd = new FormData(ev.target);
+      const rsp = await fetch('/', {
+        method: 'POST',
+        body: fd,
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      });
+      if (!rsp.ok) throw new Error(`${rsp.status} ${rsp.statusText}`);
+      const data = await rsp.json();
+      renderResults(data);
+    } catch (err) {
+      alert('Upload fehlgeschlagen: ' + err.message);
+    } finally {
+      spinner.classList.add('d-none');
+      ev.target.reset();
+    }
+  });
+
+  /* ───── Ergebnis-Renderer ────────────────────────────── */
+  function renderResults(data) {
+    const area = $('#index-area');
+    area.textContent = '';
+    let i = 0;
+
+    for (const [file, bounds] of Object.entries(data)) {
+      const col = document.createElement('div');
+      col.className = 'col-xl-3 col-lg-4 col-md-6';
+      col.style.animationDelay = `${i * 60}ms`;
+
+      const card = document.createElement('article');
+      card.className = 'base-card index-resultcard d-flex gap-3 align-items-center';
+
+      // Status-Badge
+      const badge = document.createElement('span');
+      badge.className = `index-status ${bounds ? 'index-success' : 'index-danger'}`;
+      badge.textContent = bounds ? 'OK' : 'Fehler';
+      card.appendChild(badge);
+
+      // Thumbnail
+      if (bounds) {
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.src = `/preview/${encodeURIComponent(file)}?page=${bounds[0]}`;
+        img.alt = `Vorschau von ${file}`;
+        img.className = 'index-thumb rounded-2';
+        img.addEventListener('click', () => {
+          $('#modalImg').src = img.src;
+          bootstrap.Modal.getOrCreateInstance('#imgModal').show();
+        });
+        card.appendChild(img);
+      }
+
+      // Textblock
+      const txt = document.createElement('div');
+      txt.className = 'flex-grow-1 small';
+      txt.innerHTML = bounds
+        ? `<span class="fw-semibold">${file}</span><br>Seiten <strong>${bounds[0]} – ${bounds[1]}</strong>`
+        : `<span class="fw-semibold text-danger">${file}</span><br><span class="base-muted">keine Bibliographie gefunden</span>`;
+      card.appendChild(txt);
+
+      col.appendChild(card);
+      area.appendChild(col);
+      i++;
+    }
+
+    if (!area.childElementCount) {
+      area.innerHTML = '<p class="text-muted">Keine Ergebnisse.</p>';
+    }
+  }
+})();
+</script>
+{% endblock %}

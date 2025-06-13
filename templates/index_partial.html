@@ -1,0 +1,57 @@
+{# templates/network.html #}
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-4"><i class="bi bi-archive"></i> Analyse-Ergebnis</h2>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for name, bounds in results.items() %}
+  <div class="col">
+    <div class="card h-100 shadow-sm">
+      <div class="ratio ratio-4x3 bg-light d-flex align-items-center justify-content-center">
+        {% if bounds %}
+          {# Preview-Bild (erste Bib-Seite) #}
+          <img
+            src="{{ url_for('preview.preview', filename=name, page=bounds[0]) }}"
+            class="img-fluid rounded-start"
+            alt="Vorschau"
+            loading="lazy">
+        {% else %}
+          <div class="text-muted">
+            <i class="bi bi-file-earmark-excel fs-1"></i>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title text-truncate" title="{{ name }}">{{ name }}</h5>
+
+        {% if bounds %}
+          <p class="card-text mb-1">
+            <i class="bi bi-bookmark-check text-success me-1"></i>
+            <strong>Bibliographie:</strong>
+            Seite {{ bounds[0] }} – {{ bounds[1] }}
+          </p>
+          <a  href="{{ url_for('preview.preview', filename=name, page=bounds[0], dpi=180) }}"
+              target="_blank"
+              class="btn btn-outline-primary btn-sm">
+              Große Vorschau
+          </a>
+        {% else %}
+          <p class="card-text text-muted mb-0">
+            <i class="bi bi-x-circle text-danger me-1"></i>
+            Keine Bibliographie erkannt
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="mt-4">
+  <a href="{{ url_for('upload.index') }}" class="btn btn-link">
+    <i class="bi bi-arrow-left"></i> Neue Analyse starten
+  </a>
+</div>
+{% endblock %}

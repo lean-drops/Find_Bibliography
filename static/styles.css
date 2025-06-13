@@ -1,0 +1,95 @@
+/* --------------------------------------------------------------
+   Bibliography Finder – Styling (Bootstrap 5 Basis)
+   -------------------------------------------------------------- */
+
+/* ---------- Farbpalette ---------- */
+:root {
+  --brand-primary: #0066d1;          /* kräftiges Blau */
+  --brand-primary-dark: #004a93;
+  --brand-light: #f8f9fa;
+  --brand-shadow: rgba(0, 0, 0, .08);
+  --brand-border: #e2e5ec;
+  --radius: .75rem;
+}
+
+/* ---------- Grundlayout ---------- */
+html, body {
+  height: 100%;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--brand-light);
+  color: #343a40;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background: var(--brand-primary);
+  box-shadow: 0 2px 4px var(--brand-shadow);
+}
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+
+/* ---------- Upload-Box ---------- */
+#upload-form {
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px var(--brand-shadow);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+#upload-form:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px var(--brand-shadow);
+}
+
+/* Abstände & Rundungen für Eingabe-Felder */
+.form-control {
+  padding: .6rem .9rem;
+  border-radius: var(--radius);
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  border-radius: var(--radius);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--brand-primary-dark);
+  border-color: var(--brand-primary-dark);
+}
+
+/* ---------- Ergebnis-Cards ---------- */
+.result-card {
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px var(--brand-shadow);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeIn .5s ease;
+}
+.result-card .file-name {
+  font-weight: 600;
+  color: #212529;
+}
+.result-card .no-bib {
+  color: #c1121f;
+  font-style: italic;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Footer ---------- */
+footer {
+  opacity: .7;
+  transition: opacity .2s;
+}
+footer:hover { opacity: 1; }

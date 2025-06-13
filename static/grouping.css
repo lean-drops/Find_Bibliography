@@ -1,0 +1,187 @@
+/* ────────────────────────────────────────────────────────────────
+   grouping.css     ·     sleek, accessible, dark-mode aware
+   – baut auf Bootstrap 5 auf, überschreibt aber nichts global
+   – sämtliche eigenen Klassen → prefix  grouping-
+   ──────────────────────────────────────────────────────────────── */
+
+/* --------  Design Tokens  ------------------------------------ */
+:root{
+  /* Light */
+  --grp-bg-page      : #f8f9fc;
+  --grp-bg-panel     : #ffffff;
+  --grp-bg-panel-alt : #f1f3f9;
+  --grp-txt-main     : #2c3245;
+  --grp-txt-muted    : #69718c;
+  --grp-primary      : #5569ff;
+  --grp-primary-soft : #ebeeff;
+  --grp-success      : #34b38a;
+  --grp-danger       : #e55353;
+  --grp-border-soft  : #dfe3ec;
+  --grp-badge-shadow : 0 0.25rem 0.4rem rgba(85,105,255,.25);
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --grp-bg-page      : #191c24;
+    --grp-bg-panel     : #232730;
+    --grp-bg-panel-alt : #1c1f27;
+    --grp-txt-main     : #e9ecf8;
+    --grp-txt-muted    : #9da3b4;
+    --grp-primary      : #6c79ff;
+    --grp-primary-soft : #262b40;
+    --grp-success      : #33d6a1;
+    --grp-danger       : #ff6e6e;
+    --grp-border-soft  : #2d3240;
+    --grp-badge-shadow : 0 0.25rem 0.4rem rgba(108,121,255,.32);
+  }
+}
+
+/* --------  Page Basics  -------------------------------------- */
+body.grouping-page{
+  background: var(--grp-bg-page);
+  color:      var(--grp-txt-main);
+}
+
+/* Panel-Wrapper (falls benötigt) */
+.grouping-card-panel{
+  background: var(--grp-bg-panel);
+  border: 1px solid var(--grp-border-soft);
+  border-radius: .75rem;
+  box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.06);
+  padding: 1.5rem 1.75rem;
+}
+
+/* Headline ----------------------------------------------------- */
+.grouping-h1{
+  font-weight: 700;
+  letter-spacing: -.01em;
+  margin-bottom: 1.25rem;
+}
+
+/* --------  Works List  --------------------------------------- */
+.grouping-list-item{
+  background: var(--grp-bg-panel-alt);
+  border: 1px solid transparent;
+  border-radius: .5rem;
+  transition: background .25s, transform .15s ease-out;
+  padding:.85rem 1.15rem;
+  position: relative;
+}
+.grouping-list-item:hover{
+  background: var(--grp-primary-soft);
+  transform: translateY(-2px);
+}
+
+/* dezent alternierende Streifen */
+.grouping-list-item:nth-child(odd){
+  filter: brightness(1.02);
+}
+
+/* Checkbox */
+.grouping-checkbox{
+  transform: scale(1.15);
+  margin-right:.6rem;
+}
+
+/* --------  Badges -------------------------------------------- */
+.grouping-badge{
+  font-size:.72rem;
+  font-weight:600;
+  border-radius:.45rem;
+  padding:.35em .55em;
+  position:relative;
+  top:1px;
+}
+.grouping-badge-primary{
+  background:var(--grp-primary);
+  color:#fff;
+  box-shadow:var(--grp-badge-shadow);
+}
+.grouping-badge-success{
+  background:var(--grp-success);
+  color:#fff;
+}
+.grouping-badge-danger{
+  background:var(--grp-danger);
+  color:#fff;
+}
+
+/* --------  CTA Button ---------------------------------------- */
+.grouping-btn{
+  background:var(--grp-primary);
+  border-color:var(--grp-primary);
+  font-weight:600;
+  letter-spacing:.02em;
+  padding:.65rem 1.4rem;
+  box-shadow:0 .45rem .9rem rgba(85,105,255,.25);
+  transition:transform .15s ease-out, box-shadow .2s;
+}
+.grouping-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 .6rem 1.2rem rgba(85,105,255,.3);
+}
+.grouping-btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+/* --------  Flash / Error box  -------------------------------- */
+.grouping-msg{
+  transition:opacity .3s ease;
+}
+
+/* --------  Network Container --------------------------------- */
+.grouping-network{
+  height:75vh;
+  background:var(--grp-bg-panel);
+  border:1px dashed var(--grp-border-soft);
+  border-radius:.75rem;
+  position:relative;
+}
+.grouping-network::before{
+  content:"network view";
+  position:absolute;
+  bottom:.75rem; right:1rem;
+  font-size:.8rem;
+  color:var(--grp-txt-muted);
+  opacity:.35;
+  pointer-events:none;
+}
+
+/* --------  Results Table ------------------------------------- */
+.grouping-table{
+  background:var(--grp-bg-panel);
+  border-radius:.75rem;
+  overflow:hidden;
+}
+.grouping-table thead{
+  background:var(--grp-primary-soft);
+  color:var(--grp-txt-main);
+  font-size:.85rem;
+}
+.grouping-table th,
+.grouping-table td{
+  padding:.55rem .9rem;
+  vertical-align:middle;
+  border-top:1px solid var(--grp-border-soft);
+}
+.grouping-table tbody tr:hover{
+  background:var(--grp-primary-soft);
+}
+
+/* --------  Fade-In Utility ----------------------------------- */
+@keyframes grouping-fadeInSlide{
+  0%{opacity:0; transform:translateY(12px)}
+  100%{opacity:1; transform:none}
+}
+.grouping-fade-in{
+  animation: grouping-fadeInSlide .45s ease-out 1;
+}
+
+/* --------  Small Utility Spacing ----------------------------- */
+.grouping-me-1{margin-right:.25rem!important;}
+.grouping-me-2{margin-right:.5rem!important;}
+.grouping-mt-4{margin-top:1.5rem!important;}
+.grouping-d-none{display:none!important;}
+.grouping-text-muted{color:var(--grp-txt-muted)!important;}
+.grouping-float-end{float:right!important;}

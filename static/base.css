@@ -1,0 +1,117 @@
+/* ══════════════════════════════════════════════════════════════
+   base.css – Grundlayout & Design‑Tokens
+   • Bootstrap‑friendly: überschreibt nur Nötiges
+   • Kontrast ≥ WCAG AA
+   • Dark‑ & Light‑Theme via prefers‑color‑scheme
+   • Variable‑basiert → einfach erweiterbar
+   ══════════════════════════════════════════════════════════════ */
+
+/* ---------- Design‑Tokens ---------------------------------- */
+:root{
+  /* Oberfläche */
+  --base-bg-page      : #f8f9fa;          /* body background */
+  --base-bg-card      : #ffffff;          /* Karten, Modals */
+  --base-txt-main     : #212529;
+  --base-shadow       : 0 0.4rem 1.2rem rgba(0,0,0,.08);
+
+  /* Primärfarben */
+  --base-primary      : #0d6efd;          /* Bootstrap primary */
+  --base-primary-alt  : #74b0ff;          /* Fokusring */
+
+  /* Statusfarben */
+  --base-success      : #198754;
+  --base-danger       : #dc3545;
+
+  /* Radius */
+  --base-radius       : .75rem;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --base-bg-page   : #101214;
+    --base-bg-card   : #16181c;
+    --base-txt-main  : #e9ecef;
+    --base-shadow    : 0 0.4rem 1.2rem rgba(0,0,0,.5);
+
+    --base-primary       : #4dabff;
+    --base-primary-alt   : #91caff;
+
+    --base-success   : #4bc17b;
+    --base-danger    : #ff6b7d;
+  }
+}
+
+/* ---------- Global Resets ---------------------------------- */
+body{
+  background: var(--base-bg-page);
+  color: var(--base-txt-main);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Links */
+a{ color: var(--base-primary); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+a:focus{ outline:2px solid var(--base-primary-alt); outline-offset:2px; }
+
+/* Headings */
+h1,h2,h3,h4,h5,h6{ font-weight:700; color: var(--base-txt-main); }
+
+/* ---------- Helper‑Utilities --------------------------------*/
+.base-card{
+  background: var(--base-bg-card);
+  border:1px solid color-mix(in srgb,var(--base-bg-card) 80%,#000);
+  border-radius: var(--base-radius);
+  box-shadow: var(--base-shadow);
+  padding:1.25rem 1.5rem;
+}
+
+.base-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  font-weight:600; letter-spacing:.015em;
+  border-radius:.55rem; border:1px solid transparent;
+  padding:.55rem 1.3rem; transition:box-shadow .15s, transform .15s;
+}
+.base-btn:focus-visible{ outline:3px solid var(--base-primary-alt); outline-offset:2px; }
+
+/* Primary Variant (nutzt Token) */
+.base-btn.primary{
+  background: var(--base-primary); color:#fff;
+}
+.base-btn.primary:hover{
+  background: color-mix(in srgb,var(--base-primary) 85%,#000);
+  transform:translateY(-2px);
+}
+
+/* ---------- Tables (zentral) --------------------------------*/
+.table{ --bs-table-bg:transparent; color:var(--base-txt-main); }
+.table thead th{ font-weight:600; border-bottom:2px solid var(--base-txt-main); }
+
+/* ---------- Form‑Controls -----------------------------------*/
+.form-control{
+  border-radius:.45rem;
+  border:1px solid color-mix(in srgb,var(--base-txt-main) 25%, transparent);
+}
+.form-control:focus{
+  border-color: var(--base-primary-alt);
+  box-shadow:0 0 0 .25rem color-mix(in srgb,var(--base-primary-alt) 35%, transparent);
+}
+
+/* ---------- Shadows zur Vereinheitlichung -------------------*/
+.shadow-sm   { box-shadow: var(--base-shadow) !important; }
+.shadow-none { box-shadow:none !important; }
+
+/* ---------- Badge‑Abwandlungen ------------------------------*/
+.badge-success{ background:var(--base-success) !important; color:#fff; }
+.badge-danger { background:var(--base-danger) !important;  color:#fff; }
+
+/* ---------- Custom Scrollbar (WebKit) -----------------------*/
+@supports selector(::-webkit-scrollbar){
+  ::-webkit-scrollbar{ width:10px; height:10px; }
+  ::-webkit-scrollbar-thumb{
+    background:color-mix(in srgb,var(--base-txt-main) 35%, transparent);
+    border-radius:10px;
+  }
+  ::-webkit-scrollbar-thumb:hover{ background:color-mix(in srgb,var(--base-txt-main) 55%, transparent); }
+}

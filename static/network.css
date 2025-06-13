@@ -1,0 +1,54 @@
+/* ──────────────────────────────────────────────────────────────
+   network.css         ›  nutzt die Farbtokens aus grouping.css
+   ────────────────────────────────────────────────────────────── */
+
+/* Design-Tokens ------------------------------------------------ */
+:root{
+  --net-panel-h : 38vh;                   /* Drawer-Höhe */
+  --net-bg      : var(--grp-bg-panel, #fff);
+  --net-border  : var(--grp-border-soft, #d7dae5);
+}
+
+/* Netzwerk-Canvas --------------------------------------------- */
+.net-canvas{
+  width:100%;
+  /* Höhe wird dynamisch per Body-Klasse reduziert,
+     s. network.html → JS  */
+  height:calc(100vh - var(--grp-header-h,56px) - 2rem);
+  background:var(--net-bg);
+  border:1px dashed var(--net-border);
+  border-radius:.75rem;
+  overflow:hidden;
+}
+
+/* Bottom-Drawer ------------------------------------------------ */
+.net-drawer.offcanvas-bottom{
+  height:var(--net-panel-h);
+  background:var(--net-bg);
+  border-top:2px solid var(--net-border);
+  box-shadow:0 -1.25rem 2.5rem rgba(0,0,0,.12);
+  transition:transform .35s ease;
+}
+
+/* Wenn Drawer offen → Body bekommt Klasse .net-panel-open
+   → Canvas schrumpft automatisch */
+body.net-panel-open .net-canvas{
+  height:calc(100vh - var(--grp-header-h,56px) - var(--net-panel-h) - 2rem);
+}
+
+/* Kleine Schönheiten ------------------------------------------ */
+.net-table thead{
+  font-size:.83rem;
+  background:var(--grp-bg-panelAlt,#f3f4f9);
+}
+.net-table tbody tr:hover{
+  background:var(--grp-primary-soft,#eef1ff);
+}
+.net-flash{
+  animation: netFlash .9s ease-out;
+}
+@keyframes netFlash{
+  0%{transform:scale(1); box-shadow:0 0 0 rgba(0,0,0,0);}
+  40%{transform:scale(1.03); box-shadow:0 0 .8rem rgba(0,0,0,.15);}
+  100%{transform:scale(1); box-shadow:0 0 0 rgba(0,0,0,0);}
+}

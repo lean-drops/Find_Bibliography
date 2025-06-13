@@ -1,0 +1,170 @@
+{# ───────────────────────────────────────────────────────────────
+   templates/network.html
+   Zeigt das interaktive Werk-Netzwerk + Werk-Liste als Bottom-Drawer
+   context:
+       group_id   – Hash für /grouping/data/<id>
+       nodes      – Primärknoten (User-Auswahl) → initiale Tabelle
+   ─────────────────────────────────────────────────────────────── #}
+{% extends "base.html" %}
+
+{% block extra_head %}
+  {# eigenes CSS für Canvas-Größe & Bottom-Drawer #}
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='network.css') }}">
+{% endblock %}
+
+{% block content %}
+<header class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="grp-h1 mb-0">
+    Netzwerk-Analyse
+    <small class="grp-muted fs-6">{{ nodes|length }} Werke</small>
+  </h1>
+
+  {# Drawer-Toggle – wird auf kleinen Screens angezeigt #}
+  <button class="btn btn-outline-secondary d-lg-none"
+          type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#panelWorks" aria-controls="panelWorks">
+    <i class="bi bi-list"></i> Werke
+  </button>
+</header>
+
+{# ░░ Netzwerk-Canvas ░░ – füllt den Bildschirm bis der Drawer erscheint #}
+<div id="net-wrap" class="net-canvas mb-3" tabindex="0"
+     aria-label="Werk-Netzwerk">
+  <div class="text-center pt-5 grp-muted small">… lade Netzwerk …</div>
+</div>
+
+{# ░░ Bottom-Drawer ░░ --------------------------------------------------- #}
+<div class="offcanvas offcanvas-bottom net-drawer" tabindex="-1"
+     id="panelWorks" aria-labelledby="panelWorksLabel">
+  <div class="offcanvas-header">
+    <h2 class="offcanvas-title h5" id="panelWorksLabel">
+      Werke ({{ nodes|length }})
+    </h2>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+  </div>
+
+  <div class="offcanvas-body p-0">
+    <table class="table mb-0 net-table" id="tbl">
+      <thead>
+        <tr><th>Titel</th><th class="text-end">Jahr</th></tr>
+      </thead>
+      <tbody>
+        {# server-seitig füllen, damit etwas angezeigt wird #}
+        {% for n in nodes|sort(attribute='year', reverse=True) %}
+          <tr data-id="{{ n.id }}">
+            <td>{{ n.title }}</td>
+            <td class="text-end">{{ n.year or '—' }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{# Fehlermeldungen (live-Region) #}
+<div id="msg" class="grp-msg alert alert-danger d-none mt-3"
+     role="alert" aria-live="assertive"></div>
+{% endblock %}
+
+{% block extra_js %}
+  {# vis-network CDN #}
+  <link  rel="stylesheet"
+         href="https://unpkg.com/vis-network@9.1.7/dist/vis-network.min.css">
+  <script src="https://unpkg.com/vis-network@9.1.7/dist/vis-network.min.js"></script>
+
+<script>
+/* ╭── Hilfs-Funktionen ───────────────────────────────────────────────╮ */
+const gid     = {{ group_id|tojson }};
+const primIds = new Set({{ nodes|map(attribute='id')|list|tojson }});
+
+const $  = (q,e=document)=>e.querySelector(q);
+const css= n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* Farben aus grouping.css  */
+const COL = {
+  own   : css('--grp-primary'),
+  ext   : css('--grp-muted'),
+  cite  : css('--grp-primary'),
+  auth  : css('--grp-success'),
+  txt   : '#ffffff'
+};
+
+function flash(t){
+  const b = $('#msg'); b.textContent=t; b.classList.remove('d-none');
+}
+
+/* ╭── Drawer <→ Body-Klasse  (Height-Anpassung) ───────────────────────╮ */
+(() => {
+  const dr = document.getElementById('panelWorks');
+  dr.addEventListener('shown.bs.offcanvas', ()=>document.body.classList.add('net-panel-open'));
+  dr.addEventListener('hidden.bs.offcanvas',()=>document.body.classList.remove('net-panel-open'));
+})();
+
+/* ╭── Laden & Zeichnen des Netzwerks ─────────────────────────────────╮ */
+(async()=>{
+  try{
+    const r = await fetch(`/grouping/data/${gid}`);
+    if(!r.ok) throw new Error(`Server-Fehler ${r.status}`);
+    const {nodes,edges} = await r.json();
+    if(!(nodes?.length)) {flash('Keine Daten'); return;}
+
+    const visNodes = nodes.map(n=>({
+      id:n.id,
+      label:n.title,
+      title:`<strong>${n.title}</strong><br>${n.authors||''} (${n.year||'n/a'})`,
+      shape:'box',
+      margin:{top:8,right:10,bottom:8,left:10},
+      font:{size:14,color:COL.txt},
+      color:primIds.has(n.id)
+            ? {background:COL.own ,border:COL.own}
+            : {background:COL.ext ,border:COL.ext}
+    }));
+
+    const visEdges = edges.map(e=>({
+      from:e.source, to:e.target, arrows:'to',
+      color:{color:e.type==='author'?COL.auth:COL.cite},
+      width:Math.min(6,1+Math.log2(e.weight||1)),
+      dashes:e.type==='author'
+    }));
+
+    const net = new vis.Network(
+      $('#net-wrap'),
+      {nodes:visNodes,edges:visEdges},
+      {
+        layout:{improvedLayout:true},
+        physics:{
+          solver:'barnesHut',
+          barnesHut:{springLength:140,damping:0.32,avoidOverlap:0.4},
+          stabilization:{enabled:true,iterations:400,fit:true},
+          minVelocity:0.7
+        },
+        interaction:{hover:true,multiselect:true},
+        nodes:{borderWidth:0,chosen:false}
+      }
+    );
+
+    /* Physik nach erster Stabilisierung abbremsen */
+    net.once('stabilizationIterationsDone',
+             ()=>net.setOptions({physics:{enabled:false}}));
+
+    /* Node-Click ➜ Tabelle scroll / highlight */
+    net.on('click', ev=>{
+      if(!ev.nodes.length) return;
+      const id = ev.nodes[0];
+      const row = $(`#tbl tr[data-id="${id}"]`);
+      if(row){
+        row.classList.add('table-primary','net-flash');
+        row.scrollIntoView({block:'center',behavior:'smooth'});
+        setTimeout(()=>row.classList.remove('table-primary','net-flash'),1600);
+      }
+    });
+
+    /* responsive Redraw */
+    addEventListener('resize', ()=>net.redraw(), {passive:true});
+
+  }catch(err){ console.error(err); flash(err.message||err); }
+})();
+</script>
+{% endblock %}
