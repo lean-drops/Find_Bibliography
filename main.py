@@ -164,7 +164,7 @@ def main(argv: Optional[Sequence[str]]=None) -> None:
     print(f"Datei:            {pdf.name}")
     print(f"Bibliographie:    Seiten {first}–{last} (1-basiert)")
     print(f"Gefundene Werke:  {len(refs_norm)}{' (deduped)' if args.dedupe else ''}")
-    print("Stile:            " + ", ".join(f"{k}={v}" for k,v in styles.items()))
+    print("dyStile:            " + ", ".join(f"{k}={v}" for k,v in styles.items()))
     print("Typen:            " + ", ".join(f"{k}={v}" for k,v in types.items()))
     print(f"Gesamtdauer:      {time.perf_counter()-t0:.2f}s")
 
