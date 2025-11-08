@@ -1,0 +1,869 @@
+{
+  "session": {
+    "name": "session_20251108_212426",
+    "created_at": "2025-11-08T20:27:22.984000Z"
+  },
+  "seed": "Habsburg",
+  "generated_raw": {
+    "seed": "Habsburg",
+    "concept_hint": "Alte Zürichkrieg-Forschung, spätmittelalterliche Chronistik, DE/CH/AT",
+    "terms_by_category": {
+      "core": [
+        "Habsburg",
+        "Habsburger",
+        "Haus Habsburg",
+        "Habsburgische Dynastie",
+        "Habsburgische Herrscher"
+      ],
+      "truce": [
+        "Habsburgische Waffenstillstände",
+        "Habsburgische Friedensverträge"
+      ],
+      "settlement": [
+        "Habsburgische Siedlungen",
+        "Habsburgische Städtegründungen"
+      ],
+      "legal_instrument": [
+        "Habsburgische Privilegien",
+        "Habsburgische Landrechte"
+      ],
+      "end_of_hostilities": [
+        "Habsburgische Friedensschlüsse",
+        "Habsburgische Kriegsenden"
+      ],
+      "latin": [
+        "Habsburgenses",
+        "Domus Austriae"
+      ],
+      "historic_variants": [
+        "Habichsburg",
+        "Hapsburg",
+        "Habspurg"
+      ]
+    },
+    "notes": "Die Habsburger waren eine bedeutende Dynastie im späten Mittelalter und in der Neuzeit, die in vielen Teilen Europas, einschließlich der Schweiz, Deutschland und Österreich, herrschte. Die lateinischen Begriffe und historischen Varianten beziehen sich auf die Habsburger und ihr Herrschaftsgebiet.",
+    "_meta": {
+      "from_cache": true,
+      "cache_key": "0684416ca44902023ac69fc95233f513ec9b32cb",
+      "model": "gpt-4.1-mini",
+      "sdk": "legacy"
+    }
+  },
+  "expanded_terms": {
+    "Frieden": [
+      "Fried",
+      "Friede",
+      "Frieden",
+      "Friedene",
+      "Friedenen",
+      "Friedener",
+      "Friedenes"
+    ],
+    "Friedensvertrag": [
+      "Friedens[uvUV]ertrag",
+      "Friedens[uvUV]ertrage",
+      "Friedens[uvUV]ertragen",
+      "Friedens[uvUV]ertrager",
+      "Friedens[uvUV]ertrages"
+    ],
+    "Friedensabkommen": [
+      "Friedensabkomm",
+      "Friedensabkomme",
+      "Friedensabkommen",
+      "Friedensabkommene",
+      "Friedensabkommenen",
+      "Friedensabkommener",
+      "Friedensabkommenes"
+    ],
+    "Friedensschluss": [
+      "Friedensschluss",
+      "Friedensschlusse",
+      "Friedensschlussen",
+      "Friedensschlusser",
+      "Friedensschlusses"
+    ],
+    "Friedensvereinbarung": [
+      "Friedens[uvUV]ereinbarung",
+      "Friedens[uvUV]ereinbarunge",
+      "Friedens[uvUV]ereinbarungen",
+      "Friedens[uvUV]ereinbarunger",
+      "Friedens[uvUV]ereinbarunges"
+    ],
+    "Friedensstiftung": [
+      "Friedensstiftung",
+      "Friedensstiftunge",
+      "Friedensstiftungen",
+      "Friedensstiftunger",
+      "Friedensstiftunges"
+    ],
+    "Friedensproklamation": [
+      "Friedensproklamation",
+      "Friedensproklamatione",
+      "Friedensproklamationen",
+      "Friedensproklamationer",
+      "Friedensproklamationes"
+    ],
+    "Friedenssicherung": [
+      "Friedenssicherung",
+      "Friedenssicherunge",
+      "Friedenssicherungen",
+      "Friedenssicherunger",
+      "Friedenssicherunges"
+    ],
+    "Friedensordnung": [
+      "Friedensordnung",
+      "Friedensordnunge",
+      "Friedensordnungen",
+      "Friedensordnunger",
+      "Friedensordnunges"
+    ],
+    "Friedensbewahrung": [
+      "Friedensbewahrung",
+      "Friedensbewahrunge",
+      "Friedensbewahrungen",
+      "Friedensbewahrunger",
+      "Friedensbewahrunges"
+    ],
+    "Friedenskonsolidierung": [
+      "Friedenskonsolidierung",
+      "Friedenskonsolidierunge",
+      "Friedenskonsolidierungen",
+      "Friedenskonsolidierunger",
+      "Friedenskonsolidierunges"
+    ],
+    "Friedensstabilisierung": [
+      "Friedensstabilisierung",
+      "Friedensstabilisierunge",
+      "Friedensstabilisierungen",
+      "Friedensstabilisierunger",
+      "Friedensstabilisierunges"
+    ],
+    "Waffenstillstand": [
+      "Waffenstillstand",
+      "Waffenstillstande",
+      "Waffenstillstanden",
+      "Waffenstillstander",
+      "Waffenstillstandes"
+    ],
+    "Waffenruhe": [
+      "Waffenruhe"
+    ],
+    "Waffenpause": [
+      "Waffenpause"
+    ],
+    "Kampfpause": [
+      "Kampfpause"
+    ],
+    "Feuerpause": [
+      "Feuerpause"
+    ],
+    "Kriegspause": [
+      "Kriegspause"
+    ],
+    "Kampfstillstand": [
+      "Kampfstillstand",
+      "Kampfstillstande",
+      "Kampfstillstanden",
+      "Kampfstillstander",
+      "Kampfstillstandes"
+    ],
+    "Kriegsunterbrechung": [
+      "Kriegsunterbrechung",
+      "Kriegsunterbrechunge",
+      "Kriegsunterbrechungen",
+      "Kriegsunterbrechunger",
+      "Kriegsunterbrechunges"
+    ],
+    "Kriegsruhe": [
+      "Kriegsruhe"
+    ],
+    "Kriegsstillstand": [
+      "Kriegsstillstand",
+      "Kriegsstillstande",
+      "Kriegsstillstanden",
+      "Kriegsstillstander",
+      "Kriegsstillstandes"
+    ],
+    "Kampfunterbrechung": [
+      "Kampfunterbrechung",
+      "Kampfunterbrechunge",
+      "Kampfunterbrechungen",
+      "Kampfunterbrechunger",
+      "Kampfunterbrechunges"
+    ],
+    "Feindesruhe": [
+      "Feindesruhe"
+    ],
+    "Vergleich": [
+      "[uvUV]ergleich",
+      "[uvUV]ergleiche",
+      "[uvUV]ergleichen",
+      "[uvUV]ergleicher",
+      "[uvUV]ergleiches"
+    ],
+    "Einigung": [
+      "Einigung",
+      "Einigunge",
+      "Einigungen",
+      "Einigunger",
+      "Einigunges"
+    ],
+    "Übereinkunft": [
+      "[uüUÜ]bereinkunft",
+      "[uüUÜ]bereinkunfte",
+      "[uüUÜ]bereinkunften",
+      "[uüUÜ]bereinkunfter",
+      "[uüUÜ]bereinkunftes"
+    ],
+    "Vereinbarung": [
+      "[uvUV]ereinbarung",
+      "[uvUV]ereinbarunge",
+      "[uvUV]ereinbarungen",
+      "[uvUV]ereinbarunger",
+      "[uvUV]ereinbarunges"
+    ],
+    "Abmachung": [
+      "Abmachung",
+      "Abmachunge",
+      "Abmachungen",
+      "Abmachunger",
+      "Abmachunges"
+    ],
+    "Kompromiss": [
+      "Kompromiss",
+      "Kompromisse",
+      "Kompromissen",
+      "Kompromisser",
+      "Kompromisses"
+    ],
+    "Konkordat": [
+      "Konkordat",
+      "Konkordate",
+      "Konkordaten",
+      "Konkordater",
+      "Konkordates"
+    ],
+    "Vertrag": [
+      "[uvUV]ertrag",
+      "[uvUV]ertrage",
+      "[uvUV]ertragen",
+      "[uvUV]ertrager",
+      "[uvUV]ertrages"
+    ],
+    "Verständigung": [
+      "[uvUV]erst[aäAÄ]ndigung",
+      "[uvUV]erst[aäAÄ]ndigunge",
+      "[uvUV]erst[aäAÄ]ndigungen",
+      "[uvUV]erst[aäAÄ]ndigunger",
+      "[uvUV]erst[aäAÄ]ndigunges"
+    ],
+    "Konvention": [
+      "Kon[uvUV]ention",
+      "Kon[uvUV]entione",
+      "Kon[uvUV]entionen",
+      "Kon[uvUV]entioner",
+      "Kon[uvUV]entiones"
+    ],
+    "Pakt": [
+      "Pakt",
+      "Pakte",
+      "Pakten",
+      "Pakter",
+      "Paktes"
+    ],
+    "Bündnis": [
+      "B[uüUÜ]ndnis",
+      "B[uüUÜ]ndnise",
+      "B[uüUÜ]ndnisen",
+      "B[uüUÜ]ndniser",
+      "B[uüUÜ]ndnises"
+    ],
+    "Abkommen": [
+      "Abkomm",
+      "Abkomme",
+      "Abkommen",
+      "Abkommene",
+      "Abkommenen",
+      "Abkommener",
+      "Abkommenes"
+    ],
+    "Kriegsende": [
+      "Kriegsende"
+    ],
+    "Kriegsbeendigung": [
+      "Kriegsbeendigung",
+      "Kriegsbeendigunge",
+      "Kriegsbeendigungen",
+      "Kriegsbeendigunger",
+      "Kriegsbeendigunges"
+    ],
+    "Kriegsschluss": [
+      "Kriegsschluss",
+      "Kriegsschlusse",
+      "Kriegsschlussen",
+      "Kriegsschlusser",
+      "Kriegsschlusses"
+    ],
+    "Kriegsauflösung": [
+      "Kriegsaufl[oöOÖ]sung",
+      "Kriegsaufl[oöOÖ]sunge",
+      "Kriegsaufl[oöOÖ]sungen",
+      "Kriegsaufl[oöOÖ]sunger",
+      "Kriegsaufl[oöOÖ]sunges"
+    ],
+    "Kriegsendphase": [
+      "Kriegsendphase"
+    ],
+    "Kriegsbeilegung": [
+      "Kriegsbeilegung",
+      "Kriegsbeilegunge",
+      "Kriegsbeilegungen",
+      "Kriegsbeilegunger",
+      "Kriegsbeilegunges"
+    ],
+    "Kriegsbeendigungsphase": [
+      "Kriegsbeendigungsphase"
+    ],
+    "Kriegsbeendigungsverhandlungen": [
+      "Kriegsbeendigungs[uvUV]erhandlung",
+      "Kriegsbeendigungs[uvUV]erhandlunge",
+      "Kriegsbeendigungs[uvUV]erhandlungen",
+      "Kriegsbeendigungs[uvUV]erhandlungene",
+      "Kriegsbeendigungs[uvUV]erhandlungenen",
+      "Kriegsbeendigungs[uvUV]erhandlungener",
+      "Kriegsbeendigungs[uvUV]erhandlungenes"
+    ],
+    "Kriegsbeendigungsprozess": [
+      "Kriegsbeendigungsprozess",
+      "Kriegsbeendigungsprozesse",
+      "Kriegsbeendigungsprozessen",
+      "Kriegsbeendigungsprozesser",
+      "Kriegsbeendigungsprozesses"
+    ],
+    "Kriegsbeendigungsvertrag": [
+      "Kriegsbeendigungs[uvUV]ertrag",
+      "Kriegsbeendigungs[uvUV]ertrage",
+      "Kriegsbeendigungs[uvUV]ertragen",
+      "Kriegsbeendigungs[uvUV]ertrager",
+      "Kriegsbeendigungs[uvUV]ertrages"
+    ],
+    "Pax": [
+      "Pax",
+      "Paxe",
+      "Paxen",
+      "Paxer",
+      "Paxes"
+    ],
+    "Pactum pacis": [
+      "Pactum\\ pacis",
+      "Pactum\\ pacise",
+      "Pactum\\ pacisen",
+      "Pactum\\ paciser",
+      "Pactum\\ pacises"
+    ],
+    "Conventio pacis": [
+      "Con[uvUV]entio\\ pacis",
+      "Con[uvUV]entio\\ pacise",
+      "Con[uvUV]entio\\ pacisen",
+      "Con[uvUV]entio\\ paciser",
+      "Con[uvUV]entio\\ pacises"
+    ],
+    "Instrumentum pacis": [
+      "Instrumentum\\ pacis",
+      "Instrumentum\\ pacise",
+      "Instrumentum\\ pacisen",
+      "Instrumentum\\ paciser",
+      "Instrumentum\\ pacises"
+    ],
+    "Tractatus pacis": [
+      "Tractatus\\ pacis",
+      "Tractatus\\ pacise",
+      "Tractatus\\ pacisen",
+      "Tractatus\\ paciser",
+      "Tractatus\\ pacises"
+    ],
+    "Indutiae": [
+      "Indutiae"
+    ],
+    "Sponsio": [
+      "Sponsio"
+    ],
+    "Foedus": [
+      "Foedus",
+      "Foeduse",
+      "Foedusen",
+      "Foeduser",
+      "Foeduses"
+    ],
+    "Concordia": [
+      "Concordia"
+    ],
+    "Compositio": [
+      "Compositio"
+    ],
+    "Stipulatio": [
+      "Stipulatio"
+    ],
+    "Concordatum": [
+      "Concordatum",
+      "Concordatume",
+      "Concordatumen",
+      "Concordatumer",
+      "Concordatumes"
+    ],
+    "Vriden": [
+      "[uvUV]rid",
+      "[uvUV]ride",
+      "[uvUV]riden",
+      "[uvUV]ridene",
+      "[uvUV]ridenen",
+      "[uvUV]ridener",
+      "[uvUV]ridenes"
+    ],
+    "Fridun": [
+      "Fridun",
+      "Fridune",
+      "Fridunen",
+      "Friduner",
+      "Fridunes"
+    ],
+    "Vridun": [
+      "[uvUV]ridun",
+      "[uvUV]ridune",
+      "[uvUV]ridunen",
+      "[uvUV]riduner",
+      "[uvUV]ridunes"
+    ],
+    "Frid": [
+      "Frid",
+      "Fride",
+      "Friden",
+      "Frider",
+      "Frides"
+    ],
+    "Vrid": [
+      "[uvUV]rid",
+      "[uvUV]ride",
+      "[uvUV]riden",
+      "[uvUV]rider",
+      "[uvUV]rides"
+    ],
+    "Fridum": [
+      "Fridum",
+      "Fridume",
+      "Fridumen",
+      "Fridumer",
+      "Fridumes"
+    ],
+    "Vridum": [
+      "[uvUV]ridum",
+      "[uvUV]ridume",
+      "[uvUV]ridumen",
+      "[uvUV]ridumer",
+      "[uvUV]ridumes"
+    ],
+    "Fridus": [
+      "Fridus",
+      "Friduse",
+      "Fridusen",
+      "Friduser",
+      "Friduses"
+    ],
+    "Vridus": [
+      "[uvUV]ridus",
+      "[uvUV]riduse",
+      "[uvUV]ridusen",
+      "[uvUV]riduser",
+      "[uvUV]riduses"
+    ]
+  },
+  "master_regex": "\\b(?:Kriegsbeendigungs[uvUV]erhandlungenes|Kriegsbeendigungs[uvUV]erhandlungener|Kriegsbeendigungs[uvUV]erhandlungenen|Kriegsbeendigungs[uvUV]erhandlungene|Kriegsbeendigungs[uvUV]erhandlungen|Kriegsbeendigungs[uvUV]erhandlunge|Kriegsbeendigungs[uvUV]erhandlung|Kriegsbeendigungs[uvUV]ertrages|Kriegsbeendigungs[uvUV]ertrager|Kriegsbeendigungs[uvUV]ertragen|Kriegsbeendigungs[uvUV]ertrage|Kriegsbeendigungs[uvUV]ertrag|Friedens[uvUV]ereinbarunges|Friedens[uvUV]ereinbarunger|Friedens[uvUV]ereinbarungen|Kriegsbeendigungsprozesses|Kriegsbeendigungsprozesser|Kriegsbeendigungsprozessen|Friedens[uvUV]ereinbarunge|[uvUV]erst[aäAÄ]ndigunges|[uvUV]erst[aäAÄ]ndigunger|[uvUV]erst[aäAÄ]ndigungen|Kriegsbeendigungsprozesse|Friedens[uvUV]ereinbarung|[uvUV]erst[aäAÄ]ndigunge|Kriegsbeendigungsprozess|Friedensstabilisierunges|Friedensstabilisierunger|Friedensstabilisierungen|Friedenskonsolidierunges|Friedenskonsolidierunger|Friedenskonsolidierungen|[uvUV]erst[aäAÄ]ndigung|Friedensstabilisierunge|Friedenskonsolidierunge|Con[uvUV]entio\\ pacises|Con[uvUV]entio\\ paciser|Con[uvUV]entio\\ pacisen|Kriegsbeendigungsphase|Kriegsaufl[oöOÖ]sunges|Kriegsaufl[oöOÖ]sunger|Kriegsaufl[oöOÖ]sungen|Friedensstabilisierung|Friedensproklamationes|Friedensproklamationer|Friedensproklamationen|Friedenskonsolidierung|Friedens[uvUV]ertrages|Friedens[uvUV]ertrager|Friedens[uvUV]ertragen|Con[uvUV]entio\\ pacise|Kriegsunterbrechunges|Kriegsunterbrechunger|Kriegsunterbrechungen|Kriegsaufl[oöOÖ]sunge|Instrumentum\\ pacises|Instrumentum\\ paciser|Instrumentum\\ pacisen|Friedensproklamatione|Friedens[uvUV]ertrage|Con[uvUV]entio\\ pacis|Kriegsunterbrechunge|Kriegsaufl[oöOÖ]sung|Kampfunterbrechunges|Kampfunterbrechunger|Kampfunterbrechungen|Instrumentum\\ pacise|Friedensproklamation|Friedens[uvUV]ertrag|[uüUÜ]bereinkunftes|[uüUÜ]bereinkunfter|[uüUÜ]bereinkunften|[uvUV]ereinbarunges|[uvUV]ereinbarunger|[uvUV]ereinbarungen|Kriegsunterbrechung|Kampfunterbrechunge|Instrumentum\\ pacis|Friedenssicherunges|Friedenssicherunger|Friedenssicherungen|Friedensbewahrunges|Friedensbewahrunger|Friedensbewahrungen|[uüUÜ]bereinkunfte|[uvUV]ereinbarunge|Waffenstillstandes|Waffenstillstander|Waffenstillstanden|Tractatus\\ pacises|Tractatus\\ paciser|Tractatus\\ pacisen|Kriegsstillstandes|Kriegsstillstander|Kriegsstillstanden|Kriegsbeendigunges|Kriegsbeendigunger|Kriegsbeendigungen|Kampfunterbrechung|Friedensstiftunges|Friedensstiftunger|Friedensstiftungen|Friedenssicherunge|Friedensbewahrunge|Friedensabkommenes|Friedensabkommener|Friedensabkommenen|[uüUÜ]bereinkunft|[uvUV]ereinbarung|Waffenstillstande|Tractatus\\ pacise|Kriegsstillstande|Kriegsbeilegunges|Kriegsbeilegunger|Kriegsbeilegungen|Kriegsbeendigunge|Kon[uvUV]entiones|Kon[uvUV]entioner|Kon[uvUV]entionen|Kampfstillstandes|Kampfstillstander|Kampfstillstanden|Friedensstiftunge|Friedenssicherung|Friedensschlusses|Friedensschlusser|Friedensschlussen|Friedensordnunges|Friedensordnunger|Friedensordnungen|Friedensbewahrung|Friedensabkommene|[uvUV]ergleiches|[uvUV]ergleicher|[uvUV]ergleichen|Waffenstillstand|Tractatus\\ pacis|Kriegsstillstand|Kriegsbeilegunge|Kriegsbeendigung|Kon[uvUV]entione|Kampfstillstande|Friedensstiftung|Friedensschlusse|Friedensordnunge|Friedensabkommen|[uvUV]ergleiche|Pactum\\ pacises|Pactum\\ paciser|Pactum\\ pacisen|Kriegsschlusses|Kriegsschlusser|Kriegsschlussen|Kriegsbeilegung|Kon[uvUV]ention|Kampfstillstand|Friedensschluss|Friedensordnung|Friedensabkomme|[uvUV]ertrages|[uvUV]ertrager|[uvUV]ertragen|[uvUV]ergleich|Pactum\\ pacise|Kriegsschlusse|Kriegsendphase|Friedensabkomm|B[uüUÜ]ndnises|B[uüUÜ]ndniser|B[uüUÜ]ndnisen|[uvUV]riduses|[uvUV]riduser|[uvUV]ridusen|[uvUV]ridunes|[uvUV]riduner|[uvUV]ridunen|[uvUV]ridumes|[uvUV]ridumer|[uvUV]ridumen|[uvUV]ridenes|[uvUV]ridener|[uvUV]ridenen|[uvUV]ertrage|Pactum\\ pacis|Kriegsschluss|Concordatumes|Concordatumer|Concordatumen|B[uüUÜ]ndnise|[uvUV]riduse|[uvUV]ridune|[uvUV]ridume|[uvUV]ridene|[uvUV]ertrag|Kompromisses|Kompromisser|Kompromissen|Concordatume|B[uüUÜ]ndnis|[uvUV]ridus|[uvUV]ridun|[uvUV]ridum|[uvUV]rides|[uvUV]rider|[uvUV]riden|Waffenpause|Kriegspause|Konkordates|Konkordater|Konkordaten|Kompromisse|Feindesruhe|Concordatum|Abmachunges|Abmachunger|Abmachungen|[uvUV]ride|Waffenruhe|Stipulatio|Kriegsruhe|Kriegsende|Konkordate|Kompromiss|Kampfpause|Feuerpause|Einigunges|Einigunger|Einigungen|Compositio|Abmachunge|Abkommenes|Abkommener|Abkommenen|[uvUV]rid|Konkordat|Friedenes|Friedener|Friedenen|Einigunge|Concordia|Abmachung|Abkommene|Indutiae|Friedene|Friduses|Friduser|Fridusen|Fridunes|Friduner|Fridunen|Fridumes|Fridumer|Fridumen|Foeduses|Foeduser|Foedusen|Einigung|Abkommen|Sponsio|Frieden|Friduse|Fridune|Fridume|Foeduse|Abkomme|Paktes|Pakter|Pakten|Friede|Fridus|Fridun|Fridum|Frides|Frider|Friden|Foedus|Abkomm|Paxes|Paxer|Paxen|Pakte|Fried|Fride|Paxe|Pakt|Frid|Pax)\\b",
+  "scan_result": {
+    "summary": {
+      "files_scanned": 21,
+      "files_with_hits": 9,
+      "total_hits": 136,
+      "top_files": [
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/zahnd-urs-martin__20.pdf",
+          "hits": 58
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__18.pdf",
+          "hits": 46
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/konstantin-m-langmaier__28.pdf",
+          "hits": 9
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__19.pdf",
+          "hits": 8
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/illi-martin__24.pdf",
+          "hits": 6
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/heinrich-speich__32.pdf",
+          "hits": 3
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__17.pdf",
+          "hits": 2
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/jucker-michael__9.pdf",
+          "hits": 2
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/michael-jucker__9.pdf",
+          "hits": 2
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/landolt-oliver__30.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bihrer-andreas__5.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bosshard-werner__14.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sutter-pascale__3.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/stettler-bernhard__8.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/frey-stefan__13.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/rigendinger-fritz__2.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/speck-dieter__6.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__4.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__7.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__11.pdf",
+          "hits": 0
+        }
+      ]
+    },
+    "files": [
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/zahnd-urs-martin__20.pdf",
+        "hits": 58,
+        "samples": [
+          {
+            "page": 1,
+            "kwic": " zwischen der Limmatstadt und den übrigen Orten entschieden: Zürich musste sein [[Bündnis]] mit Österreich aufgeben.2 Wenige Tage später, am 24. August 1450, beschworen Zü"
+          },
+          {
+            "page": 1,
+            "kwic": "undesbriefe.3 Heinrich von Bubenbergs Obmannsspruch setzte – zusam­ men mit dem [[Frieden]] von Breisach zwischen Herzog Sigmund von Österreich und Basel vom 24. Juni 1449"
+          },
+          {
+            "page": 1,
+            "kwic": ". Juni 1449 und dem am 24. Juni 1450 in Kaiserstuhl verein­ barten dreijährigen [[Waffenstillstand]] zwischen Sigmund und den eidgenössi­ schen Orten4 – dem langjährigen Konflikt, "
+          },
+          {
+            "page": 1,
+            "kwic": "ngen zwischen den eidgenössischen Orten, Zürich und Österreich bereits seit der [[Übereinkunft]] von Konstanz, die im Sommer 1446 auf Initiative des Kurfürsten Pfalzgraf Ludwig"
+          },
+          {
+            "page": 1,
+            "kwic": "n Einsiedeln in der zeitgenössischen Chronistik jener Orte, die sich mit diesem [[Frieden]] weitgehend durchgesetzt hatten, kaum einen Niederschlag. Hans Fründ, der Schwyz"
+          },
+          {
+            "page": 1,
+            "kwic": " seine Chronik über den Alten Zürichkrieg bereits mit dem Jahr 1446 (Konstanzer [[Friede]]).7 Der Berner Ratsherr Bendicht Tschachtlan, der in seiner Darstellung der Jahr"
+          }
+        ],
+        "pages": 28
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__18.pdf",
+        "hits": 46,
+        "samples": [
+          {
+            "page": 8,
+            "kwic": "nen, Behebung von Geldmangel, Schaffung von Auskömmlichkeit, Stabilisierung von [[Bündnis]] - konstanten, territoriale Herrschaftskonzentration und Festigung von Ansehen, "
+          },
+          {
+            "page": 8,
+            "kwic": "n an der Wende vom Mittelalter zur Frühen Neuzeit, in: Ober- deutsche Städte im [[Vergleich]], Mittelalter und Frühe Neuzeit, hg. von Joachim JAHN u. a. [Regio, Forschungen "
+          },
+          {
+            "page": 9,
+            "kwic": "genen Identität bildet 15. Überwiegt das bonum commune, herrschen Eintracht und [[Frieden]], dominiert allein Eigeninter - esse das öffentliche Leben, besteht die Möglichk"
+          },
+          {
+            "page": 9,
+            "kwic": "München 2000, S. 102. 13 Vgl. Konstantin M. LANGMAIER , Dem Land Ere und Nucz, [[Frid]] und Gemach : Das Land als Ehr-, Nutz- und Friedensgemeinschaft, Ein Beitrag zur"
+          },
+          {
+            "page": 11,
+            "kwic": " spraech, wir soeltind luogen, wie wir m oechtind, das wir mit den l uetten zuo [[friden]] k oemind, dann sÿ werind uens zuo ueberlegen, wan wir hettind kuem einhalb jaer"
+          },
+          {
+            "page": 12,
+            "kwic": "zum demütigenden [[Frieden]] von Kilchberg geführt hatten, nicht zuletzt deshalb, weil Bern zugunsten der in"
+          }
+        ],
+        "pages": 79
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/konstantin-m-langmaier__28.pdf",
+        "hits": 9,
+        "samples": [
+          {
+            "page": 6,
+            "kwic": "terne, sondern durchaus externe Gründe hatte. Genos ­ sen die frouwen gerade im [[Vergleich]] zum Grossmünster 14 im inner ­ politischen Machtgeflecht Zürichs keine sonderli"
+          },
+          {
+            "page": 8,
+            "kwic": "igere Vermittlungsversuche 27 fallen erst ins Jahr 1443, die indes nur in einen [[Waffenstillstand]] mündeten, den sogenannten «elenden Frieden» 28, auf den weitere schwere Kampfha"
+          },
+          {
+            "page": 8,
+            "kwic": "443, die indes nur in einen Waffenstillstand mündeten, den sogenannten «elenden [[Frieden]]» 28, auf den weitere schwere Kampfhandlungen folgten. «Schauprozesse» gegen die"
+          },
+          {
+            "page": 8,
+            "kwic": "2), S. 156 ff. 28 Am 9. August 1443 war es in Rapperswil zu einem achtmonatigen [[Waffenstillstand]] gekommen. Der Krieg wurde am 23. April 1444 fortgesetzt. Vgl. die Angaben bei: "
+          },
+          {
+            "page": 12,
+            "kwic": "pekt der Moral auf ihrer Seite zu wissen glaubt und in ungehemmtem Unmut 44 den [[Frieden]] ve­ hement einfordert, klein zu halten. Beim Vergleich der Zeugenprotokolle des"
+          },
+          {
+            "page": 12,
+            "kwic": "n ungehemmtem Unmut 44 den Frieden ve­ hement einfordert, klein zu halten. Beim [[Vergleich]] der Zeugenprotokolle des Jahres 1444 45 wird ersicht­ lich, dass die Standessch"
+          }
+        ],
+        "pages": 29
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__19.pdf",
+        "hits": 8,
+        "samples": [
+          {
+            "page": 8,
+            "kwic": "s durchfahrlässigesVerhaltenverlorengegangen wäre,sondernweiles später,nach dem [[Friedensschluss]],als ZeichenderVersöhnungbewusstvernichtetwurde,entweder durchdieZürcherselberod"
+          },
+          {
+            "page": 8,
+            "kwic": "nBahnhof Zürich-Enge, wo einigeTage lang verhandeltwurde,bisder Entwurffüreinen [[Friedensvertrag]] vorlag,den Fründanschliessendam 18.November inKilchberg inseinerFeldkanzlei«mit"
+          },
+          {
+            "page": 11,
+            "kwic": " DieSchwyzer versuchtengegenüberZürichschon bald mitrechtlichenMittelngegen das [[Bündnis]] mitder HerrschaftÖsterreichvorzugehen,weildiesesinihrenAugen mitdem eidgenössis"
+          },
+          {
+            "page": 12,
+            "kwic": "hichtealsArgument heran,beispielsweise,wenn erim Anschlussan den Berichtüberdas [[Bündnis]] zwischen Zürichund FriedrichIII.an dieSchlachtenvon Morgarten, Laupen,Sempach u"
+          },
+          {
+            "page": 16,
+            "kwic": "gang von der Geschichtsschreibungzum liturgischenGedenken.111 EinigeMonate nach [[Kriegsende]],anfangsFebruar1447,ist ItalRedinggestorben,nachdem ihnUlrichWagner als Landamma"
+          },
+          {
+            "page": 17,
+            "kwic": "rsachen [ gerichtlich]gewunnen hand.»116 Dennoch istunverkennbar,dass Fründnach [[Kriegsende]] inSchwyz nichtmehr dieselbewichtigeRollespieltewie zuvor.ItalReding,derihn1437 "
+          }
+        ],
+        "pages": 29
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/illi-martin__24.pdf",
+        "hits": 6,
+        "samples": [
+          {
+            "page": 2,
+            "kwic": "ein. Es kam zu ersten Verwüstungen und Plünderungen. Im sogenannten Kilchberger [[Frieden]] musste Zürich im November 1440 die Höfe Pfäffikon, Wollerau und Hurden sowie di"
+          },
+          {
+            "page": 2,
+            "kwic": " habsburgischen Königs Friedrich III. erlangen und mit ihm am 17. Juni 1442 ein [[Bündnis]] schliessen. In der Folge trat Friedrich eine Reise durch das heutige schweizeri"
+          },
+          {
+            "page": 2,
+            "kwic": "schof von Konstanz und der Abt von Einsiedeln vermittelten im August 1443 einen [[Waffenstillstand]] (Frieden von Rapperswil, auch sogenannter Elender Frieden), der bis zum April 1"
+          },
+          {
+            "page": 2,
+            "kwic": " und der Abt von Einsiedeln vermittelten im August 1443 einen Waffenstillstand ([[Frieden]] von Rapperswil, auch sogenannter Elender Frieden), der bis zum April 1444 hielt"
+          },
+          {
+            "page": 2,
+            "kwic": "t 1443 einen Waffenstillstand (Frieden von Rapperswil, auch sogenannter Elender [[Frieden]]), der bis zum April 1444 hielt. Nach erfolglosen Friedensverhandlungen in Baden"
+          },
+          {
+            "page": 3,
+            "kwic": "iegsparteien kam es im Frühjahr 1446 zu einem vorläufigen, 1450 zum definitiven [[Friedensschluss]]. Zürich erhielt mit Ausnahme der Höfe seine Landschaft zurück, musste jedoch de"
+          }
+        ],
+        "pages": 3
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/heinrich-speich__32.pdf",
+        "hits": 3,
+        "samples": [
+          {
+            "page": 8,
+            "kwic": "össere Auseinandersetzung im Alten Zürichkrieg, vor dem ersten erfolgrei - chen [[Waffenstillstand]] im Juni 1446. Somit wurden die Ereignisse nicht gleich vom näch- sten Feldzug ü"
+          },
+          {
+            "page": 10,
+            "kwic": " 600 Gulden dafür aufgenommen. Die Verzinsung machte ihnen noch zehn Jahre nach [[Kriegsende]] zu schaffen.32 In Gerichtsakten des Vorarlbergs wurde ebenfalls noch weiter in "
+          },
+          {
+            "page": 10,
+            "kwic": "–841. 32 Vorarlberger Landesarchiv (Hohenems, Reichsgrafschaft), Urk. 8105. Zum [[Vergleich]] die Kriegsaufwen - dungen der Stadt Basel 1446 von total 10‘815 lb pf. bei Gesa"
+          }
+        ],
+        "pages": 12
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__17.pdf",
+        "hits": 2,
+        "samples": [
+          {
+            "page": 10,
+            "kwic": "benötigte,um sich von den erlittenenSchäden und Einbussenzu erholen.38Gegen das [[Kriegsende]],vorallem aberseitdem Waffenstillstandvom Juni1446,werden den Bauern inden klöst"
+          },
+          {
+            "page": 21,
+            "kwic": "s hinterenUmschlagdeckels(Horgen);vgl.auch URStAZ, Bd.6,Nr.8922,8965,9121. -Zum [[Vergleich]]:InderSchlachtbeiKappel1531 hattendiedreiPfarreien38 (Küsnacht),34 (Kilchberg) b"
+          }
+        ],
+        "pages": 26
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/jucker-michael__9.pdf",
+        "hits": 2,
+        "samples": [
+          {
+            "page": 5,
+            "kwic": "litischenTreffenderachtOrte,diesweder explizitnoch implizit.Verfahrensfragenund [[Abmachungen]] fürgemeinsame Treffenwurden nurfürSchiedsgerichtegeregeltund aufgestellt.DieTag"
+          },
+          {
+            "page": 5,
+            "kwic": "atzungenaus achtvollberechtigtenMitgliedernbzw.ihrenAbgeordneten;eingemeinsames [[Bündnis]], welchessozusagenmultilateralalleachtOrteumfasste,existierteindessennicht.Desha"
+          }
+        ],
+        "pages": 12
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/michael-jucker__9.pdf",
+        "hits": 2,
+        "samples": [
+          {
+            "page": 5,
+            "kwic": "litischenTreffenderachtOrte,diesweder explizitnoch implizit.Verfahrensfragenund [[Abmachungen]] fürgemeinsame Treffenwurden nurfürSchiedsgerichtegeregeltund aufgestellt.DieTag"
+          },
+          {
+            "page": 5,
+            "kwic": "atzungenaus achtvollberechtigtenMitgliedernbzw.ihrenAbgeordneten;eingemeinsames [[Bündnis]], welchessozusagenmultilateralalleachtOrteumfasste,existierteindessennicht.Desha"
+          }
+        ],
+        "pages": 12
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/landolt-oliver__30.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 14
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bihrer-andreas__5.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 12
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bosshard-werner__14.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 12
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sutter-pascale__3.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 14
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/stettler-bernhard__8.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 20
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/frey-stefan__13.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 18
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/rigendinger-fritz__2.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 14
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/speck-dieter__6.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 14
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__4.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 16
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__7.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 28
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__11.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 25
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/landolt-oliver__10.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 11
+      }
+    ]
+  },
+  "config": {
+    "library_dir": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library",
+    "kwic_chars": 80,
+    "model": "gpt-4.1-mini",
+    "language": "de"
+  }
+}

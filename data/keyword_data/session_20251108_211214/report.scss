@@ -1,0 +1,24 @@
+
+// report.scss — Design-Quelle
+$bg: #111214; $panel:#1b1d20; $text:#e6e6e6; $muted:#a9a9a9; $accent:#0e639c; $accent2:#15a0bf; $border:#2a2c30; $ok:#58a55c;
+
+* { box-sizing: border-box; }
+body { margin:0; font: 16px/1.5 'Segoe UI', Arial, sans-serif; color: $text; background: $bg; }
+.report-wrap { max-width: 1200px; margin: 24px auto; padding: 0 16px; }
+.report-header { background: linear-gradient(135deg,$panel,#20242a); border:1px solid $border; border-radius:12px; padding:16px 20px; margin-bottom:16px; }
+.report-title { margin:0 0 6px; font-size:24px; font-weight:700; }
+.report-meta { color: $muted; font-size: 14px; }
+
+.report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.report-card { background: $panel; border:1px solid $border; border-radius:12px; padding:14px; }
+.report-card h2 { margin:0 0 8px; font-size:18px; border-bottom:1px solid $border; padding-bottom:8px; }
+.report-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; white-space: pre-wrap; word-break: break-word; background:#0b0c0f; border-radius:8px; padding:10px; }
+.report-kv { display:grid; grid-template-columns: 180px 1fr; gap:8px 12px; }
+.report-badges { display:flex; flex-wrap: wrap; gap:6px; }
+.report-badge { background:#0b1e28; color:#dff1ff; padding:4px 8px; border:1px solid #113447; border-radius:999px; font-size:12px; }
+.report-table { width:100%; border-collapse: collapse; }
+.report-table th, .report-table td { border-bottom:1px solid $border; padding:6px 8px; text-align:left; }
+.report-table th { color: $muted; font-weight:600; }
+.report-ok { color: $ok; }
+.report-accent { color: $accent2; }
+.small { font-size: 13px; color: $muted; }

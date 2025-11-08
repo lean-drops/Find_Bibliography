@@ -1,0 +1,537 @@
+{
+  "session": {
+    "name": "session_20251108_211214",
+    "created_at": "2025-11-08T20:18:19.190290Z"
+  },
+  "seed": "Habsburg",
+  "generated_raw": {
+    "seed": "Habsburg",
+    "concept_hint": "Alte Zürichkrieg-Forschung, spätmittelalterliche Chronistik, DE/CH/AT",
+    "terms_by_category": {
+      "core": [
+        "Habsburg",
+        "Habsburger",
+        "Haus Habsburg",
+        "Habsburgische Dynastie",
+        "Habsburgische Herrscher"
+      ],
+      "truce": [
+        "Habsburgische Waffenstillstände",
+        "Habsburgische Friedensverträge"
+      ],
+      "settlement": [
+        "Habsburgische Siedlungen",
+        "Habsburgische Städtegründungen"
+      ],
+      "legal_instrument": [
+        "Habsburgische Privilegien",
+        "Habsburgische Landrechte"
+      ],
+      "end_of_hostilities": [
+        "Habsburgische Friedensschlüsse",
+        "Habsburgische Kriegsenden"
+      ],
+      "latin": [
+        "Habsburgenses",
+        "Domus Austriae"
+      ],
+      "historic_variants": [
+        "Habichsburg",
+        "Hapsburg",
+        "Habspurg"
+      ]
+    },
+    "notes": "Die Habsburger waren eine bedeutende Dynastie im späten Mittelalter und in der Neuzeit, die in vielen Teilen Europas, einschließlich der Schweiz, Deutschland und Österreich, herrschte. Die lateinischen Begriffe und historischen Varianten beziehen sich auf die Habsburger und ihr Herrschaftsgebiet.",
+    "_meta": {
+      "from_cache": false,
+      "cache_key": "0684416ca44902023ac69fc95233f513ec9b32cb",
+      "model": "gpt-4.1-mini",
+      "sdk": "legacy"
+    }
+  },
+  "expanded_terms": {
+    "Tod": [
+      "Tod",
+      "Tode",
+      "Toden",
+      "Toder",
+      "Todes"
+    ],
+    "Sterben": [
+      "Sterb",
+      "Sterbe",
+      "Sterben",
+      "Sterbene",
+      "Sterbenen",
+      "Sterbener",
+      "Sterbenes"
+    ],
+    "Hinscheiden": [
+      "Hinscheid",
+      "Hinscheide",
+      "Hinscheiden",
+      "Hinscheidene",
+      "Hinscheidenen",
+      "Hinscheidener",
+      "Hinscheidenes"
+    ],
+    "Ableben": [
+      "Ableb",
+      "Ablebe",
+      "Ableben",
+      "Ablebene",
+      "Ablebenen",
+      "Ablebener",
+      "Ablebenes"
+    ],
+    "Ende": [
+      "Ende"
+    ],
+    "Versterben": [
+      "[uvUV]ersterb",
+      "[uvUV]ersterbe",
+      "[uvUV]ersterben",
+      "[uvUV]ersterbene",
+      "[uvUV]ersterbenen",
+      "[uvUV]ersterbener",
+      "[uvUV]ersterbenes"
+    ],
+    "Todesfall": [
+      "Todesfall",
+      "Todesfalle",
+      "Todesfallen",
+      "Todesfaller",
+      "Todesfalles"
+    ],
+    "Testament": [
+      "Testament",
+      "Testamente",
+      "Testamenten",
+      "Testamenter",
+      "Testamentes"
+    ],
+    "Letzter Wille": [
+      "Letzter\\ Wille"
+    ],
+    "Erbfolge": [
+      "Erbfolge"
+    ],
+    "Nachlass": [
+      "Nachlass",
+      "Nachlasse",
+      "Nachlassen",
+      "Nachlasser",
+      "Nachlasses"
+    ],
+    "Mors": [
+      "Mors",
+      "Morse",
+      "Morsen",
+      "Morser",
+      "Morses"
+    ],
+    "Obitus": [
+      "Obitus",
+      "Obituse",
+      "Obitusen",
+      "Obituser",
+      "Obituses"
+    ],
+    "Decessus": [
+      "Decessus",
+      "Decessuse",
+      "Decessusen",
+      "Decessuser",
+      "Decessuses"
+    ],
+    "Exitus": [
+      "Exitus",
+      "Exituse",
+      "Exitusen",
+      "Exituser",
+      "Exituses"
+    ],
+    "Todt": [
+      "Todt",
+      "Todte",
+      "Todten",
+      "Todter",
+      "Todtes"
+    ],
+    "Todtes": [
+      "Todtes",
+      "Todtese",
+      "Todtesen",
+      "Todteser",
+      "Todteses"
+    ],
+    "Todis": [
+      "Todis",
+      "Todise",
+      "Todisen",
+      "Todiser",
+      "Todises"
+    ],
+    "Todten": [
+      "Todt",
+      "Todte",
+      "Todten",
+      "Todtene",
+      "Todtenen",
+      "Todtener",
+      "Todtenes"
+    ]
+  },
+  "master_regex": "\\b(?:[uvUV]ersterbenes|[uvUV]ersterbener|[uvUV]ersterbenen|[uvUV]ersterbene|[uvUV]ersterben|[uvUV]ersterbe|Letzter\\ Wille|[uvUV]ersterb|Hinscheidenes|Hinscheidener|Hinscheidenen|Hinscheidene|Todesfalles|Todesfaller|Todesfallen|Testamentes|Testamenter|Testamenten|Hinscheiden|Todesfalle|Testamente|Nachlasses|Nachlasser|Nachlassen|Hinscheide|Decessuses|Decessuser|Decessusen|Todesfall|Testament|Sterbenes|Sterbener|Sterbenen|Nachlasse|Hinscheid|Decessuse|Ablebenes|Ablebener|Ablebenen|Todteses|Todteser|Todtesen|Todtenes|Todtener|Todtenen|Sterbene|Obituses|Obituser|Obitusen|Nachlass|Exituses|Exituser|Exitusen|Erbfolge|Decessus|Ablebene|Todtese|Todtene|Todises|Todiser|Todisen|Sterben|Obituse|Exituse|Ableben|Todtes|Todter|Todten|Todise|Sterbe|Obitus|Morses|Morser|Morsen|Exitus|Ablebe|Todte|Todis|Todes|Toder|Toden|Sterb|Morse|Ableb|Todt|Tode|Mors|Ende|Tod)\\b",
+  "scan_result": {
+    "summary": {
+      "files_scanned": 21,
+      "files_with_hits": 8,
+      "total_hits": 43,
+      "top_files": [
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__18.pdf",
+          "hits": 12
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/landolt-oliver__30.pdf",
+          "hits": 10
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__19.pdf",
+          "hits": 9
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__17.pdf",
+          "hits": 5
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/zahnd-urs-martin__20.pdf",
+          "hits": 3
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/heinrich-speich__32.pdf",
+          "hits": 2
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/illi-martin__24.pdf",
+          "hits": 1
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/konstantin-m-langmaier__28.pdf",
+          "hits": 1
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bihrer-andreas__5.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bosshard-werner__14.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sutter-pascale__3.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/stettler-bernhard__8.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/jucker-michael__9.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/frey-stefan__13.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/rigendinger-fritz__2.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/speck-dieter__6.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/michael-jucker__9.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__4.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__7.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__11.pdf",
+          "hits": 0
+        }
+      ]
+    },
+    "files": [
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__18.pdf",
+        "hits": 12,
+        "samples": [
+          {
+            "page": 4,
+            "kwic": "SPES PALATINATUS – Der [[Tod]] des pfälzischen Erbprinzen 1761 aus der Perspektive protonationaler Identitätss"
+          },
+          {
+            "page": 11,
+            "kwic": "eit, welche die Stadt Zürich vorzuweisen hatte, fand mit dem Krieg ein abruptes [[Ende]] 22. Natürlich gab es Gründe, die nicht nur strategischer Art waren, welche gege"
+          },
+          {
+            "page": 14,
+            "kwic": "rselbstständigen kann und damit eine eigene Gesetzmässigkeit ent - wickelt: Der [[Tod]] ist immer präsent. Das zivile Leben ändert sein Wesen von Grund auf. Die Beseit"
+          },
+          {
+            "page": 18,
+            "kwic": "r und Fuhrleute. 66 Susanna BURGHARTZ, Leib, Ehre und Gut. Delinquenz in Zürich [[Ende]] des 14. Jahrhunderts, Zü- rich 1990, S. 55 ff.; Sibylle MALAMUD, Die Ächtung de"
+          },
+          {
+            "page": 34,
+            "kwic": "Hinrichtung 146. Da die Oppo - sition faktisch zerschlagen war, wurde Meiss zum [[Tod]] durch Rädern verurteilt, allerdings in der ‚humanen‘ Form (Hinrichtung mit dem "
+          },
+          {
+            "page": 35,
+            "kwic": "Essen und Trinken unterlag er aber einer allgemeinen Kontaktsperre. Nach seinem [[Tod]] sollte das restliche Vermögen als Seelgerät an das Spital fallen, wobei die A"
+          }
+        ],
+        "pages": 79
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/landolt-oliver__30.pdf",
+        "hits": 10,
+        "samples": [
+          {
+            "page": 2,
+            "kwic": "162 Teil III: [[Tod]] in Krieg und Revolution Neugestaltung der Feierlichkeiten konnte diese politisc"
+          },
+          {
+            "page": 3,
+            "kwic": "AnnalesFuldenses,S. 94). 14 Vgl.Courroux:WhatTypes,S. 138–140;sieheauchPrietzel:[[Tod]],S. 66. 15 Eine Zusammenstellung der einzelnen, längeren oder kürzeren Gefallene"
+          },
+          {
+            "page": 4,
+            "kwic": "164 Teil III: [[Tod]] in Krieg und Revolution die sozial niedriger gestellten Angehörigen des habsbur"
+          },
+          {
+            "page": 6,
+            "kwic": "166 Teil III: [[Tod]] in Krieg und Revolution warendieinderSchlachtGefallenendenbesondersgefürchteten"
+          },
+          {
+            "page": 6,
+            "kwic": "chten Gefallenen zu übernehmen: Beispielsweise finanzierte das Land Schwyz nach [[Ende]] des soge- nanntenAltenZürichkriegs(1436–1450)eineallgemeineSchlachtjahrzeitfürd"
+          },
+          {
+            "page": 8,
+            "kwic": "168 Teil III: [[Tod]] in Krieg und Revolution Die in den Jahrzeitbüchern respektive den Schlachtjahrz"
+          }
+        ],
+        "pages": 14
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__19.pdf",
+        "hits": 9,
+        "samples": [
+          {
+            "page": 4,
+            "kwic": "ieAnstellung gab UlrichWagner im Februar1469 alsamtierender Landammann nach dem [[Tod]] von FründoffenAuskunft,alser erklärte,dieSchwyzer «hettintindem vergangnenkrieg"
+          },
+          {
+            "page": 5,
+            "kwic": "hzeitigmacht ersichzu wichtigenEreignissen grundsätzlicheÜberlegungen.Gegen das [[Ende]] derAufzeichnungen folgenvermehrtbilanzierendeRückblicke;auch diein derRückschau"
+          },
+          {
+            "page": 11,
+            "kwic": "b keinen rechtlichrelevanten Grund füreinen eidgenössischenSchiedsprozesssahen. [[Ende]] April,anfangsMai1443 kam es deshalberneutzu einem «unfreundlichen» Briefwechsel"
+          },
+          {
+            "page": 16,
+            "kwic": "von Gefallenen aufgelistet,chronologischgeordnetnach der Schlacht,inder sie den [[Tod]] gefunden haben wobei fastdie Hälftebei St.Jakob an derBirsbeiBaselim Kampf gege"
+          },
+          {
+            "page": 18,
+            "kwic": "ig.Den mehrfachunterbrochenenSchiedsprozess zurBeilegungdes Zürichkriegshaterab [[Ende]] 1448 offenbar nichtmehr begleitet.127Der SchlussentscheidHeinrichs von Bubenber"
+          },
+          {
+            "page": 18,
+            "kwic": "nslebensgunnen und imm derhandelfürozuo derhand wär komen, so welt erden fürozu [[ende]] geschribenhaben.» 130 Allerdingsfälltauf, dass Fründ ausgerechnetinden Wochen d"
+          }
+        ],
+        "pages": 29
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__17.pdf",
+        "hits": 5,
+        "samples": [
+          {
+            "page": 3,
+            "kwic": "ert aufWeihnachtenzugehen lässt.Dem BannervorträgerHeiniGünthartwar es nach dem [[Tod]] von BannerherrPantaleonHagnauer unterdramatischenUmständen gelungen, wenigstens"
+          },
+          {
+            "page": 3,
+            "kwic": "Albis1531 inderSchlacht beiKappelnoch einmalhatterettenmüssen,ebenfallsnach dem [[Tod]] des Bannerherrn.2 65 "
+          },
+          {
+            "page": 7,
+            "kwic": "sslichzu kapitulieren,um nichtim einstürzenden Schlossumzukommen, sondernvordem [[Tod]] wenigstensbeichtenzu können.Weildas Torverrammeltwar,mussten dieLeutemiteinerLe"
+          },
+          {
+            "page": 14,
+            "kwic": "n Krieg.56Nichtgeringerwar das menschlicheLeid.SelbstLandschreiberFründ klagtam [[Ende]] seinerChronik,dass derKriegvieleFrauen und Kinderzu Witwen und Waisen gemacht h"
+          },
+          {
+            "page": 24,
+            "kwic": "ilhelmi(wieAnm. 34),63;URStAZ, Bd.6,Nr.8025,8479,8765,8814. 54 Vgl.den Exkursam [[Ende]] diesesBeitrags.-DerAbtvon Rheinaubatum Schonung seinesKlosters.Vgl. URStAZ, Bd."
+          }
+        ],
+        "pages": 26
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/zahnd-urs-martin__20.pdf",
+        "hits": 3,
+        "samples": [
+          {
+            "page": 1,
+            "kwic": "er unter dem Namen «Alter Zürich­ krieg» in die Geschichte eingegangen ist, ein [[Ende]]. 5 Zwar ruhten die direkten Kriegshandlungen zwischen den eidgenössischen Orten"
+          },
+          {
+            "page": 2,
+            "kwic": "kehrsadern im Gebiet des oberen Zürichsees. Diese Rivalität eskalierte nach dem [[Tode]] des kinderlosen Grafen Friedrich VII. von Toggenburg, als beide Orte Anspruch a"
+          },
+          {
+            "page": 20,
+            "kwic": "vom Mai 1439 zwischen Schwyz und Zü­ rich, als Obmann des Schiedsgerichtes, das [[Ende]] 1440 den Kilchberger Frieden herbeiführte, als Gesandter Berns bei den (ergebni"
+          }
+        ],
+        "pages": 28
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/heinrich-speich__32.pdf",
+        "hits": 2,
+        "samples": [
+          {
+            "page": 2,
+            "kwic": " - trachtung wert2. Einerseits war es die letzte grössere Auseinandersetzung am [[Ende]] des Alten Zürichkrieges (1436–1446/50), andererseits fand gerade dieser kurze F"
+          },
+          {
+            "page": 12,
+            "kwic": "us Tschudi. Kleiner Feldzug – grosse Wirkung. Der sogenannte Ragazer Feldzug am [[Ende]] des Alten Zürichkrieges ist trotz seiner lokalen Wirkung in zahlreichen Quellen"
+          }
+        ],
+        "pages": 12
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/illi-martin__24.pdf",
+        "hits": 1,
+        "samples": [
+          {
+            "page": 2,
+            "kwic": "lacht bei St. Jakob an der Sihl, wo der Zürcher Bürgermeister Rudolf Stüssi den [[Tod]] fand. Wiederum verwüsteten die Eidgenossen die Zürcher Landschaft, doch die Sta"
+          }
+        ],
+        "pages": 3
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/konstantin-m-langmaier__28.pdf",
+        "hits": 1,
+        "samples": [
+          {
+            "page": 28,
+            "kwic": "trichen: der der. xxxiii Es folgt gestrichen: floch. xxxiv Es folgt gestrichen: [[tod]] ledly ledly. xxxv Es folgt gestrichen: in den. xxxvi Es folgt gestrichen: da k."
+          }
+        ],
+        "pages": 29
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bihrer-andreas__5.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 12
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bosshard-werner__14.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 12
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sutter-pascale__3.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 14
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/stettler-bernhard__8.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 20
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/jucker-michael__9.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 12
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/frey-stefan__13.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 18
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/rigendinger-fritz__2.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 14
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/speck-dieter__6.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 14
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/michael-jucker__9.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 12
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__4.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 16
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__7.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 28
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__11.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 25
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/landolt-oliver__10.pdf",
+        "hits": 0,
+        "samples": [],
+        "pages": 11
+      }
+    ]
+  },
+  "config": {
+    "library_dir": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library",
+    "kwic_chars": 80,
+    "model": "gpt-4.1-mini",
+    "language": "de"
+  }
+}

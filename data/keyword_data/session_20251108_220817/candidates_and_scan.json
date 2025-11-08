@@ -1,0 +1,488 @@
+{
+  "session": {
+    "name": "session_20251108_220817",
+    "created_at": "2025-11-08T21:25:45.508057Z"
+  },
+  "seed": "Heinrich von Hewen",
+  "generated_raw": {
+    "seed": "Heinrich von Hewen",
+    "concept_hint": "Alte Zürichkrieg-Forschung, spätmittelalterliche Chronistik, DE/CH/AT",
+    "terms_by_category": {
+      "core": [
+        "Heinrich von Hewen",
+        "Heinrich von Hewen Graf",
+        "Graf Heinrich von Hewen"
+      ],
+      "truce": [
+        "Frieden von Heinrich von Hewen",
+        "Waffenstillstand von Heinrich von Hewen"
+      ],
+      "settlement": [
+        "Vertrag von Heinrich von Hewen",
+        "Abkommen von Heinrich von Hewen"
+      ],
+      "legal_instrument": [
+        "Heinrich von Hewen'sche Urkunde",
+        "Heinrich von Hewen'sche Satzung"
+      ],
+      "end_of_hostilities": [
+        "Heinrich von Hewen'sche Friedensschluss",
+        "Heinrich von Hewen'sche Waffenruhe"
+      ],
+      "latin": [
+        "Henricus de Hewen",
+        "Henricus Comes de Hewen"
+      ],
+      "historic_variants": [
+        "Heinricus de Hewen",
+        "Heinricus Comes de Hewen"
+      ]
+    },
+    "notes": "Heinrich von Hewen war ein bedeutender Akteur im Alten Zürichkrieg. Die Suche nach seinem Namen in Verbindung mit Begriffen wie 'Frieden', 'Vertrag' oder 'Waffenstillstand' kann relevante historische Dokumente und Quellen aufdecken.",
+    "_meta": {
+      "from_cache": false,
+      "cache_key": "175fe998c5078cb390f5ea0a8290f1acf9b59854",
+      "model": "gpt-4.1-mini",
+      "sdk": "legacy"
+    }
+  },
+  "expanded_terms": {
+    "Heinrich von Hewen": [
+      "Heinrich\\ [uvUV]on\\ Hew",
+      "Heinrich\\ [uvUV]on\\ Hewe",
+      "Heinrich\\ [uvUV]on\\ Hewen",
+      "Heinrich\\ [uvUV]on\\ Hewene",
+      "Heinrich\\ [uvUV]on\\ Hewenen",
+      "Heinrich\\ [uvUV]on\\ Hewener",
+      "Heinrich\\ [uvUV]on\\ Hewenes"
+    ],
+    "Heinrich von Hewen Graf": [
+      "Heinrich\\ [uvUV]on\\ Hewen\\ Graf",
+      "Heinrich\\ [uvUV]on\\ Hewen\\ Grafe",
+      "Heinrich\\ [uvUV]on\\ Hewen\\ Grafen",
+      "Heinrich\\ [uvUV]on\\ Hewen\\ Grafer",
+      "Heinrich\\ [uvUV]on\\ Hewen\\ Grafes"
+    ],
+    "Graf Heinrich von Hewen": [
+      "Graf\\ Heinrich\\ [uvUV]on\\ Hew",
+      "Graf\\ Heinrich\\ [uvUV]on\\ Hewe",
+      "Graf\\ Heinrich\\ [uvUV]on\\ Hewen",
+      "Graf\\ Heinrich\\ [uvUV]on\\ Hewene",
+      "Graf\\ Heinrich\\ [uvUV]on\\ Hewenen",
+      "Graf\\ Heinrich\\ [uvUV]on\\ Hewener",
+      "Graf\\ Heinrich\\ [uvUV]on\\ Hewenes"
+    ],
+    "Frieden von Heinrich von Hewen": [
+      "Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hew",
+      "Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewe",
+      "Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewen",
+      "Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewene",
+      "Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenen",
+      "Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewener",
+      "Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenes"
+    ],
+    "Waffenstillstand von Heinrich von Hewen": [
+      "Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hew",
+      "Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewe",
+      "Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewen",
+      "Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewene",
+      "Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenen",
+      "Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewener",
+      "Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenes"
+    ],
+    "Vertrag von Heinrich von Hewen": [
+      "[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hew",
+      "[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewe",
+      "[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewen",
+      "[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewene",
+      "[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenen",
+      "[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewener",
+      "[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenes"
+    ],
+    "Abkommen von Heinrich von Hewen": [
+      "Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hew",
+      "Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewe",
+      "Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewen",
+      "Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewene",
+      "Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenen",
+      "Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewener",
+      "Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenes"
+    ],
+    "Heinrich von Hewen'sche Urkunde": [
+      "Heinrich\\ [uvUV]on\\ Hewen'sche\\ Urkunde"
+    ],
+    "Heinrich von Hewen'sche Satzung": [
+      "Heinrich\\ [uvUV]on\\ Hewen'sche\\ Satzung",
+      "Heinrich\\ [uvUV]on\\ Hewen'sche\\ Satzunge",
+      "Heinrich\\ [uvUV]on\\ Hewen'sche\\ Satzungen",
+      "Heinrich\\ [uvUV]on\\ Hewen'sche\\ Satzunger",
+      "Heinrich\\ [uvUV]on\\ Hewen'sche\\ Satzunges"
+    ],
+    "Heinrich von Hewen'sche Friedensschluss": [
+      "Heinrich\\ [uvUV]on\\ Hewen'sche\\ Friedensschluss",
+      "Heinrich\\ [uvUV]on\\ Hewen'sche\\ Friedensschlusse",
+      "Heinrich\\ [uvUV]on\\ Hewen'sche\\ Friedensschlussen",
+      "Heinrich\\ [uvUV]on\\ Hewen'sche\\ Friedensschlusser",
+      "Heinrich\\ [uvUV]on\\ Hewen'sche\\ Friedensschlusses"
+    ],
+    "Heinrich von Hewen'sche Waffenruhe": [
+      "Heinrich\\ [uvUV]on\\ Hewen'sche\\ Waffenruhe"
+    ],
+    "Henricus de Hewen": [
+      "Henricus\\ de\\ Hew",
+      "Henricus\\ de\\ Hewe",
+      "Henricus\\ de\\ Hewen",
+      "Henricus\\ de\\ Hewene",
+      "Henricus\\ de\\ Hewenen",
+      "Henricus\\ de\\ Hewener",
+      "Henricus\\ de\\ Hewenes"
+    ],
+    "Henricus Comes de Hewen": [
+      "Henricus\\ Comes\\ de\\ Hew",
+      "Henricus\\ Comes\\ de\\ Hewe",
+      "Henricus\\ Comes\\ de\\ Hewen",
+      "Henricus\\ Comes\\ de\\ Hewene",
+      "Henricus\\ Comes\\ de\\ Hewenen",
+      "Henricus\\ Comes\\ de\\ Hewener",
+      "Henricus\\ Comes\\ de\\ Hewenes"
+    ]
+  },
+  "master_regex": "\\b(?:Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenes|Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewener|Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenen|Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewene|Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewen|Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewe|[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenes|[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewener|[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenen|Waffenstillstand\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hew|[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewene|[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewen|Heinrich\\ [uvUV]on\\ Hewen'sche\\ Friedensschlusses|Heinrich\\ [uvUV]on\\ Hewen'sche\\ Friedensschlusser|Heinrich\\ [uvUV]on\\ Hewen'sche\\ Friedensschlussen|[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewe|Heinrich\\ [uvUV]on\\ Hewen'sche\\ Friedensschlusse|[uvUV]ertrag\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hew|Heinrich\\ [uvUV]on\\ Hewen'sche\\ Friedensschluss|Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenes|Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewener|Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenen|Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenes|Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewener|Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewenen|Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewene|Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewene|Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewen|Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewen|Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewe|Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hewe|Abkommen\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hew|Heinrich\\ [uvUV]on\\ Hewen'sche\\ Waffenruhe|Frieden\\ [uvUV]on\\ Heinrich\\ [uvUV]on\\ Hew|Heinrich\\ [uvUV]on\\ Hewen'sche\\ Satzunges|Heinrich\\ [uvUV]on\\ Hewen'sche\\ Satzunger|Heinrich\\ [uvUV]on\\ Hewen'sche\\ Satzungen|Heinrich\\ [uvUV]on\\ Hewen'sche\\ Satzunge|Heinrich\\ [uvUV]on\\ Hewen'sche\\ Urkunde|Heinrich\\ [uvUV]on\\ Hewen'sche\\ Satzung|Heinrich\\ [uvUV]on\\ Hewen\\ Grafes|Heinrich\\ [uvUV]on\\ Hewen\\ Grafer|Heinrich\\ [uvUV]on\\ Hewen\\ Grafen|Graf\\ Heinrich\\ [uvUV]on\\ Hewenes|Graf\\ Heinrich\\ [uvUV]on\\ Hewener|Graf\\ Heinrich\\ [uvUV]on\\ Hewenen|Heinrich\\ [uvUV]on\\ Hewen\\ Grafe|Graf\\ Heinrich\\ [uvUV]on\\ Hewene|Heinrich\\ [uvUV]on\\ Hewen\\ Graf|Graf\\ Heinrich\\ [uvUV]on\\ Hewen|Graf\\ Heinrich\\ [uvUV]on\\ Hewe|Graf\\ Heinrich\\ [uvUV]on\\ Hew|Henricus\\ Comes\\ de\\ Hewenes|Henricus\\ Comes\\ de\\ Hewener|Henricus\\ Comes\\ de\\ Hewenen|Henricus\\ Comes\\ de\\ Hewene|Heinrich\\ [uvUV]on\\ Hewenes|Heinrich\\ [uvUV]on\\ Hewener|Heinrich\\ [uvUV]on\\ Hewenen|Henricus\\ Comes\\ de\\ Hewen|Heinrich\\ [uvUV]on\\ Hewene|Henricus\\ Comes\\ de\\ Hewe|Heinrich\\ [uvUV]on\\ Hewen|Henricus\\ Comes\\ de\\ Hew|Heinrich\\ [uvUV]on\\ Hewe|Heinrich\\ [uvUV]on\\ Hew|Henricus\\ de\\ Hewenes|Henricus\\ de\\ Hewener|Henricus\\ de\\ Hewenen|Henricus\\ de\\ Hewene|Henricus\\ de\\ Hewen|Henricus\\ de\\ Hewe|Henricus\\ de\\ Hew)\\b",
+  "scan_result": {
+    "summary": {
+      "files_scanned": 21,
+      "files_with_hits": 3,
+      "total_hits": 5,
+      "roots": [
+        "Heinrich von Hewen",
+        "Heinrich von Hewen Graf",
+        "Graf Heinrich von Hewen",
+        "Frieden von Heinrich von Hewen",
+        "Waffenstillstand von Heinrich von Hewen",
+        "Vertrag von Heinrich von Hewen",
+        "Abkommen von Heinrich von Hewen",
+        "Heinrich von Hewen'sche Urkunde",
+        "Heinrich von Hewen'sche Satzung",
+        "Heinrich von Hewen'sche Friedensschluss",
+        "Heinrich von Hewen'sche Waffenruhe",
+        "Henricus de Hewen",
+        "Henricus Comes de Hewen"
+      ],
+      "totals_by_root": [
+        {
+          "root": "Heinrich von Hewen",
+          "hits": 5
+        }
+      ],
+      "authors_top": [
+        {
+          "author": "konstantin",
+          "hits": 3
+        },
+        {
+          "author": "zahnd",
+          "hits": 1
+        },
+        {
+          "author": "langmaier",
+          "hits": 1
+        }
+      ],
+      "cooccurrence_top": [],
+      "top_files": [
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/konstantin-m-langmaier__28.pdf",
+          "hits": 3
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/zahnd-urs-martin__20.pdf",
+          "hits": 1
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__18.pdf",
+          "hits": 1
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__17.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/landolt-oliver__30.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__19.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bihrer-andreas__5.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bosshard-werner__14.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sutter-pascale__3.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/stettler-bernhard__8.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/jucker-michael__9.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/frey-stefan__13.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/illi-martin__24.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/rigendinger-fritz__2.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/speck-dieter__6.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/michael-jucker__9.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__4.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__7.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__11.pdf",
+          "hits": 0
+        },
+        {
+          "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/heinrich-speich__32.pdf",
+          "hits": 0
+        }
+      ]
+    },
+    "files": [
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/konstantin-m-langmaier__28.pdf",
+        "pages": 29,
+        "author_guess": "konstantin",
+        "hits_total": 3,
+        "by_root": {
+          "Heinrich von Hewen": 3
+        },
+        "samples_by_root": {
+          "Heinrich von Hewen": [
+            {
+              "page": 7,
+              "kwic": "rkennung des Zürcher Rats sichern. Entscheidend mag dabei ge ­ wesen sein, dass [[Heinrich von Hewen]], Bruder der Anna und Domherr am Konstanzer Münster (1435 Dompropst, 1436 Bischo"
+            },
+            {
+              "page": 7,
+              "kwic": " fridens, Vermittlungsbemühungen und Selbstinszenierung des Konstanzer Bischofs [[Heinrich von Hewen]] (1436–1462), in: Ein «Bruderkrieg» macht Geschichte, Neue Zugänge zum Alten Zür"
+            },
+            {
+              "page": 7,
+              "kwic": "ft in Zürich, Bd. 73, 170. Neujahrsblatt), Zürich 2006, S. 155–165; Hans Stärk, [[Heinrich von Hewen]], Bischof von Konstanz (1436 bis 1462), in: Hegau 31 (1974), S. 7–52; Felici Cur"
+            }
+          ]
+        }
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/zahnd-urs-martin__20.pdf",
+        "pages": 28,
+        "author_guess": "zahnd",
+        "hits_total": 1,
+        "by_root": {
+          "Heinrich von Hewen": 1
+        },
+        "samples_by_root": {
+          "Heinrich von Hewen": [
+            {
+              "page": 25,
+              "kwic": "fridens». Vermittlungsbemühungen und Selbstinszenierung des Konstanzer Bischofs [[Heinrich von Hewen]] (1436 –1462). In: Niederhäuser / Sieber (wie Anm. 5), 155 –165; Landolt, Oliver"
+            }
+          ]
+        }
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__18.pdf",
+        "pages": 79,
+        "author_guess": "langmaier",
+        "hits_total": 1,
+        "by_root": {
+          "Heinrich von Hewen": 1
+        },
+        "samples_by_root": {
+          "Heinrich von Hewen": [
+            {
+              "page": 27,
+              "kwic": "dens . Vermittlungs- bemühungen und Selbstinszenierung des Konstanzer Bischofs [[Heinrich von Hewen]] (1436– 1462), in: Ein „Bruderkrieg“ macht Geschichte (wie Anm. 25) S. 155–165; "
+            }
+          ]
+        }
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__17.pdf",
+        "pages": 26,
+        "author_guess": "langmaier",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/landolt-oliver__30.pdf",
+        "pages": 14,
+        "author_guess": "landolt",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__19.pdf",
+        "pages": 29,
+        "author_guess": "sieber",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bihrer-andreas__5.pdf",
+        "pages": 12,
+        "author_guess": "bihrer",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bosshard-werner__14.pdf",
+        "pages": 12,
+        "author_guess": "bosshard",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sutter-pascale__3.pdf",
+        "pages": 14,
+        "author_guess": "sutter",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/stettler-bernhard__8.pdf",
+        "pages": 20,
+        "author_guess": "stettler",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/jucker-michael__9.pdf",
+        "pages": 12,
+        "author_guess": "jucker",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/frey-stefan__13.pdf",
+        "pages": 18,
+        "author_guess": "frey",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/illi-martin__24.pdf",
+        "pages": 3,
+        "author_guess": "illi",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/rigendinger-fritz__2.pdf",
+        "pages": 14,
+        "author_guess": "rigendinger",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/speck-dieter__6.pdf",
+        "pages": 14,
+        "author_guess": "speck",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/michael-jucker__9.pdf",
+        "pages": 12,
+        "author_guess": "michael",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__4.pdf",
+        "pages": 16,
+        "author_guess": "niederhauser",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__7.pdf",
+        "pages": 28,
+        "author_guess": "niederhauser",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__11.pdf",
+        "pages": 25,
+        "author_guess": "sieber",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/heinrich-speich__32.pdf",
+        "pages": 12,
+        "author_guess": "heinrich",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      },
+      {
+        "path": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/landolt-oliver__10.pdf",
+        "pages": 11,
+        "author_guess": "landolt",
+        "hits_total": 0,
+        "by_root": {},
+        "samples_by_root": {}
+      }
+    ],
+    "detailed": true
+  },
+  "config": {
+    "library_dir": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library",
+    "kwic_chars": 80,
+    "model": "gpt-4.1-mini",
+    "language": "de"
+  }
+}

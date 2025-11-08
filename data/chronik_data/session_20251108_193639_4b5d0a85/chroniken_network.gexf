@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
+  <meta lastmodifieddate="2025-11-08">
+    <creator>NetworkX 3.1</creator>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static" name="">
+    <nodes>
+      <node id="Berner Chronik (allg.)" label="Berner Chronik (allg.)" />
+      <node id="Fründ (Hans Fründ)" label="Fründ (Hans Fründ)" />
+      <node id="Justinger (Konrad Justinger)" label="Justinger (Konrad Justinger)" />
+      <node id="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" label="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" />
+      <node id="Tschachtlan (Benedikt Tschachtlan)" label="Tschachtlan (Benedikt Tschachtlan)" />
+      <node id="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" label="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" />
+      <node id="Valerius Anshelm" label="Valerius Anshelm" />
+      <node id="Edlibach (Gerold Edlibach)" label="Edlibach (Gerold Edlibach)" />
+      <node id="Klingenberger Chronik" label="Klingenberger Chronik" />
+      <node id="Stumpf (Johannes Stumpf)" label="Stumpf (Johannes Stumpf)" />
+      <node id="Brennwald (Johann/Johannes Brennwald)" label="Brennwald (Johann/Johannes Brennwald)" />
+      <node id="Schodoler (Werner Schodoler)" label="Schodoler (Werner Schodoler)" />
+      <node id="Etterlin (Petermann Etterlin)" label="Etterlin (Petermann Etterlin)" />
+      <node id="Melchior Russ" label="Melchior Russ" />
+      <node id="Bullinger (Heinrich Bullinger)" label="Bullinger (Heinrich Bullinger)" />
+      <node id="Zürcher Stadtchronik" label="Zürcher Stadtchronik" />
+    </nodes>
+    <edges>
+      <edge source="Berner Chronik (allg.)" target="Fründ (Hans Fründ)" id="0" weight="3.0" />
+      <edge source="Berner Chronik (allg.)" target="Justinger (Konrad Justinger)" id="1" weight="3.0" />
+      <edge source="Berner Chronik (allg.)" target="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" id="2" weight="4.0" />
+      <edge source="Berner Chronik (allg.)" target="Tschachtlan (Benedikt Tschachtlan)" id="3" weight="6.0" />
+      <edge source="Berner Chronik (allg.)" target="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" id="4" weight="6.0" />
+      <edge source="Berner Chronik (allg.)" target="Valerius Anshelm" id="5" weight="2.0" />
+      <edge source="Berner Chronik (allg.)" target="Brennwald (Johann/Johannes Brennwald)" id="6" weight="2.0" />
+      <edge source="Berner Chronik (allg.)" target="Klingenberger Chronik" id="7" weight="5.0" />
+      <edge source="Berner Chronik (allg.)" target="Schodoler (Werner Schodoler)" id="8" weight="1.0" />
+      <edge source="Berner Chronik (allg.)" target="Bullinger (Heinrich Bullinger)" id="9" weight="2.0" />
+      <edge source="Berner Chronik (allg.)" target="Edlibach (Gerold Edlibach)" id="10" weight="2.0" />
+      <edge source="Berner Chronik (allg.)" target="Stumpf (Johannes Stumpf)" id="11" weight="3.0" />
+      <edge source="Berner Chronik (allg.)" target="Zürcher Stadtchronik" id="12" weight="1.0" />
+      <edge source="Berner Chronik (allg.)" target="Etterlin (Petermann Etterlin)" id="13" weight="1.0" />
+      <edge source="Fründ (Hans Fründ)" target="Justinger (Konrad Justinger)" id="14" weight="3.0" />
+      <edge source="Fründ (Hans Fründ)" target="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" id="15" weight="5.0" />
+      <edge source="Fründ (Hans Fründ)" target="Tschachtlan (Benedikt Tschachtlan)" id="16" weight="5.0" />
+      <edge source="Fründ (Hans Fründ)" target="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" id="17" weight="11.0" />
+      <edge source="Fründ (Hans Fründ)" target="Valerius Anshelm" id="18" weight="1.0" />
+      <edge source="Fründ (Hans Fründ)" target="Brennwald (Johann/Johannes Brennwald)" id="19" weight="2.0" />
+      <edge source="Fründ (Hans Fründ)" target="Klingenberger Chronik" id="20" weight="6.0" />
+      <edge source="Fründ (Hans Fründ)" target="Schodoler (Werner Schodoler)" id="21" weight="1.0" />
+      <edge source="Fründ (Hans Fründ)" target="Etterlin (Petermann Etterlin)" id="22" weight="3.0" />
+      <edge source="Fründ (Hans Fründ)" target="Melchior Russ" id="23" weight="2.0" />
+      <edge source="Fründ (Hans Fründ)" target="Bullinger (Heinrich Bullinger)" id="24" weight="3.0" />
+      <edge source="Fründ (Hans Fründ)" target="Edlibach (Gerold Edlibach)" id="25" weight="2.0" />
+      <edge source="Fründ (Hans Fründ)" target="Stumpf (Johannes Stumpf)" id="26" weight="2.0" />
+      <edge source="Fründ (Hans Fründ)" target="Zürcher Stadtchronik" id="27" weight="4.0" />
+      <edge source="Justinger (Konrad Justinger)" target="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" id="28" weight="2.0" />
+      <edge source="Justinger (Konrad Justinger)" target="Tschachtlan (Benedikt Tschachtlan)" id="29" weight="3.0" />
+      <edge source="Justinger (Konrad Justinger)" target="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" id="30" weight="4.0" />
+      <edge source="Justinger (Konrad Justinger)" target="Valerius Anshelm" id="31" weight="2.0" />
+      <edge source="Justinger (Konrad Justinger)" target="Melchior Russ" id="32" weight="1.0" />
+      <edge source="Justinger (Konrad Justinger)" target="Bullinger (Heinrich Bullinger)" id="33" weight="2.0" />
+      <edge source="Justinger (Konrad Justinger)" target="Edlibach (Gerold Edlibach)" id="34" weight="2.0" />
+      <edge source="Justinger (Konrad Justinger)" target="Klingenberger Chronik" id="35" weight="2.0" />
+      <edge source="Justinger (Konrad Justinger)" target="Stumpf (Johannes Stumpf)" id="36" weight="2.0" />
+      <edge source="Justinger (Konrad Justinger)" target="Zürcher Stadtchronik" id="37" weight="1.0" />
+      <edge source="Justinger (Konrad Justinger)" target="Brennwald (Johann/Johannes Brennwald)" id="38" weight="1.0" />
+      <edge source="Justinger (Konrad Justinger)" target="Etterlin (Petermann Etterlin)" id="39" weight="1.0" />
+      <edge source="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" target="Tschachtlan (Benedikt Tschachtlan)" id="40" weight="6.0" />
+      <edge source="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" target="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" id="41" weight="8.0" />
+      <edge source="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" target="Valerius Anshelm" id="42" weight="2.0" />
+      <edge source="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" target="Brennwald (Johann/Johannes Brennwald)" id="43" weight="4.0" />
+      <edge source="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" target="Klingenberger Chronik" id="44" weight="6.0" />
+      <edge source="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" target="Schodoler (Werner Schodoler)" id="45" weight="1.0" />
+      <edge source="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" target="Bullinger (Heinrich Bullinger)" id="46" weight="4.0" />
+      <edge source="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" target="Edlibach (Gerold Edlibach)" id="47" weight="3.0" />
+      <edge source="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" target="Stumpf (Johannes Stumpf)" id="48" weight="4.0" />
+      <edge source="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" target="Zürcher Stadtchronik" id="49" weight="3.0" />
+      <edge source="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" target="Etterlin (Petermann Etterlin)" id="50" weight="2.0" />
+      <edge source="Schilling (Diebold Schilling, Berner/Luzerner Chronik)" target="Melchior Russ" id="51" weight="1.0" />
+      <edge source="Tschachtlan (Benedikt Tschachtlan)" target="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" id="52" weight="9.0" />
+      <edge source="Tschachtlan (Benedikt Tschachtlan)" target="Valerius Anshelm" id="53" weight="2.0" />
+      <edge source="Tschachtlan (Benedikt Tschachtlan)" target="Brennwald (Johann/Johannes Brennwald)" id="54" weight="2.0" />
+      <edge source="Tschachtlan (Benedikt Tschachtlan)" target="Klingenberger Chronik" id="55" weight="7.0" />
+      <edge source="Tschachtlan (Benedikt Tschachtlan)" target="Schodoler (Werner Schodoler)" id="56" weight="1.0" />
+      <edge source="Tschachtlan (Benedikt Tschachtlan)" target="Bullinger (Heinrich Bullinger)" id="57" weight="4.0" />
+      <edge source="Tschachtlan (Benedikt Tschachtlan)" target="Edlibach (Gerold Edlibach)" id="58" weight="2.0" />
+      <edge source="Tschachtlan (Benedikt Tschachtlan)" target="Stumpf (Johannes Stumpf)" id="59" weight="3.0" />
+      <edge source="Tschachtlan (Benedikt Tschachtlan)" target="Zürcher Stadtchronik" id="60" weight="3.0" />
+      <edge source="Tschachtlan (Benedikt Tschachtlan)" target="Etterlin (Petermann Etterlin)" id="61" weight="2.0" />
+      <edge source="Tschachtlan (Benedikt Tschachtlan)" target="Melchior Russ" id="62" weight="1.0" />
+      <edge source="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" target="Valerius Anshelm" id="63" weight="2.0" />
+      <edge source="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" target="Edlibach (Gerold Edlibach)" id="64" weight="6.0" />
+      <edge source="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" target="Klingenberger Chronik" id="65" weight="14.0" />
+      <edge source="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" target="Stumpf (Johannes Stumpf)" id="66" weight="6.0" />
+      <edge source="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" target="Brennwald (Johann/Johannes Brennwald)" id="67" weight="5.0" />
+      <edge source="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" target="Schodoler (Werner Schodoler)" id="68" weight="3.0" />
+      <edge source="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" target="Etterlin (Petermann Etterlin)" id="69" weight="4.0" />
+      <edge source="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" target="Melchior Russ" id="70" weight="2.0" />
+      <edge source="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" target="Bullinger (Heinrich Bullinger)" id="71" weight="6.0" />
+      <edge source="Tschudi (Aegidius Tschudi, Chronicon Helveticum)" target="Zürcher Stadtchronik" id="72" weight="4.0" />
+      <edge source="Valerius Anshelm" target="Brennwald (Johann/Johannes Brennwald)" id="73" weight="1.0" />
+      <edge source="Valerius Anshelm" target="Bullinger (Heinrich Bullinger)" id="74" weight="1.0" />
+      <edge source="Valerius Anshelm" target="Edlibach (Gerold Edlibach)" id="75" weight="1.0" />
+      <edge source="Valerius Anshelm" target="Etterlin (Petermann Etterlin)" id="76" weight="1.0" />
+      <edge source="Valerius Anshelm" target="Klingenberger Chronik" id="77" weight="1.0" />
+      <edge source="Valerius Anshelm" target="Stumpf (Johannes Stumpf)" id="78" weight="1.0" />
+      <edge source="Edlibach (Gerold Edlibach)" target="Klingenberger Chronik" id="79" weight="6.0" />
+      <edge source="Edlibach (Gerold Edlibach)" target="Stumpf (Johannes Stumpf)" id="80" weight="5.0" />
+      <edge source="Edlibach (Gerold Edlibach)" target="Brennwald (Johann/Johannes Brennwald)" id="81" weight="4.0" />
+      <edge source="Edlibach (Gerold Edlibach)" target="Schodoler (Werner Schodoler)" id="82" weight="1.0" />
+      <edge source="Edlibach (Gerold Edlibach)" target="Bullinger (Heinrich Bullinger)" id="83" weight="4.0" />
+      <edge source="Edlibach (Gerold Edlibach)" target="Zürcher Stadtchronik" id="84" weight="2.0" />
+      <edge source="Edlibach (Gerold Edlibach)" target="Etterlin (Petermann Etterlin)" id="85" weight="1.0" />
+      <edge source="Klingenberger Chronik" target="Stumpf (Johannes Stumpf)" id="86" weight="6.0" />
+      <edge source="Klingenberger Chronik" target="Brennwald (Johann/Johannes Brennwald)" id="87" weight="5.0" />
+      <edge source="Klingenberger Chronik" target="Schodoler (Werner Schodoler)" id="88" weight="3.0" />
+      <edge source="Klingenberger Chronik" target="Bullinger (Heinrich Bullinger)" id="89" weight="6.0" />
+      <edge source="Klingenberger Chronik" target="Zürcher Stadtchronik" id="90" weight="3.0" />
+      <edge source="Klingenberger Chronik" target="Etterlin (Petermann Etterlin)" id="91" weight="2.0" />
+      <edge source="Klingenberger Chronik" target="Melchior Russ" id="92" weight="1.0" />
+      <edge source="Stumpf (Johannes Stumpf)" target="Brennwald (Johann/Johannes Brennwald)" id="93" weight="3.0" />
+      <edge source="Stumpf (Johannes Stumpf)" target="Bullinger (Heinrich Bullinger)" id="94" weight="4.0" />
+      <edge source="Stumpf (Johannes Stumpf)" target="Zürcher Stadtchronik" id="95" weight="2.0" />
+      <edge source="Stumpf (Johannes Stumpf)" target="Etterlin (Petermann Etterlin)" id="96" weight="1.0" />
+      <edge source="Brennwald (Johann/Johannes Brennwald)" target="Schodoler (Werner Schodoler)" id="97" weight="2.0" />
+      <edge source="Brennwald (Johann/Johannes Brennwald)" target="Bullinger (Heinrich Bullinger)" id="98" weight="3.0" />
+      <edge source="Brennwald (Johann/Johannes Brennwald)" target="Zürcher Stadtchronik" id="99" weight="1.0" />
+      <edge source="Brennwald (Johann/Johannes Brennwald)" target="Etterlin (Petermann Etterlin)" id="100" weight="1.0" />
+      <edge source="Etterlin (Petermann Etterlin)" target="Bullinger (Heinrich Bullinger)" id="101" weight="2.0" />
+      <edge source="Etterlin (Petermann Etterlin)" target="Melchior Russ" id="102" weight="1.0" />
+      <edge source="Etterlin (Petermann Etterlin)" target="Zürcher Stadtchronik" id="103" weight="1.0" />
+      <edge source="Melchior Russ" target="Bullinger (Heinrich Bullinger)" id="104" weight="1.0" />
+      <edge source="Melchior Russ" target="Zürcher Stadtchronik" id="105" weight="1.0" />
+      <edge source="Bullinger (Heinrich Bullinger)" target="Zürcher Stadtchronik" id="106" weight="3.0" />
+    </edges>
+  </graph>
+</gexf>
