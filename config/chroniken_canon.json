@@ -1,0 +1,49 @@
+{
+  "works": [
+    {"canonical": "Fründ (Hans Fründ)", "aliases": ["hans\\s+fr[üu]nd", "\\bfr[üu]nd(?:s)?\\s+chronik", "\\bfr[üu]nd\\b"]},
+    {"canonical": "Tschachtlan (Benedikt Tschachtlan)", "aliases": ["benedikt\\s+tschachtlan", "\\btschachtlan(?:s)?\\s+chronik", "\\btschachtlan\\b"]},
+    {"canonical": "Schilling (Diebold Schilling, Berner/Luzerner Chronik)", "aliases": ["diebold\\s+schilling", "\\bschilling(?:s)?\\s+chronik", "\\bberner\\s+chronik\\s+schilling", "\\bluzerner\\s+schilling", "\\bschilling\\b"]},
+    {"canonical": "Edlibach (Gerold Edlibach)", "aliases": ["gerold\\s+edlibach", "\\bedlibach\\b", "chronik\\s+von\\s+gerold\\s+edlibach"]},
+    {"canonical": "Justinger (Konrad Justinger)", "aliases": ["konrad\\s+justinger", "\\bjustinger\\b", "bern(?:er)?\\s+chronik\\s+justinger"]},
+    {"canonical": "Schodoler (Werner Schodoler)", "aliases": ["werner\\s+schodoler", "\\bschodoler\\b"]},
+    {"canonical": "Stumpf (Johannes Stumpf)", "aliases": ["johannes\\s+stumpf", "\\bstumpf\\b", "stumpfs?\\s+chronik"]},
+    {"canonical": "Tschudi (Aegidius Tschudi, Chronicon Helveticum)", "aliases": ["aegidius\\s+tschudi", "\\btschudi\\b", "chronicon\\s+helveticum"]},
+    {"canonical": "Klingenberger Chronik", "aliases": ["klingenberger\\s+chronik", "chronik\\s+des\\s+klingenbergers?"]},
+    {"canonical": "Zürcher Stadtchronik", "aliases": ["chronik\\s+der\\s+stadt\\s+z[üu]rich", "z[üu]rcher\\s+stadtchronik"]},
+    {"canonical": "Valerius Anshelm", "aliases": ["valerius\\s+anshelm", "\\banshelm\\b"]},
+    {"canonical": "Brennwald (Johann/Johannes Brennwald)", "aliases": ["johann(?:es)?\\s+brennwald", "\\bbrennwald\\b"]},
+    {"canonical": "Bullinger (Heinrich Bullinger)", "aliases": ["heinrich\\s+bullinger", "\\bbullinger\\b"]},
+    {"canonical": "Etterlin (Petermann Etterlin)", "aliases": ["petermann\\s+etterlin", "\\betterlin\\b", "kronik\\s+der\\s+schweiz"]},
+    {"canonical": "Melchior Russ", "aliases": ["melchior\\s+russ", "\\bruss\\b", "luzerner\\s+chronik\\s+russ"]},
+    {"canonical": "Johannes von Winterthur", "aliases": ["johannes\\s+von\\s+winterthur", "\\bwinterthurer\\s+chronik\\b"]},
+    {"canonical": "Johann Jakob Wick (Wickiana)", "aliases": ["johann\\s+jakob\\s+wick", "\\bwickiana\\b"]},
+    {"canonical": "Rüeger (Johann Jakob Rüeger)", "aliases": ["johann\\s+jakob\\s+r[üu]eger", "\\br[üu]eger\\b", "schaffhauser\\s+chronik"]},
+    {"canonical": "Stadtbuch/Weisheiten (Zürich, Bern, Luzern, Basel)", "aliases": ["z[üu]rcher\\s+stadtbuch", "berner\\s+stadtbuch", "luzerner\\s+stadtbuch", "basler\\s+stadtbuch"]},
+    {"canonical": "Berner Chronik (allg.)", "aliases": ["\\bberner\\s+chronik\\b"]},
+    {"canonical": "Luzerner Chronik (allg.)", "aliases": ["\\bluzerner\\s+chronik\\b"]}
+  ],
+  "series": [
+    {"canonical": "QSG (Quellen zur Schweizer Geschichte)", "aliases": ["\\bqsg\\b", "quellen\\s+zur\\s+schweizer\\s+geschichte"]},
+    {"canonical": "Basler Chroniken (Reihe)", "aliases": ["\\bbasler\\s+chroniken\\b"]},
+    {"canonical": "Chroniken der deutschen Städte", "aliases": ["chroniken\\s+der\\s+deutschen\\s+st[äa]dte"]},
+    {"canonical": "MGH SS (Monumenta Germaniae Historica Scriptores)", "aliases": ["\\bmgh\\s+ss\\b", "monumenta\\s+germaniae\\s+historica\\s+scriptores"]},
+    {"canonical": "MGH (allg.)", "aliases": ["\\bmgh\\b", "monumenta\\s+germaniae\\s+historica"]}
+  ],
+  "generic_terms": [
+    {"label": "Chronik/Chroniken", "patterns": ["\\bchronik(?:en)?\\b", "\\bkr?onik(?:en)?\\b"]},
+    {"label": "Chronicon/Chronica", "patterns": ["\\bchronic(?:on|a|orum)\\b", "\\bchronicae\\b"]},
+    {"label": "Annales/Annalen", "patterns": ["\\bannal(?:es|en)\\b", "\\bannales\\b"]},
+    {"label": "Historia/Historiae", "patterns": ["\\bhistori[ae]\\b", "\\bhistorien?\\b"]},
+    {"label": "Gesta/Acta", "patterns": ["\\bgesta\\b", "\\bacta\\b"]},
+    {"label": "Memoriale/Memorialbuch", "patterns": ["\\bmemoriale\\b", "memorial\\s*buch"]},
+    {"label": "Jahrbuch/Jahrbücher", "patterns": ["jahrb[üu]ch(?:er|e)?\\b"]},
+    {"label": "Tagebuch", "patterns": ["\\btagebuch\\b", "tageb[üu]cher\\b"]},
+    {"label": "Stadtchronik (generisch)", "patterns": ["\\bstadt\\s*chronik\\b", "stadt\\s*kr?onik\\b"]},
+    {"label": "Chronist/Chronisten", "patterns": ["\\bchronist(?:en)?\\b"]}
+  ],
+  "weights": {
+    "work": 1.0,
+    "series": 1.0,
+    "generic": 1.2
+  }
+}

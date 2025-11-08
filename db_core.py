@@ -18,11 +18,11 @@ from pathlib import Path
 import os, sqlite3, time, json, shutil, unicodedata, re
 from typing import Optional, Dict, Any, List, Sequence
 
-DB_PATH = Path("/Users/python/Python Projekte/docker_shift/Find Bibliography/data/db/azk_biblio.sqlite")
-LIB_DIR = Path("/Users/python/Python Projekte/docker_shift/Find Bibliography/data/azk_library")
-DATA_DIR = Path("/Users/python/Python Projekte/docker_shift/Find Bibliography/data")
-JSON_WORKS = Path("/Users/python/Python Projekte/docker_shift/Find Bibliography/db/data/azk_biblio.json")
-JSON_AVAIL = Path("/Users/python/Python Projekte/docker_shift/Find Bibliography/db/data/azk_biblio.json")
+DB_PATH = Path("data/db/azk_biblio.sqlite")
+LIB_DIR = Path("data/azk_library")
+DATA_DIR = Path("data")
+JSON_WORKS = Path("db/data/azk_biblio.json")
+JSON_AVAIL = Path("db/data/azk_biblio.json")
 
 ALLOWED_EXTS: Sequence[str] = (".pdf", ".epub", ".djvu", ".txt", ".docx", ".zip")
 

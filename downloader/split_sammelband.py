@@ -33,7 +33,7 @@ import sqlite3
 import db_core as core
 
 # Pfad zum Sammelband-PDF (falls dein Pfad abweicht, hier anpassen)
-PDF_PATH = Path("/Users/python/Library/Mobile Documents/com~apple~CloudDocs/Verwaltung Leandro Habegger/Universität/Aktuelles Semster/HS2025/Bachelor Arbeit/Literatur/Mitteilungen der Antiquarischen Gesellschaft in Zürich.pdf")
+PDF_PATH = Path("/Users/python/Library/Mobile Documents/com~apple~CloudDocs/Verwaltung Leandro Habegger/Universität/Aktuelles Semster/HS2025/Bachelor Arbeit/chroniken_library/Mitteilungen der Antiquarischen Gesellschaft in Zürich.pdf")
 
 # Mapping: work_id -> (start_pdf_page, end_pdf_page)  (1-basierte PDF-Seiten, inkl.)
 # Abgeleitet aus dem vorliegenden PDF (150 Seiten) – nachprüfbar an sichtbaren Kapitelstarts.  [oai_citation:4‡Mitteilungen der Antiquarischen Gesellschaft in Zürich.pdf](sediment://file_00000000297061f4b4e548dd64bcf9d5)
