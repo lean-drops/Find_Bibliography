@@ -1,0 +1,40 @@
+group;label;mentions;docs;weight;weighted_mentions
+generic;Schlacht-/Kriegserzählungen;490;21;1.2;588.0
+generic;Chronik/Chroniken;379;18;1.2;454.8
+generic;Eydgenossenschaft/Helvetia (frühneuzeitl. Schreibungen);206;19;1.2;247.2
+generic;Chronicon/Chronica;90;9;1.2;108.0
+generic;Jahrbuch/Jahrbücher;22;13;1.2;26.4
+generic;Historia/Historiae;16;4;1.2;19.2
+generic;Annales/Annalen;10;4;1.2;12.0
+generic;Tagebuch/Tagebücher;3;1;1.2;3.6
+generic;Gesta/Acta;2;2;1.2;2.4
+series;QSG (Quellen zur Schweizer Geschichte);34;12;1.0;34.0
+series;MAGZ (Mitteilungen der Antiquarischen Gesellschaft in Zürich);22;11;1.0;22.0
+series;SSRQ (Sammlung Schweizerischer Rechtsquellen);16;4;1.0;16.0
+series;MGH (allgemein);8;6;1.0;8.0
+series;Basler Chroniken (Reihe);6;5;1.0;6.0
+series;ZsG (Zeitschrift für schweizerische Geschichte);4;3;1.0;4.0
+series;MGH SS (Monumenta Germaniae Historica Scriptores);1;1;1.0;1.0
+work;Fründ (Hans Fründ);346;10;1.0;346.0
+work;Tschudi (Aegidius/Gilg Tschudi, Chronicon Helveticum);287;18;1.0;287.0
+work;Bullinger (Heinrich Bullinger, historiographische Werke);113;6;1.0;113.0
+work;Edlibach (Gerold Edlibach, Zürcher Chronik);92;6;1.0;92.0
+work;Klingenberger/Rapperswiler Chronik (Eberhard Wüest);86;14;1.0;86.0
+work;Tschachtlan (Benedikt Tschachtlan);34;8;1.0;34.0
+work;Brennwald (Heinrich/Johannes Brennwald, Schweizerchronik);29;7;1.0;29.0
+work;Stumpf (Johannes Stumpf, Schweizerchronik);27;6;1.0;27.0
+work;Zürcher Stadtchronik (allgemein);21;4;1.0;21.0
+work;Hemmerlin (Felix Hemmerlin/Malleolus);20;6;1.0;20.0
+work;Etterlin (Petermann Etterlin, Kronika);19;4;1.0;19.0
+work;Vadian (Joachim Vadianus, St. Galler Chronik);19;4;1.0;19.0
+work;Chronik der Stadt Zürich (Edlibach u. a.);17;4;1.0;17.0
+work;Schilling (ungenau);16;7;1.0;16.0
+work;Hottinger (Johann Jakob Hottinger, Helvetische Kirchengeschichte);10;3;1.0;10.0
+work;Simler (Josias Simler, De Helvetiorum republica);10;3;1.0;10.0
+work;Berner Chronik (allgemein);9;6;1.0;9.0
+work;Kopp (Joseph Eutych Kopp, Geschichte der Eidgenossen);9;5;1.0;9.0
+work;Schodoler (Werner Schodoler, Eidgenössische Chronik);9;3;1.0;9.0
+work;Justinger (Konrad Justinger, Berner Chronik);8;3;1.0;8.0
+work;Anshelm (Valerius Anshelm, Berner Chronik);6;1;1.0;6.0
+work;Michael Stettler (Berner Chronik 1620–1622);3;1;1.0;3.0
+work;Cysat (Renward Cysat, Luzerner Chronik/Collectanea);2;1;1.0;2.0

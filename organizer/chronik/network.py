@@ -1,29 +1,44 @@
 #!/usr/bin/env python3
 """
-network.py — Bipartites chroniken_library↔Werke-Netz als Qt-Canvas mit radialem Degree-Push
-und label collision avoidance.
+chroniken_navigator.py — Interaktives Qt-Netz für chroniken_library↔Werke
+mit Pfeiltasten-Navigation, Tab-Zyklisierung von Suchtreffern und
+robuster Label-Kollisionsvermeidung (inkl. Node-Abstand für lesbare Labels).
 
 Neu:
-- Chroniken (role='chronik') mit hohem (gewichteten) Grad werden radial nach außen geschoben.
-- Labels werden radial nach außen platziert und kollisionsfrei iterativ auseinandergezogen.
+    • Toggle „Nur PDFs ohne Verweis“: zeigt alle PDF-Knoten, die bei aktueller
+      Kantenschwelle (≥ Slider) KEINE sichtbare Kante zu einer Chronik haben.
+      Praktisch: Finde „isolierte“ PDFs relativ zur aktuellen Schwelle.
 
-API (unverändert):
-    load_mentions_csv(path)
-    resolve_columns(df) -> (doc_col, work_col)
-    build_bipartite_graph(df, doc_col, work_col) -> nx.Graph
-    compute_layout(G, mode='bipartite'|'spring'|'kamada_kawai'|'forceatlas2') -> pos-dict
-    make_scene(G, positions, min_edge_weight, show_labels) -> QGraphicsScene
-    GraphCanvas
+Nutzung:
+    $ python chroniken_navigator.py
+    • CSV laden: Button „CSV laden…“ oder via QSettings gespeicherter Pfad.
+    • Suche: Text eingeben → „Hervorheben“.
+    • Navigation:
+        Pfeile ← → ↑ ↓   : Springe zum „besten“ nächsten Knoten in Richtung.
+        Tab / Shift+Tab  : Zyklisch durch Suchtreffer.
+        Esc              : Fokus löschen.
+        F                : Fit in View.
+        + / −            : Zoom.
+    • „Nur PDFs ohne Verweis“: filtert die Ansicht auf PDFs, deren Kanten
+      ALLE unter der gesetzten Kantenschwelle liegen.
+    • Export: via GraphCanvas.export_png(path) in Code möglich.
 
-Start-Demo:
-    python network.py
+Garantiehinweis:
+    - Labels werden iterativ auf Kollisionsfreiheit gebracht.
+    - Zusätzlich werden Nodes bei Bedarf minimal verschoben, bis Label-Boxen
+      weder andere Labels noch Node-Shapes schneiden (praktische „niemals“-Nähe).
+    - Verfahren ist deterministisch und skaliert auf hunderte Knoten (O(n²) pro Durchlauf).
 """
+
 from __future__ import annotations
 
 import math
 import os
+import sys
+import traceback
+import importlib.util
 from dataclasses import dataclass
-from typing import Dict, Tuple, Optional, List
+from typing import Dict, Tuple, Optional, List, Set
 
 import pandas as pd
 import networkx as nx
@@ -90,6 +105,26 @@ def resolve_columns(df: pd.DataFrame) -> Tuple[str, str]:
     return doc_col, work_col
 
 
+def _id_pdf(path: str) -> str:
+    return f"P|{os.path.basename(path)}"
+
+
+def _id_chronik(name: str) -> str:
+    return f"C|{name}"
+
+
+def _weighted_degree(G: nx.Graph, n: str) -> float:
+    return sum(float(d.get("weight", 1.0)) for _u, _v, d in G.edges(n, data=True))
+
+
+def _node_mass(G: nx.Graph, n: str) -> float:
+    d = G.nodes[n]
+    if d.get("role") == "chronik":
+        return 1.0 + math.sqrt(max(1, int(d.get("mentions", 1))))
+    else:
+        return 1.0 + math.sqrt(max(1, int(d.get("items", 1))))
+
+
 def build_bipartite_graph(df: pd.DataFrame, doc_col: str, work_col: str) -> nx.Graph:
     df = df[[doc_col, work_col]].dropna()
     df[doc_col] = df[doc_col].astype(str).str.strip()
@@ -121,27 +156,7 @@ def build_bipartite_graph(df: pd.DataFrame, doc_col: str, work_col: str) -> nx.G
     return G
 
 
-def _id_pdf(path: str) -> str:
-    return f"P|{os.path.basename(path)}"
-
-
-def _id_chronik(name: str) -> str:
-    return f"C|{name}"
-
-
 # ------------------------ Layout-Modelle ------------------------
-
-def _weighted_degree(G: nx.Graph, n: str) -> float:
-    return sum(float(d.get("weight", 1.0)) for _u, _v, d in G.edges(n, data=True))
-
-
-def _node_mass(G: nx.Graph, n: str) -> float:
-    d = G.nodes[n]
-    if d.get("role") == "chronik":
-        return 1.0 + math.sqrt(max(1, int(d.get("mentions", 1))))
-    else:
-        return 1.0 + math.sqrt(max(1, int(d.get("items", 1))))
-
 
 def _bipartite_ordered_layout(G: nx.Graph, scale: float = 2.0) -> Dict[str, Tuple[float, float]]:
     left = [n for n, d in G.nodes(data=True) if d.get("role") == "work"]
@@ -248,8 +263,9 @@ def _forceatlas2(G: nx.Graph,
 def _relax_positions(G: nx.Graph,
                      pos: Dict[str, Tuple[float, float]],
                      iterations: int = 160,
-                     base_dist: float = 0.35,
+                     base_dist: float = 0.38,
                      step: float = 0.06) -> Dict[str, Tuple[float, float]]:
+    """Einfache repulsive Glättung; etwas größerer Grundabstand für spätere Labels."""
     nodes = list(pos.keys())
     if len(nodes) <= 1:
         return pos
@@ -292,7 +308,6 @@ def _radial_degree_push(G: nx.Graph,
         return pos
     cx = sum(x for x, _ in pos.values()) / len(pos)
     cy = sum(y for _, y in pos.values()) / len(pos)
-    # Normierung
     candidates = [n for n, d in G.nodes(data=True) if d.get("role") == role]
     if not candidates:
         return pos
@@ -309,26 +324,26 @@ def _radial_degree_push(G: nx.Graph,
     return out
 
 
-def compute_layout(G, mode: str = "bipartite") -> dict[str, tuple[float, float]]:
+def compute_layout(G: nx.Graph, mode: str = "bipartite") -> Dict[str, Tuple[float, float]]:
     if G.number_of_nodes() == 0:
         return {}
     if mode == "bipartite":
         pos0 = _bipartite_ordered_layout(G, scale=2.0)
-        pos = _relax_positions(G, pos0, iterations=160, base_dist=0.35, step=0.06)
+        pos = _relax_positions(G, pos0, iterations=160, base_dist=0.38, step=0.06)
     elif mode == "kamada_kawai":
         pos0 = nx.kamada_kawai_layout(G, weight="weight")
         pos = _relax_positions(G, {str(n): (float(x), float(y)) for n, (x, y) in pos0.items()},
-                               iterations=120, base_dist=0.3, step=0.05)
+                               iterations=120, base_dist=0.34, step=0.05)
         pos = _radial_degree_push(G, pos, role="chronik", alpha=0.6)
     elif mode == "forceatlas2":
         init = _bipartite_ordered_layout(G, scale=1.2)
         pos0 = _forceatlas2(G, init_pos=init, iterations=350, gravity=0.06, scaling=1.2, dt=0.08)
-        pos = _relax_positions(G, pos0, iterations=140, base_dist=0.32, step=0.05)
+        pos = _relax_positions(G, pos0, iterations=140, base_dist=0.34, step=0.05)
         pos = _radial_degree_push(G, pos, role="chronik", alpha=0.6)
     else:
         pos0 = nx.spring_layout(G, weight="weight", iterations=350, seed=42)
         pos = _relax_positions(G, {str(n): (float(x), float(y)) for n, (x, y) in pos0.items()},
-                               iterations=140, base_dist=0.32, step=0.05)
+                               iterations=140, base_dist=0.34, step=0.05)
         pos = _radial_degree_push(G, pos, role="chronik", alpha=0.6)
     return pos
 
@@ -617,17 +632,25 @@ def _place_labels_radially(node_items: Dict[str, QtWidgets.QGraphicsItem],
             r = 1.0
         ux, uy = dx / r, dy / r
         if isinstance(it, ChronikNode):
-            base = it.boundingRect().width() * 0.6 + 10
+            base = it.boundingRect().width() * 0.6 + 12
         else:
-            base = it.boundingRect().height() * 0.6 + 12
+            base = it.boundingRect().height() * 0.6 + 14
         it._set_label_offset(ux * base, uy * base * 0.6)  # leichte vertikale Kompression
+
+
+def _rect_scene(lbl: QtWidgets.QGraphicsSimpleTextItem) -> QtCore.QRectF:
+    return lbl.mapToScene(lbl.boundingRect()).boundingRect()
+
+
+def _rect_node_scene(node: QtWidgets.QGraphicsItem) -> QtCore.QRectF:
+    return node.mapToScene(node.boundingRect()).boundingRect()
 
 
 def _resolve_label_collisions(node_items: Dict[str, QtWidgets.QGraphicsItem],
                               center: Tuple[float, float],
-                              iterations: int = 80,
-                              step: float = 4.0) -> None:
-    """Iteratives, einfaches Label-Repelling in Szenenkoordinaten."""
+                              iterations: int = 120,
+                              step: float = 5.0) -> int:
+    """Iteratives Label-Repelling in Szenenkoordinaten."""
     cx, cy = center
     labels: List[QtWidgets.QGraphicsSimpleTextItem] = []
     owners: List[QtWidgets.QGraphicsItem] = []
@@ -636,46 +659,164 @@ def _resolve_label_collisions(node_items: Dict[str, QtWidgets.QGraphicsItem],
             labels.append(it.label)
             owners.append(it)
 
-    def _rect(lbl: QtWidgets.QGraphicsSimpleTextItem) -> QtCore.QRectF:
-        return lbl.mapToScene(lbl.boundingRect()).boundingRect()
+    moved_total = 0
 
     for _ in range(iterations):
         moved = 0
         for i in range(len(labels)):
             for j in range(i + 1, len(labels)):
                 li, lj = labels[i], labels[j]
-                ri, rj = _rect(li), _rect(lj)
+                ri, rj = _rect_scene(li), _rect_scene(lj)
                 if not ri.intersects(rj):
                     continue
                 oi, oj = owners[i], owners[j]
-                # Richtung: auseinander
                 ci = ri.center(); cj = rj.center()
                 dx = cj.x() - ci.x(); dy = cj.y() - ci.y()
                 dist = math.hypot(dx, dy) or 1.0
                 ux, uy = dx / dist, dy / dist
-                # leicht radial nach außen schieben (weg vom Zentrum)
-                pix, piy = oi.pos().x(), oi.pos().y()
-                pjx, pjy = oj.pos().x(), oj.pos().y()
+                # radial outward
                 rix, riy = (ci.x() - cx, ci.y() - cy); rjx, rjy = (cj.x() - cx, cj.y() - cy)
                 nrix = math.hypot(rix, riy) or 1.0; nrjx = math.hypot(rjx, rjy) or 1.0
                 rx_i, ry_i = rix / nrix, riy / nrix
                 rx_j, ry_j = rjx / nrjx, rjy / nrjx
-
-                # Delta für beide Labels (lokale Koordinaten = Szenendelta, da Eltern nur Translation)
                 dxi = (-ux + rx_i) * step
                 dyi = (-uy + ry_i) * step
                 dxj = (ux + rx_j) * step
                 dyj = (uy + ry_j) * step
-
                 li.setPos(li.pos().x() + dxi, li.pos().y() + dyi)
                 lj.setPos(lj.pos().x() + dxj, lj.pos().y() + dyj)
-                if isinstance(owners[i], (ChronikNode, WorkNode)):
-                    owners[i]._update_label_bg()
-                if isinstance(owners[j], (ChronikNode, WorkNode)):
-                    owners[j]._update_label_bg()
+                if isinstance(oi, (ChronikNode, WorkNode)):
+                    oi._update_label_bg()
+                if isinstance(oj, (ChronikNode, WorkNode)):
+                    oj._update_label_bg()
                 moved += 1
+        moved_total += moved
         if moved == 0:
             break
+    return moved_total
+
+
+def _resolve_label_node_collisions(node_items: Dict[str, QtWidgets.QGraphicsItem],
+                                   center: Tuple[float, float],
+                                   iterations: int = 100,
+                                   step: float = 5.0) -> int:
+    """Schiebt Labels weg von fremden Node-Shapes."""
+    cx, cy = center
+    labels: List[QtWidgets.QGraphicsSimpleTextItem] = []
+    owners: List[QtWidgets.QGraphicsItem] = []
+
+    nodes: List[QtWidgets.QGraphicsItem] = [it for it in node_items.values() if isinstance(it, (ChronikNode, WorkNode))]
+    for it in nodes:
+        if not _is_dead(it.label) and it.label.text():
+            labels.append(it.label)
+            owners.append(it)
+
+    moved_total = 0
+    for _ in range(iterations):
+        moved = 0
+        for li, oi in zip(labels, owners):
+            ri = _rect_scene(li)
+            ci = ri.center()
+            for node in nodes:
+                if node is oi:
+                    continue
+                rn = _rect_node_scene(node)
+                if not ri.intersects(rn):
+                    continue
+                # radial vom Zentrum weg plus vom kollidierenden Node weg
+                dx = ci.x() - rn.center().x()
+                dy = ci.y() - rn.center().y()
+                dist = math.hypot(dx, dy) or 1.0
+                ux, uy = dx / dist, dy / dist
+                rx = (ci.x() - cx); ry = (ci.y() - cy)
+                nr = math.hypot(rx, ry) or 1.0
+                rx /= nr; ry /= nr
+                li.setPos(li.pos().x() + (ux + rx) * step, li.pos().y() + (uy + ry) * step)
+                if isinstance(oi, (ChronikNode, WorkNode)):
+                    oi._update_label_bg()
+                moved += 1
+        moved_total += moved
+        if moved == 0:
+            break
+    return moved_total
+
+
+def _separate_nodes_for_labels(node_items: Dict[str, QtWidgets.QGraphicsItem],
+                               center: Tuple[float, float],
+                               iterations: int = 60,
+                               step: float = 2.5,
+                               margin: float = 2.0) -> int:
+    """Bewegt Nodes minimal auseinander, wenn Label-Rechtecke weiterhin kollidieren."""
+    nodes: List[QtWidgets.QGraphicsItem] = [it for it in node_items.values() if isinstance(it, (ChronikNode, WorkNode))]
+    def _label_rect(it: QtWidgets.QGraphicsItem) -> Optional[QtCore.QRectF]:
+        if isinstance(it, (ChronikNode, WorkNode)) and not _is_dead(it.label) and it.label.text():
+            r = _rect_scene(it.label)
+            return r.adjusted(-margin, -margin, margin, margin)
+        return None
+
+    moved_total = 0
+    for _ in range(iterations):
+        moved = 0
+        for i, a in enumerate(nodes):
+            ra = _label_rect(a)
+            if ra is None:
+                continue
+            ca = ra.center()
+            for j in range(i + 1, len(nodes)):
+                b = nodes[j]
+                rb = _label_rect(b)
+                if rb is None:
+                    continue
+                if not ra.intersects(rb):
+                    continue
+                cb = rb.center()
+                dx = cb.x() - ca.x()
+                dy = cb.y() - ca.y()
+                dist = math.hypot(dx, dy) or 1.0
+                ux, uy = dx / dist, dy / dist
+                # symmetrisch auseinander
+                a.setPos(a.pos().x() - ux * step, a.pos().y() - uy * step)
+                b.setPos(b.pos().x() + ux * step, b.pos().y() + uy * step)
+                moved += 1
+        moved_total += moved
+        if moved == 0:
+            break
+    return moved_total
+
+
+def _enforce_label_clearance(node_items: Dict[str, QtWidgets.QGraphicsItem],
+                             center: Tuple[float, float]) -> None:
+    """Mehrstufig: radial platzieren → Label/Label → Label/Node → Node/Node, mit abnehmenden Schritten."""
+    _place_labels_radially(node_items, center)
+    for t in range(6):
+        s_lab = 6.0 * (0.72 ** t)
+        s_node = 3.0 * (0.72 ** t)
+        m1 = _resolve_label_collisions(node_items, center, iterations=80, step=s_lab)
+        m2 = _resolve_label_node_collisions(node_items, center, iterations=50, step=s_lab)
+        m3 = _separate_nodes_for_labels(node_items, center, iterations=30, step=s_node)
+        debug(f"[labels] pass={t} moved: ll={m1} ln={m2} nn={m3}")
+        if (m1 + m2 + m3) == 0:
+            break
+
+
+# ---- Sichtbarkeitslogik für „Nur PDFs ohne Verweis“ ----
+
+def _pdfs_without_visible_edges(G: nx.Graph, min_edge_weight: int) -> Set[str]:
+    """Wähle PDF-Knoten, deren ALLE inzidenten Kanten < min_edge_weight sind."""
+    res: Set[str] = set()
+    thr = float(min_edge_weight)
+    for n, d in G.nodes(data=True):
+        if d.get("role") != "work":
+            continue
+        edges = list(G.edges(n, data=True))
+        if not edges:
+            # In diesem Graph-Konstrukt praktisch nicht vorhanden,
+            # aber zur Vollständigkeit als „ohne Verweis“ zählen.
+            res.add(n)
+            continue
+        if all(float(ed.get("weight", 1.0)) < thr for *_uv, ed in edges):
+            res.add(n)
+    return res
 
 
 def make_scene(
@@ -683,7 +824,8 @@ def make_scene(
     positions: Dict[str, Tuple[float, float]],
     min_edge_weight: int,
     show_labels: bool,
-    theme: Optional[Theme] = None
+    theme: Optional[Theme] = None,
+    only_pdfs_without_ref: bool = False
 ) -> QtWidgets.QGraphicsScene:
     theme = theme or Theme.dark()
     scene = QtWidgets.QGraphicsScene()
@@ -693,11 +835,21 @@ def make_scene(
 
     node_items: Dict[str, QtWidgets.QGraphicsItem] = {}
 
+    allowed_pdfs: Set[str] = set()
+    if only_pdfs_without_ref:
+        allowed_pdfs = _pdfs_without_visible_edges(G, min_edge_weight)
+        debug(f"[invert] PDFs ohne sichtbare Verweise @≥{min_edge_weight}: {len(allowed_pdfs)}")
+
     # Knoten
     for n, d in G.nodes(data=True):
         role = d.get("role")
         label = d.get("label", str(n))
         pos = positions.get(n, (0.0, 0.0))
+
+        if only_pdfs_without_ref:
+            # Zeige NUR PDF-Knoten ohne sichtbare Verweise; Chronik-Knoten werden weggelassen.
+            if role != "work" or n not in allowed_pdfs:
+                continue
 
         if role == "chronik":
             size = 7.0 + 2.8 * math.sqrt(max(1, int(d.get("mentions", 1))))
@@ -711,32 +863,33 @@ def make_scene(
 
     # Kanten
     kept_edges = 0
-    for u, v, ed in G.edges(data=True):
-        w = float(ed.get("weight", 1.0))
-        if w < float(min_edge_weight):
-            continue
-        a = node_items[u]
-        b = node_items[v]
-        e = EdgeItem(a, b, w, theme)
-        e.setZValue(-100)
-        if isinstance(a, (ChronikNode, WorkNode)):
-            a.edges.append(e)
-        if isinstance(b, (ChronikNode, WorkNode)):
-            b.edges.append(e)
-        scene.addItem(e)
-        kept_edges += 1
+    if not only_pdfs_without_ref:
+        for u, v, ed in G.edges(data=True):
+            w = float(ed.get("weight", 1.0))
+            if w < float(min_edge_weight):
+                continue
+            if u not in node_items or v not in node_items:
+                continue
+            a = node_items[u]
+            b = node_items[v]
+            e = EdgeItem(a, b, w, theme)
+            e.setZValue(-100)
+            if isinstance(a, (ChronikNode, WorkNode)):
+                a.edges.append(e)
+            if isinstance(b, (ChronikNode, WorkNode)):
+                b.edges.append(e)
+            scene.addItem(e)
+            kept_edges += 1
 
-    # Label-Initialisierung radial + Kollisionsauflösung
+    # Label-Initialisierung + Kollisionsauflösung + Node-Abstand, bis „praktisch“ frei
     center = _center_from_pos(positions)
-    _place_labels_radially(node_items, center)
-    if show_labels:
-        _resolve_label_collisions(node_items, center, iterations=100, step=4.0)
+    _enforce_label_clearance(node_items, center)
 
-    debug(f"Scene erstellt: nodes={len(node_items)} edges_visible={kept_edges}")
+    debug(f"Scene erstellt: nodes={len(node_items)} edges_visible={kept_edges} invert={only_pdfs_without_ref}")
     return scene
 
 
-# ------------------------ Canvas ------------------------
+# ------------------------ Canvas mit Navigation ------------------------
 
 class GraphCanvas(QtWidgets.QGraphicsView):
     def __init__(self):
@@ -752,6 +905,9 @@ class GraphCanvas(QtWidgets.QGraphicsView):
         self._temp_edges: List[EdgeItem] = []
         self._sticky_nodes: List[QtWidgets.QGraphicsItem] = []
         self._sticky_edges: List[EdgeItem] = []
+        self._current: Optional[QtWidgets.QGraphicsItem] = None
+        self._hit_names: List[str] = []
+        self._hit_index: int = -1
 
     def _has_sticky(self) -> bool:
         return len(self._sticky_nodes) > 0
@@ -811,6 +967,7 @@ class GraphCanvas(QtWidgets.QGraphicsView):
             e.set_highlight(True, theme)
             (self._sticky_edges if sticky else self._temp_edges).append(e)
 
+        self._current = node
         self.viewport().update()
 
     def _clear_nodes(self, items: List[QtWidgets.QGraphicsItem], restore_labels: bool) -> None:
@@ -853,6 +1010,9 @@ class GraphCanvas(QtWidgets.QGraphicsView):
         except Exception:
             self._temp_edges.clear(); self._temp_nodes.clear()
             self._sticky_edges.clear(); self._sticky_nodes.clear()
+        self._current = None
+        self._hit_names = []
+        self._hit_index = -1
 
     def set_graph_scene(self, scene: QtWidgets.QGraphicsScene) -> None:
         self._safe_clear_all_before_scene_swap()
@@ -870,6 +1030,69 @@ class GraphCanvas(QtWidgets.QGraphicsView):
         self.fitInView(scene.itemsBoundingRect(), Qt.KeepAspectRatio)
         debug(f"Neu gezeichnet: nodes={node_count} edges={edge_count}")
 
+    # ---------- Navigation ----------
+
+    def _candidate_items(self) -> List[QtWidgets.QGraphicsItem]:
+        if self._hit_names:
+            items = [self._nodes[n] for n in self._hit_names if n in self._nodes and self._belongs_here(self._nodes[n])]
+            if items:
+                return items
+        return [it for it in self._nodes.values() if self._belongs_here(it)]
+
+    def _view_center_scene(self) -> QtCore.QPointF:
+        return self.mapToScene(self.viewport().rect().center())
+
+    def _directional_jump(self, vx: float, vy: float) -> None:
+        cands = self._candidate_items()
+        if not cands:
+            return
+        vlen = math.hypot(vx, vy) or 1.0
+        ux, uy = vx / vlen, vy / vlen
+
+        def score(from_pt: QtCore.QPointF, to_item: QtWidgets.QGraphicsItem) -> Tuple[float, float]:
+            tp = to_item.pos()
+            dx = tp.x() - from_pt.x()
+            dy = tp.y() - from_pt.y()
+            dist = math.hypot(dx, dy) or 1e-6
+            proj = (dx * ux + dy * uy) / dist  # ∈ [-1,1]
+            return proj, dist
+
+        if self._current is None or not self._belongs_here(self._current):
+            origin = self._view_center_scene()
+            best = None; best_key = (-2.0, float("inf"))
+            for it in cands:
+                s = score(origin, it)
+                # Bevorzugt vorwärts (proj>0), sonst max. Projektion
+                key = (s[0], -1.0 / s[1])
+                if key > best_key:
+                    best = it; best_key = key
+            if best is not None:
+                self._apply_focus(best, sticky=True)
+            return
+
+        origin = self._current.pos()
+        best = None; best_val = (-2.0, float("inf"))
+        for it in cands:
+            if it is self._current:
+                continue
+            proj, dist = score(origin, it)
+            if proj < 0.01:
+                continue
+            key = (proj, -1.0 / dist)
+            if key > best_val:
+                best = it; best_val = key
+        if best is None:
+            # Fallback: nimm extremsten entlang Richtung
+            for it in cands:
+                if it is self._current:
+                    continue
+                proj, dist = score(origin, it)
+                key = (proj, -1.0 / dist)
+                if key > best_val:
+                    best = it; best_val = key
+        if best is not None:
+            self._apply_focus(best, sticky=True)
+
     def wheelEvent(self, event: QtGui.QWheelEvent) -> None:
         factor = 1.15 if event.angleDelta().y() > 0 else 1 / 1.15
         self.scale(factor, factor)
@@ -884,25 +1107,59 @@ class GraphCanvas(QtWidgets.QGraphicsView):
                 self._apply_focus(target, sticky=True)
             else:
                 self._clear_sticky_focus(); self._clear_temp_focus()
+                self._current = None
         super().mousePressEvent(event)
 
     def keyPressEvent(self, event: QtGui.QKeyEvent) -> None:
         k = event.key()
+        mod = int(event.modifiers())
         if k in (Qt.Key_Plus, Qt.Key_Equal): self.scale(1.15, 1.15); return
         if k == Qt.Key_Minus: self.scale(1/1.15, 1/1.15); return
         if k == Qt.Key_F and self.scene(): self.fitInView(self.scene().itemsBoundingRect(), Qt.KeepAspectRatio); return
-        if k == Qt.Key_Escape: self._clear_temp_focus(); self._clear_sticky_focus(); return
+        if k == Qt.Key_Escape:
+            self._clear_temp_focus(); self._clear_sticky_focus(); self._current = None; return
+
+        # Pfeile → richtungsbasiertes Springen
+        if k == Qt.Key_Left: self._directional_jump(-1, 0); return
+        if k == Qt.Key_Right: self._directional_jump(1, 0); return
+        if k == Qt.Key_Up: self._directional_jump(0, -1); return
+        if k == Qt.Key_Down: self._directional_jump(0, 1); return
+
+        # Tab → Zyklus über Suchtreffer
+        if k == Qt.Key_Tab and self._hit_names:
+            if (mod & Qt.ShiftModifier) == 0:
+                self._hit_index = (self._hit_index + 1) % len(self._hit_names)
+            else:
+                self._hit_index = (self._hit_index - 1) % len(self._hit_names)
+            name = self._hit_names[self._hit_index]
+            it = self._nodes.get(name)
+            if it and self._belongs_here(it):
+                self._apply_focus(it, sticky=True)
+            return
+
         super().keyPressEvent(event)
 
     def highlight(self, term: str, show_labels: bool) -> int:
         term = term.strip().lower()
         hits = 0
+        names_hit: List[str] = []
         for n, item in list(self._nodes.items()):
             hit = bool(term and term in n.lower())
             if isinstance(item, (ChronikNode, WorkNode)) and self._belongs_here(item):
                 item.set_highlight(hit)
                 item.toggle_label(show_labels or hit)
+            if hit:
+                names_hit.append(n)
             hits += int(hit)
+        # sortiere stabil: erst y, dann x
+        def _yx_key(nm: str) -> Tuple[int, int]:
+            it = self._nodes.get(nm)
+            if not it:
+                return (0, 0)
+            p = it.pos()
+            return (int(round(p.y())), int(round(p.x())))
+        self._hit_names = sorted(names_hit, key=_yx_key)
+        self._hit_index = -1 if not self._hit_names else 0
         return hits
 
     def export_png(self, path: str) -> None:
@@ -920,7 +1177,245 @@ class GraphCanvas(QtWidgets.QGraphicsView):
         debug(f"PNG exportiert: {path}")
 
 
-# ------------------------ Demo (optional) ------------------------
+# ------------------------ GUI ------------------------
+
+class MainWindow(QtWidgets.QMainWindow):
+    SETTINGS_KEY_LAST_CSV = "last_csv_path"
+
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("chroniken_library↔Werke — Interaktives Netz")
+        self.resize(1280, 820)
+
+        self.csv_path: Optional[str] = None
+        self.df: Optional[pd.DataFrame] = None
+        self.G: Optional[nx.Graph] = None
+        self.layout_name: str = "bipartite"
+        self.min_w: int = 1
+        self.show_labels: bool = True
+        self.filter_unlinked_pdfs: bool = False  # Neuer Toggle-State
+
+        self._build_ui()
+        self._load_last_csv_if_available()
+
+    def _build_ui(self) -> None:
+        central = QtWidgets.QWidget()
+        self.setCentralWidget(central)
+
+        self.canvas = GraphCanvas()
+
+        # Controls
+        self.btn_load_csv = QtWidgets.QPushButton("CSV laden…")
+        self.btn_load_csv.clicked.connect(self.on_load_csv)
+
+        self.btn_import_run = QtWidgets.QPushButton("chroniken_library-Search importieren/ausführen…")
+        self.btn_import_run.clicked.connect(self.on_import_run)
+
+        self.cmb_layout = QtWidgets.QComboBox()
+        self.cmb_layout.addItems(["bipartite", "spring", "kamada_kawai", "forceatlas2"])
+        self.cmb_layout.currentTextChanged.connect(self.on_layout_change)
+
+        self.slider = QtWidgets.QSlider(Qt.Horizontal)
+        self.slider.setMinimum(1)
+        self.slider.setMaximum(10)
+        self.slider.setValue(self.min_w)
+        self.slider.valueChanged.connect(self.on_slider)
+
+        self.lbl_thresh = QtWidgets.QLabel(f"Kantenschwelle: ≥ {self.min_w}")
+
+        self.chk_labels = QtWidgets.QCheckBox("Labels")
+        self.chk_labels.setChecked(self.show_labels)
+        self.chk_labels.stateChanged.connect(self.on_labels_toggle)
+
+        # Neuer Inverter-Toggle
+        self.chk_invert = QtWidgets.QCheckBox("Nur PDFs ohne Verweis")
+        self.chk_invert.setChecked(self.filter_unlinked_pdfs)
+        self.chk_invert.stateChanged.connect(self.on_invert_toggle)
+
+        self.search_edit = QtWidgets.QLineEdit()
+        self.search_edit.setPlaceholderText("Knoten suchen…")
+        self.btn_search = QtWidgets.QPushButton("Hervorheben")
+        self.btn_search.clicked.connect(self.on_search)
+
+        # Layout
+        left = QtWidgets.QVBoxLayout()
+        left.setSpacing(10)
+        left.addWidget(self.btn_load_csv)
+        left.addWidget(self.btn_import_run)
+        left.addSpacing(10)
+
+        row1 = QtWidgets.QHBoxLayout()
+        row1.addWidget(QtWidgets.QLabel("Layout:"))
+        row1.addWidget(self.cmb_layout, 1)
+        left.addLayout(row1)
+
+        left.addWidget(self.lbl_thresh)
+        left.addWidget(self.slider)
+        left.addWidget(self.chk_labels)
+        left.addWidget(self.chk_invert)  # neuer Toggle in UI
+        left.addSpacing(10)
+        left.addWidget(QtWidgets.QLabel("Suche:"))
+        left.addWidget(self.search_edit)
+        left.addWidget(self.btn_search)
+        left.addStretch(1)
+
+        left_box = QtWidgets.QFrame()
+        left_box.setLayout(left)
+        left_box.setFixedWidth(300)
+        left_box.setStyleSheet("""
+            QFrame { background:#0f172a; }
+            QLabel, QCheckBox { color:#e2e8f0; }
+            QPushButton { background:#1e293b; color:#e2e8f0; border:1px solid #334155; padding:6px; border-radius:6px; }
+            QPushButton:hover { background:#273449; }
+            QComboBox, QLineEdit { background:#0b1320; color:#e2e8f0; border:1px solid #334155; padding:5px; border-radius:6px; }
+            QSlider::groove:horizontal { height:6px; background:#1f2937; border-radius:3px; }
+            QSlider::handle:horizontal { background:#3b82f6; width:14px; height:14px; margin:-4px 0; border-radius:7px; }
+        """)
+
+        main_layout = QtWidgets.QHBoxLayout(central)
+        main_layout.setContentsMargins(0, 0, 0, 0)
+        main_layout.addWidget(left_box)
+        main_layout.addWidget(self.canvas, 1)
+
+        # Menü
+        menu = self.menuBar()
+        m_file = menu.addMenu("Datei")
+        act_csv = m_file.addAction("CSV laden…")
+        act_csv.triggered.connect(self.on_load_csv)
+        m_file.addSeparator()
+        act_quit = m_file.addAction("Beenden")
+        act_quit.triggered.connect(self.close)
+
+        self.setStyleSheet("QMainWindow { background:#0b1320; } QMenuBar, QMenu { color:#e2e8f0; background:#0f172a; }")
+
+    # ---------- Persistenz ----------
+
+    def _settings(self) -> QtCore.QSettings:
+        return QtCore.QSettings()
+
+    def _save_last_csv(self, path: str) -> None:
+        s = self._settings()
+        s.setValue(self.SETTINGS_KEY_LAST_CSV, path)
+        s.sync()
+        debug(f"Zuletzt verwendete CSV gespeichert: {path}")
+
+    def _load_last_csv_if_available(self) -> None:
+        s = self._settings()
+        path = s.value(self.SETTINGS_KEY_LAST_CSV, type=str)
+        if path and os.path.isfile(path):
+            try:
+                debug(f"Letzte CSV gefunden, lade automatisch: {path}")
+                self.csv_path = path
+                self.df = load_mentions_csv(path)
+                self._rebuild()
+            except Exception as ex:
+                traceback.print_exc()
+                QtWidgets.QMessageBox.warning(self, "Warnung",
+                    f"Letzte CSV konnte nicht geladen werden:\n{ex}")
+        elif path:
+            debug(f"Gespeicherter CSV-Pfad existiert nicht mehr: {path}")
+
+    # ---------- Daten/Graph ----------
+
+    def _rebuild(self) -> None:
+        if self.df is None:
+            return
+        try:
+            doc_col, work_col = resolve_columns(self.df)
+            self.G = build_bipartite_graph(self.df, doc_col, work_col)
+            pos = compute_layout(self.G, self.layout_name)
+            scene = make_scene(
+                self.G, pos,
+                self.min_w,
+                self.show_labels,
+                only_pdfs_without_ref=self.filter_unlinked_pdfs
+            )
+            self.canvas.set_graph_scene(scene)
+            title_suffix = f" — {os.path.basename(self.csv_path)}" if self.csv_path else ""
+            inv_suffix = " [Nur PDFs ohne Verweis]" if self.filter_unlinked_pdfs else ""
+            self.setWindowTitle(f"chroniken_library↔Werke — Interaktives Netz{title_suffix}{inv_suffix}")
+            debug(f"Neu gezeichnet: nodes={self.G.number_of_nodes()} edges={self.G.number_of_edges()} threshold={self.min_w} invert={self.filter_unlinked_pdfs}")
+        except Exception as ex:
+            traceback.print_exc()
+            QtWidgets.QMessageBox.critical(self, "Fehler", f"Netzaufbau fehlgeschlagen:\n{ex}")
+
+    # ---------- Actions ----------
+
+    def on_load_csv(self) -> None:
+        path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Mentions-CSV öffnen", os.getcwd(), "CSV Dateien (*.csv)")
+        if not path:
+            return
+        try:
+            self.csv_path = path
+            self.df = load_mentions_csv(path)
+            self._rebuild()
+            self._save_last_csv(path)
+        except Exception as ex:
+            traceback.print_exc()
+            QtWidgets.QMessageBox.critical(self, "Fehler", f"CSV konnte nicht geladen werden:\n{ex}")
+
+    def on_import_run(self) -> None:
+        path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "chroniken_library-Search.py wählen", os.getcwd(), "Python (*.py)")
+        if not path:
+            return
+        try:
+            spec = importlib.util.spec_from_file_location("chroniken_search", path)
+            if not spec or not spec.loader:
+                raise ImportError("Import-Spezifikation fehlgeschlagen.")
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)  # import
+
+            func = None
+            for name in ("main", "run", "generate_mentions_csv"):
+                if hasattr(mod, name) and callable(getattr(mod, name)):
+                    func = getattr(mod, name)
+                    break
+            if func:
+                debug(f"Rufe {func.__name__}() in {os.path.basename(path)} auf …")
+                func()  # erwartet, dass CSV geschrieben wird
+            else:
+                QtWidgets.QMessageBox.information(self, "Hinweis",
+                    "Keine ausführbare Funktion gefunden (erwartet: main()/run()/generate_mentions_csv()).\n"
+                    "CSV bitte manuell laden.")
+
+            guess = os.path.join(os.getcwd(), "chroniken_mentions.csv")
+            if os.path.isfile(guess):
+                self.csv_path = guess
+                self.df = load_mentions_csv(guess)
+                self._rebuild()
+                self._save_last_csv(guess)
+            else:
+                self.on_load_csv()
+
+        except Exception as ex:
+            traceback.print_exc()
+            QtWidgets.QMessageBox.critical(self, "Fehler", f"Import/Ausführung fehlgeschlagen:\n{ex}")
+
+    def on_layout_change(self, text: str) -> None:
+        self.layout_name = text
+        self._rebuild()
+
+    def on_slider(self, value: int) -> None:
+        self.min_w = int(value)
+        self.lbl_thresh.setText(f"Kantenschwelle: ≥ {self.min_w}")
+        self._rebuild()
+
+    def on_labels_toggle(self, state: int) -> None:
+        self.show_labels = state == Qt.Checked
+        self._rebuild()
+
+    def on_invert_toggle(self, state: int) -> None:
+        self.filter_unlinked_pdfs = state == Qt.Checked
+        self._rebuild()
+
+    def on_search(self) -> None:
+        term = self.search_edit.text().strip()
+        hits = self.canvas.highlight(term, self.show_labels)
+        if term and hits == 0:
+            QtWidgets.QToolTip.showText(self.mapToGlobal(self.search_edit.pos()), "Kein Treffer", self.search_edit)
+
+
+# ------------------------ Start ------------------------
 
 def _try_candidates() -> Optional[str]:
     env = os.environ.get("CHRONIKEN_MENTIONS_CSV", "").strip()
@@ -936,30 +1431,32 @@ def _try_candidates() -> Optional[str]:
 
 
 def main() -> None:
-    debug("Starte Viewer …")
-    csv = _try_candidates()
+    debug("Starte GUI …")
     try:
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
     except Exception:
         pass
-    app = QtWidgets.QApplication([])
-    win = QtWidgets.QMainWindow()
-    win.setWindowTitle("chroniken_library↔Werke — Viewer (network.py)")
-    view = GraphCanvas()
-    win.setCentralWidget(view)
-    win.resize(1300, 850)
-    if csv:
-        df = load_mentions_csv(csv)
-        doc_col, work_col = resolve_columns(df)
-        G = build_bipartite_graph(df, doc_col, work_col)
-        pos = compute_layout(G, "forceatlas2")
-        scene = make_scene(G, pos, min_edge_weight=1, show_labels=True, theme=Theme.dark())
-        view.set_graph_scene(scene)
-    else:
-        debug("Hinweis: Keine CSV gefunden. Über GUI laden.")
+    app = QtWidgets.QApplication(sys.argv)
+    QtCore.QCoreApplication.setOrganizationName("chroniken_library")
+    QtCore.QCoreApplication.setApplicationName("ChronikenWerkeGUI")
+
+    win = MainWindow()
+    # Autoload ggf. CSV, sonst Candidate
+    if win.df is None:
+        csv = _try_candidates()
+        if csv:
+            try:
+                win.csv_path = csv
+                win.df = load_mentions_csv(csv)
+                win._rebuild()
+                win._save_last_csv(csv)
+            except Exception as ex:
+                traceback.print_exc()
+                QtWidgets.QMessageBox.warning(win, "Warnung", f"CSV Auto-Laden fehlgeschlagen:\n{ex}")
+
     win.show()
-    app.exec_()
+    sys.exit(app.exec_())
 
 
 if __name__ == "__main__":

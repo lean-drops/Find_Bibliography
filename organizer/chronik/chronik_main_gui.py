@@ -1,20 +1,12 @@
-
 """
 chronik_main_gui.py
-Orchestrator-GUI mit drei Tabs:
-  • Scan: externes Finder-Script per QProcess starten, Log live, letzte CSV merken
-  • Netzwerk: identische Darstellung wie network.py (GraphCanvas, kurvige Kanten, Hover/Sticky)
-              → unterstützt Mentions-CSV (pdf_file/canonical) UND Kantenlisten (src/tgt[/weight])
-  • Ähnlichkeit: Cosinus-Ähnlichkeiten zwischen beliebigen Spalten
-      - „nur Dateiname“ + „Endung entfernen“ für Anzeige
-      - Sortierung: similarity | shared | combo(similarity*log(1+shared))
-      - merkt Spalten/Optionen und letzte Auswahl via QSettings
-      - robuste Guards (kein Crash bei leerer Auswahl)
-
+GUI mit drei Tabs:
+  • Scan: externes Finder-Script starten, Log live, letzte CSV merken
+  • Netzwerk: Darstellung wie network.py (GraphCanvas)
+  • Ähnlichkeit: Kosinusähnlichkeiten, Sortiermodi, Details-Modal mit „genauen Stellen“
 Abhängigkeiten:
   pip install PyQt5 pandas numpy networkx
-Optional (nur fürs Finder-Script): pymupdf pytesseract pillow
-
+Optional (Finder-Script): pymupdf pytesseract pillow
 Start:
   python chronik_main_gui.py
 """
@@ -34,7 +26,7 @@ import pandas as pd
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
 
-# ---- network.py-API 1:1 nutzen (muss erreichbar sein) ----
+# ---- network.py-API 1:1 nutzen (liegt extern) ----
 from network import (
     load_mentions_csv,
     resolve_columns,
@@ -44,27 +36,22 @@ from network import (
     GraphCanvas,
 )
 
-
 # --------------------- Utils / Persistenz ---------------------
 
 def debug(msg: str) -> None:
     print(f"[DEBUG] {msg}", flush=True)
 
-
 ORG = "chroniken_suite"
 APP = "chronik_main_gui"
-
 
 def _settings() -> QtCore.QSettings:
     QtCore.QCoreApplication.setOrganizationName(ORG)
     QtCore.QCoreApplication.setApplicationName(APP)
     return QtCore.QSettings()
 
-
 def get_last_csv() -> str:
     val = _settings().value("last_csv", type=str)
     return val or ""
-
 
 def set_last_csv(path: str) -> None:
     s = _settings()
@@ -72,18 +59,15 @@ def set_last_csv(path: str) -> None:
     s.sync()
     debug(f"last_csv={path}")
 
-
 def get_last_session() -> str:
     val = _settings().value("last_session", type=str)
     return val or ""
-
 
 def set_last_session(path: str) -> None:
     s = _settings()
     s.setValue("last_session", path)
     s.sync()
     debug(f"last_session={path}")
-
 
 def read_csv_auto(path: str) -> pd.DataFrame:
     if not os.path.isfile(path):
@@ -93,7 +77,6 @@ def read_csv_auto(path: str) -> pd.DataFrame:
     except Exception:
         return pd.read_csv(path, sep=None, engine="python")
 
-
 def guess_column(df: pd.DataFrame, candidates: List[str]) -> Optional[str]:
     lower = {c.lower(): c for c in df.columns}
     for c in candidates:
@@ -101,13 +84,15 @@ def guess_column(df: pd.DataFrame, candidates: List[str]) -> Optional[str]:
             return lower[c]
     return None
 
-
 def _base_name(s: str, drop_ext: bool) -> str:
     b = os.path.basename(str(s))
     return os.path.splitext(b)[0] if drop_ext else b
 
+def _looks_like_path(s: str) -> bool:
+    s = str(s)
+    return ("/" in s or "\\" in s) or s.lower().endswith(".pdf")
 
-# --------------------- Netzwerk-Tab (mit Fallback für src/tgt) ---------------------
+# --------------------- Netzwerk-Tab ---------------------
 
 class NetworkTab(QtWidgets.QWidget):
     def __init__(self):
@@ -245,8 +230,7 @@ class NetworkTab(QtWidgets.QWidget):
         except Exception as e:
             QtWidgets.QMessageBox.critical(self, "Fehler", str(e))
 
-
-# --------------------- Ähnlichkeit-Tab (Basename + Sortierung + Persistenz) ---------------------
+# --------------------- Ähnlichkeit: Mathe + Anzeige + Details-Dialog ---------------------
 
 def _tfidf(mat: np.ndarray) -> np.ndarray:
     rs = mat.sum(axis=1, keepdims=True)
@@ -257,13 +241,11 @@ def _tfidf(mat: np.ndarray) -> np.ndarray:
     idf = np.log((1.0 + n) / (1.0 + df)) + 1.0
     return tf * idf
 
-
 def _cosine(mat: np.ndarray) -> np.ndarray:
     nrm = np.linalg.norm(mat, axis=1, keepdims=True)
     nrm[nrm == 0] = 1.0
     m = mat / nrm
     return m @ m.T
-
 
 class PandasModel(QtCore.QAbstractTableModel):
     def __init__(self, df: pd.DataFrame):
@@ -292,6 +274,230 @@ class PandasModel(QtCore.QAbstractTableModel):
         self._df = df.copy()
         self.endResetModel()
 
+class SortHelpDialog(QtWidgets.QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Sortierung – Hilfe")
+        self.resize(560, 360)
+        lay = QtWidgets.QVBoxLayout(self)
+        txt = QtWidgets.QTextBrowser()
+        txt.setReadOnly(True)
+        txt.setOpenExternalLinks(False)
+        txt.setHtml(
+            "<h3>Sortiermodi</h3>"
+            "<ul>"
+            "<li><b>similarity</b>: absteigend nach Kosinusähnlichkeit.</li>"
+            "<li><b>shared</b>: zuerst Anzahl gemeinsamer Werke, dann similarity.</li>"
+            "<li><b>combo</b>: similarity × log(1 + shared). Balanciert Qualität und Masse.</li>"
+            "</ul>"
+            "<h4>Beispiele</h4>"
+            "<pre>"
+            "Paar X: sim=0,60, shared=20 → combo=0,60×log(21)=~1,82\n"
+            "Paar Y: sim=0,80, shared=4  → combo=0,80×log(5)=~1,29\n"
+            "→ combo bevorzugt X, similarity bevorzugt Y, shared bevorzugt 20.\n"
+            "</pre>"
+        )
+        lay.addWidget(txt)
+        btn = QtWidgets.QDialogButtonBox(QtWidgets.QDialogButtonBox.Ok)
+        btn.accepted.connect(self.accept)
+        lay.addWidget(btn)
+
+class DetailsDialog(QtWidgets.QDialog):
+    def __init__(
+        self,
+        df: pd.DataFrame,
+        col_chronik: str,
+        col_werk: str,
+        a_key: str,
+        b_key: str,
+        intensity_col: Optional[str],
+        parent=None,
+    ):
+        super().__init__(parent)
+        self._df = df
+        self._c = col_chronik
+        self._w = col_werk
+        self._ic = intensity_col
+        self._a = a_key
+        self._b = b_key
+        self.setWindowTitle(f"Details: {os.path.basename(a_key)} ↔ {os.path.basename(b_key)}")
+        self.resize(1100, 720)
+
+        lay = QtWidgets.QVBoxLayout(self)
+
+        # Shared works
+        a_w = set(df.loc[df[self._c] == a_key, self._w].dropna().astype(str))
+        b_w = set(df.loc[df[self._c] == b_key, self._w].dropna().astype(str))
+        shared = sorted(a_w & b_w)
+
+        # Summary dataframe for shared works
+        def _counts_for(name: str) -> pd.Series:
+            sub = df[df[self._c] == name]
+            cnt = sub[self._w].value_counts()
+            if self._ic and self._ic in sub.columns:
+                inten = sub.groupby(self._w)[self._ic].apply(lambda s: pd.to_numeric(s, errors="coerce").fillna(0).sum())
+            else:
+                inten = pd.Series(dtype=float)
+            return pd.DataFrame({"count": cnt, "intensity": inten}).fillna(0)["count"]
+
+        cnt_a = df[df[self._c] == a_key][self._w].value_counts()
+        cnt_b = df[df[self._c] == b_key][self._w].value_counts()
+
+        rows = []
+        for w in shared:
+            ca = int(cnt_a.get(w, 0))
+            cb = int(cnt_b.get(w, 0))
+            rows.append((os.path.basename(w) if _looks_like_path(w) else w, ca, cb, ca + cb, w))
+        df_sum = pd.DataFrame(rows, columns=["werk", "count_a", "count_b", "count_total", "_werk_key"]).sort_values(
+            ["count_total", "werk"], ascending=[False, True], ignore_index=True
+        )
+
+        # Build UI
+        tabs = QtWidgets.QTabWidget()
+        # Tab 1: Gemeinsame Werke
+        w1 = QtWidgets.QWidget()
+        l1 = QtWidgets.QVBoxLayout(w1)
+        self.tbl_shared = QtWidgets.QTableView()
+        self.model_shared = PandasModel(df_sum.drop(columns=["_werk_key"]))
+        self.tbl_shared.setModel(self.model_shared)
+        self.tbl_shared.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tbl_shared.doubleClicked.connect(self._filter_to_selected_werk)
+        l1.addWidget(QtWidgets.QLabel("Gemeinsame Werke (Doppelklick filtert Rohdaten unten)"))
+        l1.addWidget(self.tbl_shared, 1)
+
+        # Tab 2: Rohdaten
+        w2 = QtWidgets.QWidget()
+        l2 = QtWidgets.QVBoxLayout(w2)
+        self.le_filter = QtWidgets.QLineEdit()
+        self.le_filter.setPlaceholderText("Werk-Filter (exact oder Teilstring) …")
+        self.le_filter.textChanged.connect(self._apply_text_filter)
+        l2.addWidget(self.le_filter)
+
+        split = QtWidgets.QSplitter(Qt.Horizontal)
+        self.tbl_a = QtWidgets.QTableView()
+        self.tbl_b = QtWidgets.QTableView()
+        self.tbl_a.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tbl_b.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        split.addWidget(self.tbl_a)
+        split.addWidget(self.tbl_b)
+        split.setSizes([550, 550])
+
+        self._df_a_full = df[(df[self._c] == a_key) & (df[self._w].isin(shared))].copy()
+        self._df_b_full = df[(df[self._c] == b_key) & (df[self._w].isin(shared))].copy()
+
+        # Reorder columns: Werk, evtl. Seite/Kontext, dann Rest
+        def reorder_cols(d: pd.DataFrame) -> List[str]:
+            cols = list(d.columns)
+            pri = [self._w]
+            heur = [x for x in ["page", "seite", "page_num", "page_index", "line", "context", "snippet", "text"] if x in cols]
+            rest = [c for c in cols if c not in pri + heur]
+            return pri + heur + rest
+
+        self.model_a = PandasModel(self._df_a_full[reorder_cols(self._df_a_full)])
+        self.model_b = PandasModel(self._df_b_full[reorder_cols(self._df_b_full)])
+        self.tbl_a.setModel(self.model_a)
+        self.tbl_b.setModel(self.model_b)
+
+        # Doppelklick: PDF öffnen, wenn Pfad vorhanden
+        self.tbl_a.doubleClicked.connect(lambda _: self._open_pdf_from_table(self.tbl_a, self._df_a_full))
+        self.tbl_b.doubleClicked.connect(lambda _: self._open_pdf_from_table(self.tbl_b, self._df_b_full))
+
+        l2.addWidget(QtWidgets.QLabel(f"Rohdaten: {os.path.basename(a_key)} / {os.path.basename(b_key)}  – Doppelklick öffnet PDF"))
+        l2.addWidget(split, 1)
+
+        tabs.addTab(w1, "Werke")
+        tabs.addTab(w2, "Vorkommen")
+        lay.addWidget(tabs, 1)
+
+        # Buttons
+        btns = QtWidgets.QDialogButtonBox()
+        self.btn_export_shared = btns.addButton("Shared CSV", QtWidgets.QDialogButtonBox.ActionRole)
+        self.btn_export_a = btns.addButton("A CSV", QtWidgets.QDialogButtonBox.ActionRole)
+        self.btn_export_b = btns.addButton("B CSV", QtWidgets.QDialogButtonBox.ActionRole)
+        btns.addButton(QtWidgets.QDialogButtonBox.Close)
+        self.btn_export_shared.clicked.connect(lambda: self._export_df(df_sum.drop(columns=["_werk_key"]), "shared"))
+        self.btn_export_a.clicked.connect(lambda: self._export_df(self._df_a_view, "A"))
+        self.btn_export_b.clicked.connect(lambda: self._export_df(self._df_b_view, "B"))
+        btns.rejected.connect(self.reject)
+        lay.addWidget(btns)
+
+        # Views for filtering
+        self._df_a_view = self._df_a_full.copy()
+        self._df_b_view = self._df_b_full.copy()
+
+    def _find_path_col(self, df: pd.DataFrame) -> Optional[str]:
+        # Prefer the Werk-Spalte, wenn sie wie Pfad aussieht
+        sample = df[self._w].dropna().astype(str).head(10).tolist()
+        if any(_looks_like_path(x) for x in sample):
+            return self._w
+        # Sonst heuristisch andere Pfadspalten suchen
+        for cand in ["pdf_file", "pdf", "file", "document", "path"]:
+            if cand in df.columns:
+                return cand
+        return None
+
+    def _open_pdf_from_table(self, table: QtWidgets.QTableView, backing: pd.DataFrame) -> None:
+        row = table.currentIndex().row()
+        if row < 0:
+            return
+        # Map view row to dataframe row
+        try:
+            disp_df = table.model()._df
+            rec = disp_df.iloc[row]
+            # Bestimme Originalreihe über eindeutiges Matching
+            key_cols = [c for c in backing.columns if c in disp_df.columns]
+            if not key_cols:
+                key_cols = [self._w]
+            # Fallback: nimm Ansicht selbst
+            cand = rec
+            df = backing
+            path_col = self._find_path_col(df)
+            if path_col and pd.notna(rec.get(path_col, None)):
+                p = str(rec[path_col])
+            else:
+                # Wenn nur der Werk-Name da ist, suche die erste passende Zeile in backing
+                p = None
+                if self._w in rec.index:
+                    val = rec[self._w]
+                    hit = df[df[self._w] == val].head(1)
+                    if not hit.empty and path_col and path_col in hit.columns:
+                        p = str(hit.iloc[0][path_col])
+            if p and os.path.isfile(p):
+                QtGui.QDesktopServices.openUrl(QtCore.QUrl.fromLocalFile(p))
+            else:
+                QtWidgets.QMessageBox.information(self, "Hinweis", "Kein gültiger PDF-Pfad gefunden.")
+        except Exception as ex:
+            QtWidgets.QMessageBox.information(self, "Hinweis", f"Öffnen fehlgeschlagen: {ex}")
+
+    def _filter_to_selected_werk(self, index: QtCore.QModelIndex) -> None:
+        if not index.isValid():
+            return
+        werk_disp = self.model_shared._df.iloc[index.row(), 0]
+        # Rekonstruiere Key: wir hatten Original in df_sum._werk_key
+        # Einfach per Basename matchen
+        base = str(werk_disp)
+        def _filter(df: pd.DataFrame) -> pd.DataFrame:
+            vals = df[self._w].astype(str)
+            return df[vals.map(lambda x: os.path.basename(x) if _looks_like_path(x) else x) == base]
+        self._df_a_view = _filter(self._df_a_full)
+        self._df_b_view = _filter(self._df_b_full)
+        self.model_a.set_dataframe(self._df_a_view)
+        self.model_b.set_dataframe(self._df_b_view)
+
+    def _apply_text_filter(self, text: str) -> None:
+        t = text.strip().lower()
+        def _f(df: pd.DataFrame) -> pd.DataFrame:
+            if not t:
+                return df
+            vals = df[self._w].astype(str).str.lower()
+            return df[vals.str.contains(t, na=False)]
+        self.model_a.set_dataframe(_f(self._df_a_full))
+        self.model_b.set_dataframe(_f(self._df_b_full))
+
+    def _export_df(self, df: pd.DataFrame, tag: str) -> None:
+        p, _ = QtWidgets.QFileDialog.getSaveFileName(self, f"Export {tag}", f"details_{tag}.csv", "CSV (*.csv)")
+        if p:
+            df.to_csv(p, index=False)
 
 class SimilarityTab(QtWidgets.QWidget):
     def __init__(self):
@@ -301,6 +507,9 @@ class SimilarityTab(QtWidgets.QWidget):
         self._werke: List[str] = []
         self._M: Optional[np.ndarray] = None
         self._S: Optional[np.ndarray] = None
+        self._col_c: Optional[str] = None
+        self._col_w: Optional[str] = None
+        self._col_ic: Optional[str] = None
         self._build_ui()
 
     # --- QSettings helpers ---
@@ -348,11 +557,20 @@ class SimilarityTab(QtWidgets.QWidget):
         self.topk = QtWidgets.QSpinBox()
         self.topk.setRange(1, 10000)
         self.topk.setValue(10)
+        # Anzeige: immer nur Dateiname, Endung behalten
         self.chk_basename = QtWidgets.QCheckBox("nur Dateiname")
         self.chk_basename.setChecked(True)
+        self.chk_basename.setVisible(False)
         self.chk_dropext = QtWidgets.QCheckBox("Endung entfernen")
+        self.chk_dropext.setChecked(False)
+        self.chk_dropext.setVisible(False)
         self.cmb_sort = QtWidgets.QComboBox()
         self.cmb_sort.addItems(["similarity", "shared", "combo"])
+        self.btn_sort_help = QtWidgets.QToolButton()
+        self.btn_sort_help.setText("?")
+        self.btn_sort_help.setToolTip("Erklärt die Sortiermodi")
+        self.btn_sort_help.clicked.connect(lambda: SortHelpDialog(self).exec_())
+
         for w in [
             QtWidgets.QLabel("Gewichtung:"),
             self.cmb_weight,
@@ -363,10 +581,9 @@ class SimilarityTab(QtWidgets.QWidget):
             self.sim_min,
             QtWidgets.QLabel("Top-K je Chronik:"),
             self.topk,
-            self.chk_basename,
-            self.chk_dropext,
             QtWidgets.QLabel("Sortierung:"),
             self.cmb_sort,
+            self.btn_sort_help,
         ]:
             opts.addWidget(w)
         lay.addLayout(opts)
@@ -382,23 +599,27 @@ class SimilarityTab(QtWidgets.QWidget):
         lay.addLayout(btns)
 
         tabs = QtWidgets.QTabWidget()
-        self.tbl_pairs = QtWidgets.QTableView()
-        self.model_pairs = PandasModel(
-            pd.DataFrame(columns=["chronik_a", "chronik_b", "similarity", "shared_werke"])
-        )
-        self.tbl_pairs.setModel(self.model_pairs)
+        # Top-Paare
         w1 = QtWidgets.QWidget()
         v1 = QtWidgets.QVBoxLayout(w1)
+        self.tbl_pairs = QtWidgets.QTableView()
+        self.model_pairs = PandasModel(
+            pd.DataFrame(columns=["chronik_a", "chronik_b", "similarity", "shared_werke", "chronik_a_key", "chronik_b_key"])
+        )
+        self.tbl_pairs.setModel(self.model_pairs)
+        self.tbl_pairs.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tbl_pairs.doubleClicked.connect(self._open_pair_details)
         v1.addWidget(self.tbl_pairs)
         tabs.addTab(w1, "Top-Paare")
 
+        # Nachbarn je Chronik
         w2 = QtWidgets.QWidget()
         v2 = QtWidgets.QVBoxLayout(w2)
+        row = QtWidgets.QHBoxLayout()
         self.cb_pick = QtWidgets.QComboBox()
         self.nei_n = QtWidgets.QSpinBox()
         self.nei_n.setRange(1, 1000)
         self.nei_n.setValue(10)
-        row = QtWidgets.QHBoxLayout()
         row.addWidget(QtWidgets.QLabel("Chronik:"))
         row.addWidget(self.cb_pick, 1)
         row.addWidget(QtWidgets.QLabel("Top-N:"))
@@ -406,9 +627,11 @@ class SimilarityTab(QtWidgets.QWidget):
         v2.addLayout(row)
         self.tbl_neighbors = QtWidgets.QTableView()
         self.model_neighbors = PandasModel(
-            pd.DataFrame(columns=["neighbor", "similarity", "shared_werke"])
+            pd.DataFrame(columns=["neighbor", "similarity", "shared_werke", "neighbor_key"])
         )
         self.tbl_neighbors.setModel(self.model_neighbors)
+        self.tbl_neighbors.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tbl_neighbors.doubleClicked.connect(self._open_neighbor_details)
         v2.addWidget(self.tbl_neighbors)
         tabs.addTab(w2, "Nachbarn je Chronik")
         lay.addWidget(tabs, 1)
@@ -429,8 +652,8 @@ class SimilarityTab(QtWidgets.QWidget):
         self.sim_min.setValue(float(self._sim_get("min_sim", float, 0.2)))
         self.topk.setValue(int(self._sim_get("topk", int, 10)))
         self.nei_n.setValue(int(self._sim_get("nei_n", int, 10)))
-        self.chk_basename.setChecked(bool(self._sim_get("basename", bool, True)))
-        self.chk_dropext.setChecked(bool(self._sim_get("dropext", bool, False)))
+        self.chk_basename.setChecked(True)
+        self.chk_dropext.setChecked(False)
         self.cmb_sort.setCurrentText(self._sim_get("sort_by", str, "similarity"))
 
     def _choose_csv(self) -> None:
@@ -446,27 +669,18 @@ class SimilarityTab(QtWidgets.QWidget):
         self.cb_ch.blockSignals(True)
         self.cb_wk.blockSignals(True)
         self.cb_int.blockSignals(True)
-        self.cb_ch.clear()
-        self.cb_wk.clear()
-        self.cb_int.clear()
+        self.cb_ch.clear(); self.cb_wk.clear(); self.cb_int.clear()
         self.cb_int.addItem("— keine —")
-        self.cb_ch.addItems(cols)
-        self.cb_wk.addItems(cols)
-        self.cb_int.addItems(cols)
+        self.cb_ch.addItems(cols); self.cb_wk.addItems(cols); self.cb_int.addItems(cols)
         saved_ch = self._sim_get("chronik_col", str, None)
         saved_wk = self._sim_get("werk_col", str, None)
         saved_ic = self._sim_get("intensity_col", str, None)
         c_guess = saved_ch if saved_ch in cols else guess_column(self.df, ["canonical", "label", "chronik", "work"])
         w_guess = saved_wk if saved_wk in cols else guess_column(self.df, ["pdf_file", "pdf", "file", "document", "label"])
-        if c_guess:
-            self.cb_ch.setCurrentIndex(self.cb_ch.findText(c_guess))
-        if w_guess:
-            self.cb_wk.setCurrentIndex(self.cb_wk.findText(w_guess))
-        if saved_ic and saved_ic in cols:
-            self.cb_int.setCurrentIndex(self.cb_int.findText(saved_ic))
-        self.cb_ch.blockSignals(False)
-        self.cb_wk.blockSignals(False)
-        self.cb_int.blockSignals(False)
+        if c_guess: self.cb_ch.setCurrentIndex(self.cb_ch.findText(c_guess))
+        if w_guess: self.cb_wk.setCurrentIndex(self.cb_wk.findText(w_guess))
+        if saved_ic and saved_ic in cols: self.cb_int.setCurrentIndex(self.cb_int.findText(saved_ic))
+        self.cb_ch.blockSignals(False); self.cb_wk.blockSignals(False); self.cb_int.blockSignals(False)
         if c_guess and w_guess:
             self._run()
 
@@ -485,6 +699,8 @@ class SimilarityTab(QtWidgets.QWidget):
         use_tfidf = self.chk_tfidf.isChecked()
         ms, smin, topk = int(self.spin_shared.value()), float(self.sim_min.value()), int(self.topk.value())
         sort_by = self.cmb_sort.currentText()
+
+        self._col_c, self._col_w, self._col_ic = c, w, ic
 
         data = self.df[[c, w] + ([ic] if ic else [])].copy()
         if weight == "binary":
@@ -516,6 +732,7 @@ class SimilarityTab(QtWidgets.QWidget):
         self._S = S
         nz = (M > 0)
 
+        # Paare erzeugen
         rows = []
         n = S.shape[0]
         for i in range(n):
@@ -538,13 +755,14 @@ class SimilarityTab(QtWidgets.QWidget):
                 rows.append((chroniken[i], chroniken[j], sim, shared, score))
 
         df_pairs = pd.DataFrame(
-            rows, columns=["chronik_a", "chronik_b", "similarity", "shared_werke", "_score"]
+            rows, columns=["chronik_a_key", "chronik_b_key", "similarity", "shared_werke", "_score"]
         )
-        # Anzeige: Basename optional
-        if self.chk_basename.isChecked():
-            drop = self.chk_dropext.isChecked()
-            df_pairs["chronik_a"] = df_pairs["chronik_a"].map(lambda x: _base_name(x, drop))
-            df_pairs["chronik_b"] = df_pairs["chronik_b"].map(lambda x: _base_name(x, drop))
+
+        # Anzeige: immer Basename ohne Pfad
+        drop = self.chk_dropext.isChecked()
+        df_pairs["chronik_a"] = df_pairs["chronik_a_key"].map(lambda x: _base_name(x, drop))
+        df_pairs["chronik_b"] = df_pairs["chronik_b_key"].map(lambda x: _base_name(x, drop))
+
         # Sortierung
         if sort_by == "shared":
             df_pairs = df_pairs.sort_values(
@@ -554,29 +772,29 @@ class SimilarityTab(QtWidgets.QWidget):
             df_pairs = df_pairs.sort_values(
                 ["_score", "shared_werke"], ascending=[False, False], ignore_index=True
             )
-        df_pairs = df_pairs.drop(columns=["_score"])
+        df_pairs = df_pairs[["chronik_a", "chronik_b", "similarity", "shared_werke", "chronik_a_key", "chronik_b_key"]]
         self.model_pairs.set_dataframe(df_pairs)
+        # Interne Key-Spalten verbergen
+        self._hide_internal_columns(self.tbl_pairs, ["chronik_a_key", "chronik_b_key"])
 
-        # Nachbarn-Auswahl füllen (Anzeige ggf. Basename, Daten=Original)
+        # Nachbarn-Auswahl
         self.cb_pick.blockSignals(True)
         self.cb_pick.clear()
-        drop = self.chk_dropext.isChecked()
         for lab in self._chroniken:
-            disp = _base_name(lab, drop) if self.chk_basename.isChecked() else lab
+            disp = _base_name(lab, drop)
             self.cb_pick.addItem(disp, userData=lab)
         last_pick = self._sim_get("last_pick", str, None)
         if last_pick in self._chroniken:
             for i in range(self.cb_pick.count()):
                 if self.cb_pick.itemData(i) == last_pick:
-                    self.cb_pick.setCurrentIndex(i)
-                    break
+                    self.cb_pick.setCurrentIndex(i); break
         elif self.cb_pick.count() > 0:
             self.cb_pick.setCurrentIndex(0)
         self.cb_pick.blockSignals(False)
 
         self._neighbors()
 
-        # Präferenzen speichern
+        # Präferenzen
         self._sim_set("chronik_col", c)
         self._sim_set("werk_col", w)
         self._sim_set("intensity_col", ic or "")
@@ -586,8 +804,8 @@ class SimilarityTab(QtWidgets.QWidget):
         self._sim_set("min_sim", smin)
         self._sim_set("topk", topk)
         self._sim_set("nei_n", int(self.nei_n.value()))
-        self._sim_set("basename", self.chk_basename.isChecked())
-        self._sim_set("dropext", self.chk_dropext.isChecked())
+        self._sim_set("basename", True)
+        self._sim_set("dropext", False)
         self._sim_set("sort_by", sort_by)
 
     def _neighbors(self) -> None:
@@ -608,29 +826,47 @@ class SimilarityTab(QtWidgets.QWidget):
             if j == i:
                 continue
             shared = int(np.logical_and(self._M[i, :] > 0, self._M[j, :] > 0).sum())
-            name = self._chroniken[j]
-            if self.chk_basename.isChecked():
-                name = _base_name(name, drop)
-            rows.append((name, float(sims[j]), shared))
-        nshow = int(self.nei_n.value())
-        self.model_neighbors.set_dataframe(
-            pd.DataFrame(rows[:nshow], columns=["neighbor", "similarity", "shared_werke"])
-        )
+            rows.append((_base_name(self._chroniken[j], drop), float(sims[j]), shared, self._chroniken[j]))
+        df = pd.DataFrame(rows, columns=["neighbor", "similarity", "shared_werke", "neighbor_key"])
+        self.model_neighbors.set_dataframe(df)
+        self._hide_internal_columns(self.tbl_neighbors, ["neighbor_key"])
+
+    def _hide_internal_columns(self, table: QtWidgets.QTableView, names: List[str]) -> None:
+        df = table.model()._df
+        for name in names:
+            if name in df.columns:
+                ix = df.columns.get_loc(name)
+                table.setColumnHidden(ix, True)
+
+    def _open_pair_details(self, index: QtCore.QModelIndex) -> None:
+        if not index.isValid():
+            return
+        r = self.model_pairs._df.iloc[index.row()]
+        a_key = str(r["chronik_a_key"]); b_key = str(r["chronik_b_key"])
+        dlg = DetailsDialog(self.df, self._col_c, self._col_w, a_key, b_key, self._col_ic, self)
+        dlg.exec_()
+
+    def _open_neighbor_details(self, index: QtCore.QModelIndex) -> None:
+        if not index.isValid():
+            return
+        a_key = self.cb_pick.currentData()
+        b_key = str(self.model_neighbors._df.iloc[index.row()]["neighbor_key"])
+        dlg = DetailsDialog(self.df, self._col_c, self._col_w, a_key, b_key, self._col_ic, self)
+        dlg.exec_()
 
     def _export_pairs(self) -> None:
         if self.model_pairs._df.empty:
             return
         p, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Paare CSV", "chronik_pairs.csv", "CSV (*.csv)")
         if p:
-            self.model_pairs._df.to_csv(p, index=False)
+            # Export ohne Key-Spalten
+            cols = ["chronik_a", "chronik_b", "similarity", "shared_werke"]
+            self.model_pairs._df[cols].to_csv(p, index=False)
 
     def _export_matrix(self) -> None:
         if self._S is None:
             return
-        idx = list(self._chroniken)
-        if self.chk_basename.isChecked():
-            drop = self.chk_dropext.isChecked()
-            idx = [_base_name(x, drop) for x in idx]
+        idx = [_base_name(x, self.chk_dropext.isChecked()) for x in self._chroniken]
         p, _ = QtWidgets.QFileDialog.getSaveFileName(
             self, "Matrix CSV", "chronik_similarity_matrix.csv", "CSV (*.csv)"
         )
@@ -652,7 +888,7 @@ class SimilarityTab(QtWidgets.QWidget):
 
         rows = "\n".join(
             f"<tr><td>{esc(a)}</td><td>{esc(b)}</td><td>{sim:.3f}</td><td>{shared}</td></tr>"
-            for a, b, sim, shared in pairs.values
+            for a, b, sim, shared in pairs[["chronik_a","chronik_b","similarity","shared_werke"]].values
         )
         html = f"""<!doctype html><html><head><meta charset="utf-8"><title>Chronik-Report</title>
 <style>body{{background:#0d0f12;color:#e6e6e6;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:24px}}
@@ -661,7 +897,6 @@ h1,h2{{color:#cfe2ff}} table{{border-collapse:collapse;width:100%}} th,td{{borde
 <h2>Top-Paare</h2><table><thead><tr><th>chronik_a</th><th>chronik_b</th><th>similarity</th><th>shared_werke</th></tr></thead><tbody>{rows}</tbody></table></body></html>"""
         Path(p).write_text(html, encoding="utf-8")
         webbrowser.open(f"file://{Path(p).absolute()}")
-
 
 # --------------------- Scan-Tab (QProcess) ---------------------
 
@@ -713,7 +948,6 @@ class ScanTab(QtWidgets.QWidget):
         self.btn_open_session.clicked.connect(self._open_session)
         self.btn_open_csv.clicked.connect(self._choose_csv)
 
-        # restore last script path if any
         last_script = _settings().value("last_script", type=str)
         if last_script:
             self.le_script.setText(last_script)
@@ -722,9 +956,7 @@ class ScanTab(QtWidgets.QWidget):
         p, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Finder-Script wählen", os.getcwd(), "Python (*.py)")
         if p:
             self.le_script.setText(p)
-            s = _settings()
-            s.setValue("last_script", p)
-            s.sync()
+            s = _settings(); s.setValue("last_script", p); s.sync()
 
     def _choose_folder(self) -> None:
         p = QtWidgets.QFileDialog.getExistingDirectory(self, "PDF-Ordner wählen", os.getcwd())
@@ -805,7 +1037,6 @@ class ScanTab(QtWidgets.QWidget):
             set_last_csv(p)
             self.lbl_last.setText(f"Letzte CSV: {p}")
 
-
 # --------------------- Hauptfenster ---------------------
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -834,7 +1065,6 @@ class MainWindow(QtWidgets.QMainWindow):
             except Exception as ex:
                 debug(f"Autoload übersprungen: {ex}")
 
-
 # --------------------- main ---------------------
 
 def main() -> None:
@@ -848,11 +1078,6 @@ def main() -> None:
     win = MainWindow()
     win.show()
     sys.exit(app.exec_())
-
-
-if __name__ == "__main__":
-    main()
-
 
 if __name__ == "__main__":
     main()

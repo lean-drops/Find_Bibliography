@@ -1,45 +1,600 @@
 {
   "works": [
-    {"canonical": "Fründ (Hans Fründ)", "aliases": ["hans\\s+fr[üu]nd", "\\bfr[üu]nd(?:s)?\\s+chronik", "\\bfr[üu]nd\\b"]},
-    {"canonical": "Tschachtlan (Benedikt Tschachtlan)", "aliases": ["benedikt\\s+tschachtlan", "\\btschachtlan(?:s)?\\s+chronik", "\\btschachtlan\\b"]},
-    {"canonical": "Schilling (Diebold Schilling, Berner/Luzerner Chronik)", "aliases": ["diebold\\s+schilling", "\\bschilling(?:s)?\\s+chronik", "\\bberner\\s+chronik\\s+schilling", "\\bluzerner\\s+schilling", "\\bschilling\\b"]},
-    {"canonical": "Edlibach (Gerold Edlibach)", "aliases": ["gerold\\s+edlibach", "\\bedlibach\\b", "chronik\\s+von\\s+gerold\\s+edlibach"]},
-    {"canonical": "Justinger (Konrad Justinger)", "aliases": ["konrad\\s+justinger", "\\bjustinger\\b", "bern(?:er)?\\s+chronik\\s+justinger"]},
-    {"canonical": "Schodoler (Werner Schodoler)", "aliases": ["werner\\s+schodoler", "\\bschodoler\\b"]},
-    {"canonical": "Stumpf (Johannes Stumpf)", "aliases": ["johannes\\s+stumpf", "\\bstumpf\\b", "stumpfs?\\s+chronik"]},
-    {"canonical": "Tschudi (Aegidius Tschudi, Chronicon Helveticum)", "aliases": ["aegidius\\s+tschudi", "\\btschudi\\b", "chronicon\\s+helveticum"]},
-    {"canonical": "Klingenberger Chronik", "aliases": ["klingenberger\\s+chronik", "chronik\\s+des\\s+klingenbergers?"]},
-    {"canonical": "Zürcher Stadtchronik", "aliases": ["chronik\\s+der\\s+stadt\\s+z[üu]rich", "z[üu]rcher\\s+stadtchronik"]},
-    {"canonical": "Valerius Anshelm", "aliases": ["valerius\\s+anshelm", "\\banshelm\\b"]},
-    {"canonical": "Brennwald (Johann/Johannes Brennwald)", "aliases": ["johann(?:es)?\\s+brennwald", "\\bbrennwald\\b"]},
-    {"canonical": "Bullinger (Heinrich Bullinger)", "aliases": ["heinrich\\s+bullinger", "\\bbullinger\\b"]},
-    {"canonical": "Etterlin (Petermann Etterlin)", "aliases": ["petermann\\s+etterlin", "\\betterlin\\b", "kronik\\s+der\\s+schweiz"]},
-    {"canonical": "Melchior Russ", "aliases": ["melchior\\s+russ", "\\bruss\\b", "luzerner\\s+chronik\\s+russ"]},
-    {"canonical": "Johannes von Winterthur", "aliases": ["johannes\\s+von\\s+winterthur", "\\bwinterthurer\\s+chronik\\b"]},
-    {"canonical": "Johann Jakob Wick (Wickiana)", "aliases": ["johann\\s+jakob\\s+wick", "\\bwickiana\\b"]},
-    {"canonical": "Rüeger (Johann Jakob Rüeger)", "aliases": ["johann\\s+jakob\\s+r[üu]eger", "\\br[üu]eger\\b", "schaffhauser\\s+chronik"]},
-    {"canonical": "Stadtbuch/Weisheiten (Zürich, Bern, Luzern, Basel)", "aliases": ["z[üu]rcher\\s+stadtbuch", "berner\\s+stadtbuch", "luzerner\\s+stadtbuch", "basler\\s+stadtbuch"]},
-    {"canonical": "Berner Chronik (allg.)", "aliases": ["\\bberner\\s+chronik\\b"]},
-    {"canonical": "Luzerner Chronik (allg.)", "aliases": ["\\bluzerner\\s+chronik\\b"]}
+    {
+      "canonical": "Fründ (Hans Fründ)",
+      "aliases": [
+        "hans\\s+fr[üu]nd",
+        "\\bfr[üu]nds?\\s+chronik",
+        "\\bfr[üu]nd\\b",
+        "chronik\\s+des\\s+hans\\s+fr[üu]nd",
+        "annales\\s+fr[üu]nd\\b"
+      ]
+    },
+    {
+      "canonical": "Hemmerlin (Felix Hemmerlin/Malleolus)",
+      "aliases": [
+        "felix\\s+hemmerlin",
+        "felix\\s+malleolus",
+        "\\bhemmerlin\\b",
+        "malleolus\\b",
+        "de\\s+nobilitate\\s+et\\s+rusticitate",
+        "de\\s+bello\\s+tigurino",
+        "contra\\s+rusticos\\b",
+        "hemmerlins?\\s+schriften?"
+      ]
+    },
+    {
+      "canonical": "Etterlin (Petermann Etterlin, Kronika)",
+      "aliases": [
+        "petermann\\s+etterlin",
+        "\\betterlin\\b",
+        "kronik[a]?\\s+von\\s+der\\s+loblichen\\s+eyd+t?genossenschaft",
+        "kronik\\s+der\\s+eidgenossen",
+        "kronik[a]?\\s+der\\s+loblichen\\s+eyd+t?gnoschafft\\s+stetten\\s+landen\\s+und\\s+v[öo]lckern",
+        "etterlins?\\s+kronik"
+      ]
+    },
+    {
+      "canonical": "Schilling d. Ä. (Diebold Schilling, Berner Chronik)",
+      "aliases": [
+        "diebold\\s+schilling\\s+der\\s+[äa]ltere",
+        "berner\\s+chronik\\s+schilling",
+        "schilling\\s+berner\\s+chronik",
+        "amtliche\\s+berner\\s+chronik",
+        "amtliche\\s+chronik\\s+der\\s+stadt\\s+bern",
+        "illustr[iy]erte\\s+berner\\s+chronik"
+      ]
+    },
+    {
+      "canonical": "Schilling d. J. (Diebold Schilling, Luzerner Chronik)",
+      "aliases": [
+        "diebold\\s+schilling\\s+der\\s+j[üu]ngere",
+        "luzerner\\s+chronik\\s+schilling",
+        "schilling\\s+luzerner\\s+chronik"
+      ]
+    },
+    {
+      "canonical": "Schilling (ungenau)",
+      "aliases": [
+        "\\bschilling\\b",
+        "diebold\\s+schilling"
+      ]
+    },
+    {
+      "canonical": "Tschachtlan (Benedikt Tschachtlan)",
+      "aliases": [
+        "benedikt\\s+tschachtlan",
+        "tschachtlans?\\s+chronik",
+        "\\btschachtlan\\b",
+        "berner\\s+bilderchronik\\b"
+      ]
+    },
+    {
+      "canonical": "Justinger (Konrad Justinger, Berner Chronik)",
+      "aliases": [
+        "(?:kon|con)rad\\s+justinger",
+        "conradus\\s+justingerus",
+        "\\bjustinger\\b",
+        "\\bjustynger\\b",
+        "justingers?\\s+chronik",
+        "justyngers?\\s+chronik",
+        "justingerchronik",
+        "justinger\\s+berner\\s+chronik",
+        "berner\\s+chronik\\s+(?:des\\s+)?justingers?",
+        "die\\s+recht[e]?\\s+cr?on[e]?ck\\s+der\\s+stat[t]?\\s+bern",
+        "rechte\\s+chronik\\s+der\\s+stadt\\s+bern"
+      ]
+    },
+    {
+      "canonical": "Edlibach (Gerold Edlibach, Zürcher Chronik)",
+      "aliases": [
+        "gerold\\s+edlibach",
+        "\\bedlibach\\b",
+        "z[üu]rcher\\s+chronik\\s+edlibach",
+        "chronik\\s+von\\s+gerold\\s+edlibach",
+        "edlibachs?\\s+z[üu]rcher\\s+chronik"
+      ]
+    },
+    {
+      "canonical": "Stumpf (Johannes Stumpf, Schweizerchronik)",
+      "aliases": [
+        "johannes\\s+stumpf",
+        "stumpfs?\\s+chronik",
+        "schweizer\\s?chronik\\s+stumpf",
+        "gemeiner\\s+loblicher\\s+eydgnoschafft\\s+\\w*\\s*chronick",
+        "stumpf\\s+eidgenossen\\s+chronik",
+        "stumpf\\s+holzschnitte"
+      ]
+    },
+    {
+      "canonical": "Tschudi (Aegidius/Gilg Tschudi, Chronicon Helveticum)",
+      "aliases": [
+        "aegidi(?:us)?\\s+tschudi",
+        "gilg\\s+tschudi",
+        "\\btschudi\\b",
+        "chronicon\\s+helveticum",
+        "historia\\s+helvetica\\b"
+      ]
+    },
+    {
+      "canonical": "Anshelm (Valerius Anshelm, Berner Chronik)",
+      "aliases": [
+        "valerius\\s+anshelm",
+        "\\banshelm\\b",
+        "anshelms?\\s+berner\\s+chronik",
+        "berner\\s+chronik\\s+anshelm"
+      ]
+    },
+    {
+      "canonical": "Schodoler (Werner Schodoler, Eidgenössische Chronik)",
+      "aliases": [
+        "werner\\s+schodoler",
+        "\\bschodoler\\b",
+        "eidgen[öo]ssische\\s+chronik\\s+schodoler"
+      ]
+    },
+    {
+      "canonical": "Brennwald (Heinrich/Johannes Brennwald, Schweizerchronik)",
+      "aliases": [
+        "heinrich\\s+brennwald",
+        "johann(?:es)?\\s+brennwald",
+        "\\bbrennwald\\b",
+        "schweizer\\s?chronik\\s+brennwald"
+      ]
+    },
+    {
+      "canonical": "Bullinger (Heinrich Bullinger, historiographische Werke)",
+      "aliases": [
+        "heinrich\\s+bullinger",
+        "\\bbullinger\\b",
+        "reformationsgeschichte\\s+bullinger",
+        "tiguriner\\s+chronik\\s+bullinger",
+        "rathsschl[aä]ge\\s+bullinger"
+      ]
+    },
+    {
+      "canonical": "Rüeger (Johann Jakob Rüeger, Schaffhauser Chronik)",
+      "aliases": [
+        "johann\\s+jakob\\s+r[üu]eger",
+        "\\br[üu]eger\\b",
+        "schaffhauser\\s+chronik\\s+r[üu]eger"
+      ]
+    },
+    {
+      "canonical": "Wick (Johann Jakob Wick, Wickiana)",
+      "aliases": [
+        "johann\\s+jakob\\s+wick",
+        "\\bwickiana\\b",
+        "\\bwick\\b"
+      ]
+    },
+    {
+      "canonical": "Johannes von Winterthur (Winterthurer Chronik)",
+      "aliases": [
+        "johannes\\s+von\\s+winterthur",
+        "winterthurer\\s+chronik",
+        "\\bwinterthur(?:er)?\\s+chronik\\b"
+      ]
+    },
+    {
+      "canonical": "Klingenberger/Rapperswiler Chronik (Eberhard Wüest, ed.)",
+      "aliases": [
+        "klingenberger\\s+chronik",
+        "chronik\\s+des\\s+klingenbergers?",
+        "rapperswil(?:er)?\\s+chronik",
+        "chronik\\s+von\\s+rapperswil",
+        "eberhard\\s+w[üu]est.{0,60}(klingenberger|rapperswil(?:er)?).{0,20}chronik",
+        "(klingenberger|rapperswil(?:er)?)\\s+chronik.{0,60}eberhard\\s+w[üu]est",
+        "rapperswiler\\s+version\\s+der\\s+ereignisse"
+      ]
+    },
+    {
+      "canonical": "Anonyme Rapperswiler Version (Österreichische Partei, 1443–1444)",
+      "aliases": [
+        "anonym(?:e)?\\s+rapperswiler\\s+version",
+        "rapperswiler\\s+bericht",
+        "rapperswiler\\s+darstellung",
+        "pro-\\s*[öo]sterreichische\\s+rapperswiler\\s+chronik",
+        "rapperswil(?:er)?\\s+quelle\\s+143[34]"
+      ]
+    },
+    {
+      "canonical": "Anonyme Basler Fortsetzung der Königshofen-Chronik („Von den von Zürich“)",
+      "aliases": [
+        "anonym(?:e)?\\s+basler\\s+fortsetzung",
+        "basler\\s+fortsetzung\\s+der\\s+chronik\\s+(?:jakob\\s+)?twinger\\s+von\\s+k[öo]nigshofen",
+        "fortsetzung\\s+der\\s+k[öo]nigshofen-?chronik",
+        "von\\s+den\\s+von\\s+z[üu]rich",
+        "chronik\\s+von\\s+den\\s+von\\s+z[üu]rich"
+      ]
+    },
+    {
+      "canonical": "Twinger von Königshofen (Jakob Twinger von Königshofen, Chronik)",
+      "aliases": [
+        "jakob\\s+twinger\\s+von\\s+k[öo]nigshofen",
+        "twinger\\s+von\\s+k[öo]nigshofen",
+        "\\btwinger\\b",
+        "k[öo]nigshofen(?:er)?\\s+chronik",
+        "chronik\\s+des\\s+twinger"
+      ]
+    },
+    {
+      "canonical": "Berner Chronik (allgemein)",
+      "aliases": [
+        "\\bberner\\s+chronik\\b",
+        "bernische\\s+chronik"
+      ]
+    },
+    {
+      "canonical": "Luzerner Chronik (allgemein)",
+      "aliases": [
+        "\\bluzerner\\s+chronik\\b",
+        "lucerner\\s+chronik"
+      ]
+    },
+    {
+      "canonical": "Zürcher Stadtchronik (allgemein)",
+      "aliases": [
+        "z[üu]rcher\\s+stadtchronik",
+        "chronik\\s+der\\s+stadt\\s+z[üu]rich"
+      ]
+    },
+    {
+      "canonical": "Wurstisen (Christian Wurstisen, Baselische Chronik)",
+      "aliases": [
+        "christian\\s+wurstisen",
+        "\\bwurstisen\\b",
+        "baselische\\s+chronik"
+      ]
+    },
+    {
+      "canonical": "Vadian (Joachim Vadianus, St. Galler Chronik)",
+      "aliases": [
+        "joachim\\s+vadian(us)?",
+        "\\bvadian(us)?\\b",
+        "st\\.?\\s*galler\\s+chronik\\s+vadian"
+      ]
+    },
+    {
+      "canonical": "Cysat (Renward Cysat, Luzerner Chronik/Collectanea)",
+      "aliases": [
+        "renward\\s+cysat",
+        "\\bcysat\\b",
+        "luzerner\\s+chronik\\s+cysat",
+        "collectanea\\s+cysat"
+      ]
+    },
+    {
+      "canonical": "Knebel (Johannes Knebel, Basler Jahrzeitbuch/Chronik)",
+      "aliases": [
+        "johannes\\s+knebel",
+        "\\bknebel\\b",
+        "basler\\s+jahrzeitbuch",
+        "knebel\\s+chronik"
+      ]
+    },
+    {
+      "canonical": "Weisses Buch von Sarnen",
+      "aliases": [
+        "weisses\\s+buch\\s+von\\s+sarnen",
+        "weissenbuch\\s+von\\s+sarnen",
+        "sarner\\s+weiss(?:es)?\\s+buch"
+      ]
+    },
+    {
+      "canonical": "Salat (Johannes Salat, Chronik)",
+      "aliases": [
+        "johannes\\s+salat",
+        "\\bsalat\\b",
+        "salats?\\s+chronik"
+      ]
+    },
+    {
+      "canonical": "Michael Stettler (Berner Chronik 1620–1622)",
+      "aliases": [
+        "michael\\s+stettler",
+        "stettlers?\\s+berner\\s+chronik",
+        "berner\\s+chronik\\s+1620"
+      ]
+    },
+    {
+      "canonical": "Simler (Josias Simler, De Helvetiorum republica / Republika Helvetiorum)",
+      "aliases": [
+        "josias\\s+simler",
+        "\\bsimler\\b",
+        "de\\s+helvetiorum\\s+republica",
+        "respublica\\s+helvetiorum",
+        "repub(?:lica|lica)\\s+helvetiorum"
+      ]
+    },
+    {
+      "canonical": "Johann von Müller (Geschichten der Schweizer Eidgenossenschaft)",
+      "aliases": [
+        "johann\\s+von\\s+m[üu]ller",
+        "geschichten\\s+der\\s+schweizer(?:ischen)?\\s+eidgenossenschaft",
+        "m[üu]ller\\s+eidgenossenschaft",
+        "geschichte\\s+der\\s+eidgenossenschaft\\s+m[üu]ller"
+      ]
+    },
+    {
+      "canonical": "Hottinger (Johann Jakob Hottinger, Helvetische Kirchengeschichte)",
+      "aliases": [
+        "johann\\s+jakob\\s+hottinger",
+        "\\bhottinger\\b",
+        "helvetische\\s+kirchengeschichte",
+        "kirchengeschichte\\s+der\\s+schweiz\\s+hottinger"
+      ]
+    },
+    {
+      "canonical": "Johann Jakob Leu (Allgemeines Helvetisches Lexikon)",
+      "aliases": [
+        "johann\\s+jakob\\s+leu",
+        "\\bleu\\b",
+        "allgemeines\\s+helvetisches\\s+lexikon"
+      ]
+    },
+    {
+      "canonical": "Kopp (Joseph Eutych Kopp, Geschichte der Eidgenossen)",
+      "aliases": [
+        "joseph\\s+eutych\\s+kopp",
+        "\\bkopp\\b",
+        "geschichte\\s+der\\s+eidgenossen"
+      ]
+    },
+    {
+      "canonical": "Bluntschli/Vögelin (Geschichte des schweizerischen Bundesrechts)",
+      "aliases": [
+        "bluntschli\\s+v[öo]gelin\\s+bundesrecht",
+        "geschichte\\s+des\\s+schweizerischen\\s+bundesrechts",
+        "bundesrecht\\s+geschichte"
+      ]
+    },
+    {
+      "canonical": "Arnold von Liebenau (Kappelerkriege, historiographisch)",
+      "aliases": [
+        "arnold\\s+von\\s+liebenau",
+        "kappelerkriege\\s+liebenau",
+        "geschichte\\s+der\\s+kappelerkriege"
+      ]
+    },
+    {
+      "canonical": "Zürcher Reformationschroniken (Sammelbegriff)",
+      "aliases": [
+        "z[üu]rcher\\s+reformationschronik(?:en)?",
+        "reformations\\s+chronik\\s+z[üu]rich"
+      ]
+    },
+    {
+      "canonical": "Chronik der Stadt Zürich (Edlibach u. a.)",
+      "aliases": [
+        "chronik\\s+der\\s+stadt\\s+z[üu]rich",
+        "z[üu]rich(?:er)?\\s+stadt\\s+chronik"
+      ]
+    },
+    {
+      "canonical": "Ulrich Campell (Raetiae descriptio/Chronik)",
+      "aliases": [
+        "ulrich\\s+campell",
+        "campell\\s+raetiae\\s+descriptio",
+        "campell\\s+chronik",
+        "raetiae\\s+descriptio"
+      ]
+    },
+    {
+      "canonical": "Fortunat Sprecher (Rhaetia)",
+      "aliases": [
+        "fortunat\\s+sprecher",
+        "sprecher\\s+rhaetia",
+        "\\brhaetia\\b"
+      ]
+    }
   ],
   "series": [
-    {"canonical": "QSG (Quellen zur Schweizer Geschichte)", "aliases": ["\\bqsg\\b", "quellen\\s+zur\\s+schweizer\\s+geschichte"]},
-    {"canonical": "Basler Chroniken (Reihe)", "aliases": ["\\bbasler\\s+chroniken\\b"]},
-    {"canonical": "Chroniken der deutschen Städte", "aliases": ["chroniken\\s+der\\s+deutschen\\s+st[äa]dte"]},
-    {"canonical": "MGH SS (Monumenta Germaniae Historica Scriptores)", "aliases": ["\\bmgh\\s+ss\\b", "monumenta\\s+germaniae\\s+historica\\s+scriptores"]},
-    {"canonical": "MGH (allg.)", "aliases": ["\\bmgh\\b", "monumenta\\s+germaniae\\s+historica"]}
+    {
+      "canonical": "QSG (Quellen zur Schweizer Geschichte)",
+      "aliases": [
+        "\\bqsg\\b",
+        "quellen\\s+zur\\s+schweizer\\s+geschichte",
+        "quellenwerke\\s+zur\\s+schweizer\\s+geschichte",
+        "qsg\\s+n\\.?f\\.?"
+      ]
+    },
+    {
+      "canonical": "Basler Chroniken (Reihe)",
+      "aliases": [
+        "\\bbasler\\s+chroniken\\b"
+      ]
+    },
+    {
+      "canonical": "Chroniken der deutschen Städte",
+      "aliases": [
+        "chroniken\\s+der\\s+deutschen\\s+st[äa]dte"
+      ]
+    },
+    {
+      "canonical": "MGH SS (Monumenta Germaniae Historica Scriptores)",
+      "aliases": [
+        "\\bmgh\\s+ss\\b",
+        "monumenta\\s+germaniae\\s+historica\\s+scriptores"
+      ]
+    },
+    {
+      "canonical": "MGH (allgemein)",
+      "aliases": [
+        "\\bmgh\\b",
+        "monumenta\\s+germaniae\\s+historica"
+      ]
+    },
+    {
+      "canonical": "SSRQ (Sammlung Schweizerischer Rechtsquellen)",
+      "aliases": [
+        "\\bssrq\\b",
+        "sammlung\\s+schweizerischer\\s+rechtsquellen"
+      ]
+    },
+    {
+      "canonical": "MAGZ (Mitteilungen der Antiquarischen Gesellschaft in Zürich)",
+      "aliases": [
+        "\\bmagz\\b",
+        "mitteilungen\\s+der\\s+antiquarischen\\s+gesellschaft\\s+in\\s+z[üu]rich"
+      ]
+    },
+    {
+      "canonical": "ZsG (Zeitschrift für schweizerische Geschichte)",
+      "aliases": [
+        "\\bzsg\\b",
+        "zeitschrift\\s+f[üu]r\\s+schweizerische\\s+geschichte"
+      ]
+    }
   ],
   "generic_terms": [
-    {"label": "Chronik/Chroniken", "patterns": ["\\bchronik(?:en)?\\b", "\\bkr?onik(?:en)?\\b"]},
-    {"label": "Chronicon/Chronica", "patterns": ["\\bchronic(?:on|a|orum)\\b", "\\bchronicae\\b"]},
-    {"label": "Annales/Annalen", "patterns": ["\\bannal(?:es|en)\\b", "\\bannales\\b"]},
-    {"label": "Historia/Historiae", "patterns": ["\\bhistori[ae]\\b", "\\bhistorien?\\b"]},
-    {"label": "Gesta/Acta", "patterns": ["\\bgesta\\b", "\\bacta\\b"]},
-    {"label": "Memoriale/Memorialbuch", "patterns": ["\\bmemoriale\\b", "memorial\\s*buch"]},
-    {"label": "Jahrbuch/Jahrbücher", "patterns": ["jahrb[üu]ch(?:er|e)?\\b"]},
-    {"label": "Tagebuch", "patterns": ["\\btagebuch\\b", "tageb[üu]cher\\b"]},
-    {"label": "Stadtchronik (generisch)", "patterns": ["\\bstadt\\s*chronik\\b", "stadt\\s*kr?onik\\b"]},
-    {"label": "Chronist/Chronisten", "patterns": ["\\bchronist(?:en)?\\b"]}
+    {
+      "label": "Chronik/Chroniken",
+      "patterns": [
+        "\\bchronik(?:en)?\\b",
+        "\\bkr?onik(?:en)?\\b",
+        "\\bcronik(?:en)?\\b",
+        "\\bchronick\\b",
+        "\\bchronicq?\\b"
+      ]
+    },
+    {
+      "label": "Chronicon/Chronica",
+      "patterns": [
+        "\\bchronic(?:on|a|orum)\\b",
+        "\\bchronicae\\b",
+        "\\bchronicon\\s+helveticum\\b"
+      ]
+    },
+    {
+      "label": "Annales/Annalen",
+      "patterns": [
+        "\\bannal(?:es|en)\\b",
+        "\\bannales\\b",
+        "\\bannalium\\b"
+      ]
+    },
+    {
+      "label": "Historia/Historiae",
+      "patterns": [
+        "\\bhistori[ae]\\b",
+        "\\bhistorien?\\b",
+        "\\bhistoriarum\\b",
+        "\\bhistoriographia\\b"
+      ]
+    },
+    {
+      "label": "Gesta/Acta",
+      "patterns": [
+        "\\bgesta\\b",
+        "\\bacta\\b"
+      ]
+    },
+    {
+      "label": "Memoriale/Memorialbuch",
+      "patterns": [
+        "\\bmemoriale\\b",
+        "memorial\\s?buch",
+        "jahrzeit\\s?buch"
+      ]
+    },
+    {
+      "label": "Jahrbuch/Jahrbücher",
+      "patterns": [
+        "jahrb[üu]ch(?:er|e)?\\b"
+      ]
+    },
+    {
+      "label": "Tagebuch/Tagebücher",
+      "patterns": [
+        "\\btagebuch\\b",
+        "tageb[üu]cher\\b"
+      ]
+    },
+    {
+      "label": "Stadtchronik (generisch)",
+      "patterns": [
+        "\\bstadt\\s?chronik\\b",
+        "stadt\\s?kr?onik\\b"
+      ]
+    },
+    {
+      "label": "Eydgenossenschaft/Helvetia (frühneuzeitl. Schreibungen)",
+      "patterns": [
+        "eydt?g?nosch[aä]fft",
+        "eidt?genossenschaft",
+        "helveti[ae]"
+      ]
+    },
+    {
+      "label": "Schlacht-/Kriegserzählungen",
+      "patterns": [
+        "\\bschlacht(?:en)?\\b",
+        "\\bkrieg(?:e|en)?\\b",
+        "\\bfeldzug\\b"
+      ]
+    },
+    {
+      "label": "Alter Zürichkrieg / Zürcherkrieg",
+      "patterns": [
+        "alter\\s+z[üu]richkrieg",
+        "alte[rn]?\\s+z[üu]rchkrig",
+        "\\bz[üu]rcherkrieg\\b",
+        "\\bz[üu]richkrieg\\b",
+        "krieg\\s+der\\s+z[üu]rcher",
+        "krieg\\s+von\\s+z[üu]rich",
+        "von\\s+den\\s+von\\s+z[üu]rich"
+      ]
+    },
+    {
+      "label": "Burgunderkriege",
+      "patterns": [
+        "burgund(?:er)?kriege",
+        "burgundische\\s+kriege"
+      ]
+    },
+    {
+      "label": "Schwabenkrieg 1499",
+      "patterns": [
+        "schwabenkrieg\\b",
+        "krieg\\s+von\\s+1499"
+      ]
+    },
+    {
+      "label": "St. Jakob an der Birs",
+      "patterns": [
+        "st\\.?\\s*jakob\\s+an\\s+der\\s+birs",
+        "schlacht\\s+an\\s+der\\s+birs",
+        "st\\.?\\s*jacob\\s+an\\s+der\\s+birs"
+      ]
+    },
+    {
+      "label": "Seeschlacht auf dem Zürichsee (1444)",
+      "patterns": [
+        "seeschlacht\\s+auf\\s+dem\\s+z[üu]richsee",
+        "seeschlacht\\s+z[üu]richsee\\b"
+      ]
+    },
+    {
+      "label": "Gefecht bei Eitenbach (1444)",
+      "patterns": [
+        "gefecht\\s+bei\\s+eitenbach",
+        "eitenbach\\b"
+      ]
+    },
+    {
+      "label": "Vaterländische Geschichtsschreibung",
+      "patterns": [
+        "vaterl[aä]ndische\\s+geschichtsschreibung"
+      ]
+    },
+    {
+      "label": "Eidgenössische Kriegsbeschreibung",
+      "patterns": [
+        "eidgen[öo]ssische\\s+kriegsbeschreibung",
+        "kriegsbeschreibung\\s+der\\s+eidgenossen"
+      ]
+    }
   ],
   "weights": {
     "work": 1.0,

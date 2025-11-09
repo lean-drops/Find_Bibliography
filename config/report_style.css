@@ -1,0 +1,55 @@
+:root{
+  --bg:#f7f1e1; --bg2:#efe6cf; --fg:#1b1a17; --muted:#6f675a; --line:#c9bfa8;
+  --accent:#0f5aa6; --accent2:#b01010; --chip:#e7eef8; --chip2:#f3e7e7; --chip3:#efe7cf; --gold:#b28b39;
+  --sticky-top:124px; --panel-w:0px;
+}
+html.panel-open{ --panel-w:380px; }
+.dark{ --bg:#161410; --bg2:#1d1a14; --fg:#e7decf; --muted:#a99f8d; --line:#4b453b; --chip:#0f1928; --chip2:#241616; --chip3:#252019; --accent:#78a9f0; --accent2:#f06a6a; --gold:#c6a85c; }
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:15px/1.5 "Garamond","EB Garamond","Georgia","Times New Roman",serif}
+.hdr{padding:18px 24px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;background:linear-gradient(180deg,var(--bg2),var(--bg));z-index:10}
+.hdr__title{margin:0 0 4px;font-size:24px;letter-spacing:.02em}
+.hdr__meta{opacity:.9}
+.hdr__crest{display:flex;gap:6px;margin-bottom:6px}
+.crest{width:18px;height:18px;border:1px solid var(--line);border-radius:3px;box-shadow:inset 0 0 0 1px #fff4,0 1px 0 #0001}
+.crest--zh{background:linear-gradient(135deg,#fff 50%,var(--accent) 50%)}
+.crest--sz{background:var(--accent2)}
+.toolbar{display:flex;gap:12px;align-items:center;padding:10px 24px;border-bottom:1px solid var(--line);position:sticky;top:68px;background:var(--bg);z-index:9;flex-wrap:wrap}
+.toolbar--sub{position:sticky;top:calc(var(--sticky-top) - 8px); background:var(--bg); z-index:8; margin-top:16px; border-top:1px dashed var(--line); border-bottom:1px dashed var(--line)}
+.filter{padding:8px 10px;border:1px solid var(--line);border-radius:10px;min-width:260px;flex:1 1 320px;background:#fff1}
+.toggle{padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(#fff2,#0000);cursor:pointer}
+.groups{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:12px 24px}
+.rightpad{margin-left:12px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--chip);padding:4px 10px;border-radius:14px;cursor:pointer;font-size:13px}
+.chip.group[data-group="work"]{background:var(--chip)}
+.chip.group[data-group="series"]{background:var(--chip3)}
+.chip.group[data-group="generic"]{background:var(--chip2)}
+.chip.active{outline:2px solid var(--gold)}
+.chip.clear{background:transparent}
+.grid{display:grid;grid-template-columns:1fr var(--panel-w);gap:16px;padding:0 24px 24px}
+.col{min-width:0}
+.table{width:100%;border-collapse:collapse;table-layout:auto}
+.table th,.table td{border:1px solid var(--line);padding:8px;vertical-align:top;background:#fff2;overflow-wrap:anywhere;word-break:break-word}
+.table th{background:linear-gradient(180deg,#fff4,#fff0);text-align:left;position:sticky;top:var(--sticky-top);z-index:1}
+.n{text-align:right;white-space:nowrap}
+.bar{height:8px;background:linear-gradient(90deg,var(--accent2),var(--accent));display:inline-block;border-radius:4px}
+.lbl{padding:2px 6px;border:1px solid var(--line);border-radius:10px;background:transparent;cursor:pointer}
+.ftr{padding:14px 24px;border-top:1px solid var(--line);background:linear-gradient(180deg,var(--bg),var(--bg2))}
+.small{color:var(--muted);font-size:12px}
+aside.panel{width:100%;position:sticky;top:var(--sticky-top);height:calc(100vh - (var(--sticky-top) + 16px));border-left:1px solid var(--line);background:linear-gradient(180deg,var(--bg),var(--bg2));overflow:auto;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .15s ease}
+html.panel-open aside.panel{visibility:visible;opacity:1;pointer-events:auto}
+.panel-inner{position:sticky;top:var(--sticky-top);padding:12px}
+.panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.icon{border:1px solid var(--line);background:linear-gradient(#fff2,#0000);border-radius:8px;width:28px;height:28px;cursor:pointer;font-size:18px;line-height:24px}
+.panel-body .kv{display:grid;grid-template-columns:120px 1fr;gap:6px 10px;margin:8px 0 12px}
+.panel-body code{word-break:break-word}
+.badge{display:inline-block;padding:2px 6px;border:1px solid var(--line);border-radius:8px;font-size:11px;margin-right:6px;background:#fff2}
+.hidden{display:none!important}
+h1,h2{border-bottom:1px dashed var(--line)}
+mark{background:linear-gradient(180deg,#fffbcc,#f7e8a3);padding:0 .2em}
+@media(max-width:1100px){
+  html.panel-open{ --panel-w:0px; }
+  aside.panel{position:fixed;top:110px;right:12px;left:auto;width:min(92vw,420px);height:calc(100vh - 130px);box-shadow:0 10px 30px #0004;border:1px solid var(--line);z-index:20}
+}
+

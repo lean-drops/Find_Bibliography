@@ -1,0 +1,42 @@
+{
+  "timestamp": "2025-11-09T16:37:09",
+  "project_root": "/Users/programming/PycharmProjects/Find_Bibliography_NEw",
+  "pdf_dir": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library",
+  "num_pdfs": 21,
+  "pdfs": [
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__17.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/landolt-oliver__30.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__19.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bihrer-andreas__5.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/bosshard-werner__14.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sutter-pascale__3.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/stettler-bernhard__8.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/jucker-michael__9.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/frey-stefan__13.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/illi-martin__24.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/rigendinger-fritz__2.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/speck-dieter__6.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/michael-jucker__9.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/zahnd-urs-martin__20.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__4.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/konstantin-m-langmaier__28.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/niederhauser-peter__7.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/langmaier-konstantin-m__18.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/sieber-christian__11.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/heinrich-speich__32.pdf",
+    "/Users/programming/PycharmProjects/Find_Bibliography_NEw/data/azk_library/landolt-oliver__10.pdf"
+  ],
+  "config_file": "/Users/programming/PycharmProjects/Find_Bibliography_NEw/config/chroniken_canon.json",
+  "weights": {
+    "work": 1.0,
+    "series": 1.0,
+    "generic": 1.2
+  },
+  "env": {
+    "pymupdf": true,
+    "pandas": true,
+    "pytesseract": true,
+    "networkx": true,
+    "ocr_threshold_chars": 120
+  }
+}
